@@ -37,7 +37,7 @@ a.git {
 	margin-right: 0px;
 	transition-duration: 0.4s;
 }
-div.main-div {
+div.mainDiv {
 	display: grid;
 	place-items: center;
 }
@@ -46,10 +46,16 @@ th {
 	text-align: left;
 }
 col.col1 {
+	width: 100px;
+}
+col.col2, col.col3 {
 	width: 200px;
 }
-col.col2 {
-	width: 200px;
+tr.labels, tr.torso, tr.belt {
+	background-color: #aaaaaa;
+}
+tr.head, tr.arms, tr.legs {
+	background-color: #ffffff;
 }
 img.armor {
 	width: 200px;

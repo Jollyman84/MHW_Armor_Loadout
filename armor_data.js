@@ -1,5 +1,11 @@
 document.onload = fetchDefault();
 
+document.getElementById('swapHead').addEventListener('click', () => fetchPartData(11,'head'));
+document.getElementById('swapTorso').addEventListener('click', () => fetchPartData(12,'torso'));
+document.getElementById('swapArms').addEventListener('click', () => fetchPartData(13,'arms'));
+document.getElementById('swapBelt').addEventListener('click', () => fetchPartData(14,'belt'));
+document.getElementById('swapLegs').addEventListener('click', () => fetchPartData(15,'legs'));
+
 function fetchDefault() {
 	fetchPartData(1,'head');
 	fetchPartData(2,'torso');
