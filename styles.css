@@ -41,6 +41,9 @@ div.mainDiv {
 	display: grid;
 	place-items: center;
 }
+table {
+	border-collapse: collapse;
+}
 th {
 	font-size: x-large;
 	text-align: left;
@@ -57,12 +60,30 @@ tr.labels, tr.torso, tr.belt {
 tr.head, tr.arms, tr.legs {
 	background-color: #ffffff;
 }
+.swapHead, .swapTorso, .swapArms, .swapBelt, .swapLegs {
+	border-width: 0px;
+	padding-top: calc(100% - 25px);
+	padding-bottom: calc(100% - 25px);
+	padding-right: calc(50% - 25px);
+	padding-left: calc(50% - 25px);
+	background-color: transparent;
+	transition-duration: 0.4s;
+}
+.swapHead:hover, .swapTorso:hover, .swapArms:hover, .swapBelt:hover, .swapLegs:hover {
+	background-color: #04AA6D;
+}
+.swapIcon {
+	height: 50px;
+	width: 50px;
+}
 img.armor {
 	width: 200px;
 	height: 200px;
 }
 td {
 	margin: 0px;
+	border-width: 0px;
+	padding: 0px;
 	vertical-align: top;
 }
 p {

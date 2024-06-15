@@ -1,0 +1,333 @@
+2,Leather Mail
+7,Chainmail Vest
+12,Hunter's Mail
+17,Bone Mail
+22,Vespoid Mail
+29,Jagras Mail
+34,Kulu Mail
+39,Alloy Mail
+44,Pukei Mail
+49,Barroth Mail
+54,Jyura Mail
+59,Kadachi Mail
+64,High Metal Mail
+69,King Beetle Thorax
+74,Butterfly Thorax
+80,Hornetaur Mail
+85,Anja Mail
+90,Rathian Mail
+95,Tzitzi Mail
+100,Lumu Mail
+105,Girros Mail
+110,Baan Mail
+115,Ingot Mail
+120,Death Stench Muscle
+125,Brigade Suit
+130,Legiana Mail
+135,Odogaron Mail
+140,Rathalos Mail
+145,Diablos Mail
+150,Kirin Jacket
+155,Leather Mail Alpha
+160,Leather Mail Beta
+165,Chainmail Armor Alpha
+170,Chainmail Armor Beta
+175,Hunter's Mail Alpha
+180,Hunter's Mail Beta
+185,Bone Mail Alpha
+190,Bone Mail Beta
+195,Alloy Mail Alpha
+200,Alloy Mail Beta
+205,King Beetle Thorax Alpha
+210,King Beetle Thorax Beta
+215,Butterfly Thorax Alpha
+220,Butterfly Thorax Beta
+225,Vespoid Mail Alpha
+230,Vespoid Mail Beta
+235,Hornetaur Mail Alpha
+240,Hornetaur Mail Beta
+252,Jagras Mail Alpha
+257,Jagras Mail Beta
+262,Kulu Mail Alpha
+267,Kulu Mail Beta
+272,Tzitzi Mail Alpha
+277,Tzitzi Mail Beta
+282,Girros Mail Alpha
+287,Girros Mail Beta
+292,Pukei Mail Alpha
+297,Pukei Mail Beta
+302,Barroth Mail Alpha
+307,Barroth Mail Beta
+312,Anja Mail Alpha
+317,Anja Mail Beta
+322,Jyura Mail Alpha
+327,Jyura Mail Beta
+332,Kadachi Mail Alpha
+337,Kadachi Mail Beta
+342,Lumu Mail Alpha
+347,Lumu Mail Beta
+352,Rathian Mail Alpha
+357,Rathian Mail Beta
+362,Rath Heart Mail Alpha
+367,Rath Heart Mail Beta
+372,Baan Mail Alpha
+377,Baan Mail Beta
+383,Barnos Jacket Alpha
+384,Barnos Jacket Beta
+386,Dodogama Mail Alpha
+391,Dodogama Mail Beta
+396,Zorah Hide Alpha
+401,Zorah Hide Beta
+406,High Metal Mail Alpha
+411,High Metal Mail Beta
+416,Ingot Mail Alpha
+421,Ingot Mail Beta
+426,Brigade Suit Alpha
+431,Brigade Suit Beta
+438,Lavasioth Mail Alpha
+443,Lavasioth Mail Beta
+448,Legiana Mail Alpha
+453,Legiana Mail Beta
+458,Odogaron Mail Alpha
+463,Odogaron Mail Beta
+468,Rathalos Mail Alpha
+473,Rathalos Mail Beta
+478,Rath Soul Mail Alpha
+483,Rath Soul Mail Beta
+488,Diablos Mail Alpha
+493,Diablos Mail Beta
+498,Diablos Nero Mail Alpha
+503,Diablos Nero Mail Beta
+508,Uragaan Mail Alpha
+513,Uragaan Mail Beta
+518,Bazel Mail Alpha
+523,Bazel Mail Beta
+528,Damascus Mail Alpha
+533,Damascus Mail Beta
+538,Dober Mail Alpha
+543,Dober Mail Beta
+548,Death Stench Muscle Alpha
+553,Death Stench Muscle Beta
+559,Nergigante Mail Alpha
+564,Nergigante Mail Beta
+569,Kaiser Mail Alpha
+574,Kaiser Mail Beta
+579,Kushala Cista Alpha
+584,Kushala Cista Beta
+589,Vaal Hazak Mail Alpha
+594,Vaal Hazak Mail Beta
+599,Kirin Jacket Alpha
+604,Kirin Jacket Beta
+609,Xeno'jiiva Hide Alpha
+614,Xeno'jiiva Hide Beta
+619,Guild Cross Suit Alpha
+624,Guild Cross Suit Beta
+630,Commission Jacket Alpha
+635,Commission Jacket Beta
+641,Vangis Mail Alpha
+646,Vangis Mail Beta
+652,Blossom Vest
+662,Blossom Vest Alpha
+669,Kulve Taroth's Ire Alpha
+674,Kulve Taroth's Ire Beta
+679,Kirin Jacket Gamma
+684,Dante's Coat Alpha
+689,Empress Mail Alpha
+694,Empress Mail Beta
+700,Vaal Hazak Mail Gamma
+705,Drachen Mail Alpha
+710,Azure Starlord Armor Alpha
+715,Kulve Taroth's Ire Gamma
+720,Empress Mail Gamma
+725,Xeno'jiiva Hide Gamma
+730,Zorah Hide Gamma
+735,Nergigante Mail Gamma
+740,Kushala Cista Gamma
+745,Kaiser Mail Gamma
+750,Bone Mail Alpha +
+755,Alloy Mail Alpha +
+760,Vespoid Mail Alpha +
+765,Hornetaur Mail Alpha +
+773,Barnos Jacket Alpha +
+775,Cortos Cape Alpha +
+777,Jagras Mail Alpha +
+782,Tzitzi Mail Alpha +
+787,Girros Mail Alpha +
+792,Dodogama Mail Alpha +
+797,Kulu Mail Alpha +
+802,Pukei Mail Alpha +
+807,Pukei Lagoon Mail Alpha +
+812,Barroth Mail Alpha +
+817,Jyura Mail Alpha +
+822,Beo Mail Alpha +
+827,Kadachi Mail Alpha +
+832,Viper Kadachi Mail Alpha +
+837,High Metal Mail Alpha +
+842,Banbaro Mail Alpha +
+847,Anja Mail Alpha +
+852,Fulgur Mail Alpha +
+857,Rathian Mail Alpha +
+862,Rath Heart Mail Alpha +
+867,Lumu Mail Alpha +
+872,Lumu Phantasm Mail Alpha +
+877,Baan Mail Alpha +
+882,Bone Mail Beta +
+887,Alloy Mail Beta +
+892,Vespoid Mail Beta +
+897,Hornetaur Mail Beta +
+905,Barnos Jacket Beta +
+907,Cortos Cape Beta +
+909,Jagras Mail Beta +
+914,Tzitzi Mail Beta +
+919,Girros Mail Beta +
+924,Dodogama Mail Beta +
+929,Kulu Mail Beta +
+934,Pukei Mail Beta +
+939,Pukei Lagoon Mail Beta +
+944,Barroth Mail Beta +
+949,Jyura Mail Beta +
+954,Beo Mail Beta +
+959,Kadachi Mail Beta +
+964,Viper Kadachi Mail Beta +
+969,High Metal Mail Beta +
+974,Banbaro Mail Beta +
+980,Anja Mail Beta +
+985,Fulgur Mail Beta +
+990,Rathian Mail Beta +
+995,Rath Heart Mail Beta +
+1000,Lumu Mail Beta +
+1005,Lumu Phantasm Mail Beta +
+1010,Baan Mail Beta +
+1015,Artian Mail Alpha +
+1020,Artian Mail Beta +
+1025,Clockwork Mail Alpha +
+1030,Clockwork Mail Beta +
+1035,Ingot Mail Alpha +
+1040,Ingot Mail Beta +
+1046,Guildwork Body Alpha +
+1051,Guildwork Body Beta +
+1056,Ruinous Mail Beta +
+1061,Ruinous Mail Alpha +
+1066,Silver Solmail Beta +
+1071,Silver Solmail Alpha +
+1076,Golden Lunemail Beta +
+1081,Golden Lunemail Alpha +
+1086,Zinogre Mail Beta +
+1091,Zinogre Mail Alpha +
+1096,Garuga Mail Beta +
+1101,Garuga Mail Alpha +
+1106,Zorah Hide Beta +
+1111,Zorah Hide Alpha +
+1116,Shara Ishvalda Mail Beta +
+1121,Shara Ishvalda Mail Alpha +
+1126,Tentacle Cloak Beta +
+1131,Tentacle Cloak Alpha +
+1136,Kirin Jacket Beta +
+1141,Kirin Jacket Alpha +
+1146,Kushala Cista Beta +
+1151,Kushala Cista Alpha +
+1156,Kaiser Mail Beta +
+1161,Kaiser Mail Alpha +
+1166,Fellshroud Mail Beta +
+1171,Fellshroud Mail Alpha +
+1176,Rimeguard Mail Beta +
+1181,Rimeguard Mail Alpha +
+1186,Guild Palace Mail Beta +
+1191,Guild Palace Mail Alpha +
+1196,Esurient Mail Beta +
+1201,Esurient Mail Alpha +
+1206,Pride Mail Beta +
+1211,Pride Mail Alpha +
+1216,Damascus Mail Beta +
+1221,Damascus Mail Alpha +
+1226,Dober Mail Beta +
+1231,Dober Mail Alpha +
+1236,Black Belt Mail Beta +
+1241,Black Belt Mail Alpha +
+1246,Rex Roar Mail Beta +
+1251,Rex Roar Mail Alpha +
+1256,Tigrex Mail Beta +
+1261,Tigrex Mail Alpha +
+1266,Brachydios Mail Beta +
+1271,Brachydios Mail Alpha +
+1276,Acidic Glavenus Mail Beta +
+1281,Acidic Glavenus Mail Alpha +
+1286,Golden Haori Beta +
+1291,Golden Haori Alpha +
+1296,Glavenus Mail Beta +
+1301,Glavenus Mail Alpha +
+1306,Nargacuga Mail Beta +
+1311,Nargacuga Mail Alpha +
+1316,Uragaan Mail Beta +
+1321,Uragaan Mail Alpha +
+1326,Lavasioth Mail Beta +
+1331,Lavasioth Mail Alpha +
+1336,Death Garon Mail Beta +
+1341,Death Garon Mail Alpha +
+1346,Odogaron Mail Beta +
+1351,Odogaron Mail Alpha +
+1356,Hoarcry Mail Beta +
+1361,Hoarcry Mail Alpha +
+1366,Legiana Mail Beta +
+1371,Legiana Mail Alpha +
+1376,Diablos Nero Mail Beta +
+1381,Diablos Nero Mail Alpha +
+1386,Diablos Mail Beta +
+1391,Diablos Mail Alpha +
+1396,Rath Soul Mail Beta +
+1401,Rath Soul Mail Alpha +
+1406,Rathalos Mail Beta +
+1411,Rathalos Mail Alpha +
+1416,Barioth Mail Beta +
+1421,Barioth Mail Alpha +
+1426,Empress Mail Beta +
+1431,Empress Mail Alpha +
+1436,Claire's Body Alpha +
+1441,Leon's Body Alpha +
+1446,Stygian Mail Alpha +
+1451,Stygian Mail Beta +
+1456,Safi Crested Chest Alpha +
+1461,Safi Crested Chest Beta +
+1466,Oolong Vest Alpha +
+1470,Buff Chest Alpha +
+1478,Origin Mail
+1484,Queen Beetle Thorax
+1489,Butterfly Thorax M
+1494,Queen Beetle Thorax Alpha
+1500,Queen Beetle Thorax Beta
+1505,Diver's Suit
+1511,Diver's Suit Alpha
+1516,Harvest Tronco
+1521,Harvest Tronco Alpha
+1526,Orion Vest
+1531,Orion Vest Alpha
+1536,Aloy's Body Alpha
+1541,Aloy's Body Gamma
+1546,Ryu's Karate Gi
+1551,Ryu's Karate Gi Alpha
+1556,Sakura's Work Uniform Alpha
+1561,Geralt's Body Alpha
+1566,Ciri's Body Alpha
+1573,Astral Cloth Alpha +
+1578,Banuk Mail Alpha +
+1586,Shield-Weaver Chest +
+1591,Defender Mail Alpha
+1596,Guardian Suit Alpha +
+1601,Grand God's Peer Garb Alpha +
+1606,Grand God's Peer Garb Beta +
+1611,Brachydium Mail Alpha +
+1616,Brachydium Mail Beta +
+1621,Rose Jacket Alpha +
+1626,Kulve Taroth's Ire Alpha +
+1631,Kulve Taroth's Ire Beta +
+1636,Tentacle Cloak Gamma +
+1640,Escadora Soul Alpha +
+1645,Escadora Soul Beta +
+1650,Frostfang Mail Alpha +
+1655,Frostfang Mail Beta +
+1660,Passionate Body Alpha +
+1665,Dragonhide Alpha +
+1670,Dragonhide Beta +
+1675,Demonlord Clown Alpha +
+1680,Rimeguard Mail Gamma +
+1685,Azure Age Haori Alpha +

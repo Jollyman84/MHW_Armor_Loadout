@@ -1,0 +1,332 @@
+3,Leather Gloves
+8,Chainmail Gloves
+13,Hunter's Vambraces
+18,Bone Vambraces
+23,Vespoid Vambraces
+26,Kestodon Guards
+30,Jagras Vambraces
+35,Kulu Vambraces
+40,Alloy Vambraces
+45,Pukei Vambraces
+50,Barroth Vambraces
+55,Jyura Vambraces
+60,Kadachi Vambraces
+65,High Metal Braces
+70,King Beetle Brachia
+75,Butterfly Brachia
+81,Hornetaur Vambraces
+86,Anja Vambraces
+91,Rathian Vambraces
+96,Tzitzi Vambraces
+101,Lumu Vambraces
+106,Girros Vambraces
+111,Baan Vambraces
+116,Ingot Vambraces
+121,Death Stench Grip
+126,Brigade Vambraces
+131,Legiana Vambraces
+136,Odogaron Vambraces
+141,Rathalos Vambraces
+146,Diablos Vambraces
+151,Kirin Longarms
+156,Leather Gloves Alpha
+161,Leather Gloves Beta
+166,Chainmail Gloves Alpha
+171,Chainmail Gloves Beta
+176,Hunter's Vambraces Alpha
+181,Hunter's Vambraces Beta
+186,Bone Vambraces Alpha
+191,Bone Vambraces Beta
+196,Alloy Vambraces Alpha
+201,Alloy Vambraces Beta
+206,King Beetle Brachia Alpha
+211,King Beetle Brachia Beta
+216,Butterfly Brachia Alpha
+221,Butterfly Brachia Beta
+226,Vespoid Vambraces Alpha
+231,Vespoid Vambraces Beta
+236,Hornetaur Vambraces Alpha
+241,Hornetaur Vambraces Beta
+245,Kestodon Guards Alpha
+246,Kestodon Guards Beta
+253,Jagras Vambraces Alpha
+258,Jagras Vambraces Beta
+263,Kulu Vambraces Alpha
+268,Kulu Vambraces Beta
+273,Tzitzi Vambraces Alpha
+278,Tzitzi Vambraces Beta
+283,Girros Vambraces Alpha
+288,Girros Vambraces Beta
+293,Pukei Vambraces Alpha
+298,Pukei Vambraces Beta
+303,Barroth Vambraces Alpha
+308,Barroth Vambraces Beta
+313,Anja Vambraces Alpha
+318,Anja Vambraces Beta
+323,Jyura Vambraces Alpha
+328,Jyura Vambraces Beta
+333,Kadachi Vambraces Alpha
+338,Kadachi Vambraces Beta
+343,Lumu Vambraces Alpha
+348,Lumu Vambraces Beta
+353,Rathian Vambraces Alpha
+358,Rathian Vambraces Beta
+363,Rath Heart Braces Alpha
+368,Rath Heart Braces Beta
+373,Baan Vambraces Alpha
+378,Baan Vambraces Beta
+387,Dodogama Vambraces Alpha
+392,Dodogama Vambraces Beta
+397,Zorah Claws Alpha
+402,Zorah Claws Beta
+407,High Metal Braces Alpha
+412,High Metal Braces Beta
+417,Ingot Vambraces Alpha
+422,Ingot Vambraces Beta
+427,Brigade Vambraces Alpha
+432,Brigade Vambraces Beta
+439,Lavasioth Vambraces Alpha
+444,Lavasioth Vambraces Beta
+449,Legiana Vambraces Alpha
+454,Legiana Vambraces Beta
+459,Odogaron Vambraces Alpha
+464,Odogaron Vambraces Beta
+469,Rathalos Vambraces Alpha
+474,Rathalos Vambraces Beta
+479,Rath Soul Braces Alpha
+484,Rath Soul Braces Beta
+489,Diablos Vambraces Alpha
+494,Diablos Vambraces Beta
+499,Diablos Nero Braces Alpha
+504,Diablos Nero Braces Beta
+509,Uragaan Vambraces Alpha
+514,Uragaan Vambraces Beta
+519,Bazel Vambraces Alpha
+524,Bazel Vambraces Beta
+529,Damascus Vambraces Alpha
+534,Damascus Vambraces Beta
+539,Dober Vambraces Alpha
+544,Dober Vambraces Beta
+549,Death Stench Grip Alpha
+554,Death Stench Grip Beta
+560,Nergigante Vambraces Alpha
+565,Nergigante Vambraces Beta
+570,Kaiser Vambraces Alpha
+575,Kaiser Vambraces Beta
+580,Kushala Grip Alpha
+585,Kushala Grip Beta
+590,Vaal Hazak Braces Alpha
+595,Vaal Hazak Braces Beta
+600,Kirin Longarms Alpha
+605,Kirin Longarms Beta
+610,Xeno'jiiva Claws Alpha
+615,Xeno'jiiva Claws Beta
+620,Guild Cross Vambraces Alpha
+625,Guild Cross Vambraces Beta
+631,Commission Vambraces Alpha
+636,Commission Vambraces Beta
+642,Vangis Vambraces Alpha
+647,Vangis Vambraces Beta
+653,Blossom Cuffs
+663,Blossom Cuffs Alpha
+670,Kulve Taroth's Rage Alpha
+675,Kulve Taroth's Rage Beta
+680,Kirin Longarms Gamma
+685,Dante's Gloves Alpha
+690,Empress Vambraces Alpha
+695,Empress Vambraces Beta
+701,Vaal Hazak Braces Gamma
+706,Drachen Vambraces Alpha
+711,Azure Starlord Gauntlets Alpha
+716,Kulve Taroth's Rage Gamma
+721,Empress Vambraces Gamma
+726,Xeno'jiiva Claws Gamma
+731,Zorah Claws Gamma
+736,Nergigante Vambraces Gamma
+741,Kushala Grip Gamma
+746,Kaiser Vambraces Gamma
+751,Bone Vambraces Alpha +
+756,Alloy Vambraces Alpha +
+761,Vespoid Vambraces Alpha +
+766,Hornetaur Vambraces Alpha +
+769,Kestodon Guards Alpha +
+778,Jagras Vambraces Alpha +
+783,Tzitzi Vambraces Alpha +
+788,Girros Vambraces Alpha +
+793,Dodogama Vambraces Alpha +
+798,Kulu Vambraces Alpha +
+803,Pukei Vambraces Alpha +
+808,Pukei Lagoon Braces Alpha +
+813,Barroth Vambraces Alpha +
+818,Jyura Vambraces Alpha +
+823,Beo Vambraces Alpha +
+828,Kadachi Vambraces Alpha +
+833,Viper Kadachi Braces Alpha +
+838,High Metal Braces Alpha +
+843,Banbaro Vambraces Alpha +
+848,Anja Vambraces Alpha +
+853,Fulgur Vambraces Alpha +
+858,Rathian Vambraces Alpha +
+863,Rath Heart Braces Alpha +
+868,Lumu Vambraces Alpha +
+873,Lumu Phantasm Braces Alpha +
+878,Baan Vambraces Alpha +
+883,Bone Vambraces Beta +
+888,Alloy Vambraces Beta +
+893,Vespoid Vambraces Beta +
+898,Hornetaur Vambraces Beta +
+901,Kestodon Guards Beta +
+910,Jagras Vambraces Beta +
+915,Tzitzi Vambraces Beta +
+920,Girros Vambraces Beta +
+925,Dodogama Vambraces Beta +
+930,Kulu Vambraces Beta +
+935,Pukei Vambraces Beta +
+940,Pukei Lagoon Braces Beta +
+945,Barroth Vambraces Beta +
+950,Jyura Vambraces Beta +
+955,Beo Vambraces Beta +
+960,Kadachi Vambraces Beta +
+965,Viper Kadachi Braces Beta +
+970,High Metal Braces Beta +
+975,Banbaro Vambraces Beta +
+981,Anja Vambraces Beta +
+986,Fulgur Vambraces Beta +
+991,Rathian Vambraces Beta +
+996,Rath Heart Braces Beta +
+1001,Lumu Vambraces Beta +
+1006,Lumu Phantasm Braces Beta +
+1011,Baan Vambraces Beta +
+1016,Artian Vambraces Alpha +
+1021,Artian Vambraces Beta +
+1026,Clockwork Braces Alpha +
+1031,Clockwork Braces Beta +
+1036,Ingot Vambraces Alpha +
+1041,Ingot Vambraces Beta +
+1047,Guildwork Braces Alpha +
+1052,Guildwork Braces Beta +
+1057,Ruinous Vambraces Beta +
+1062,Ruinous Vambraces Alpha +
+1067,Silver Solbraces Beta +
+1072,Silver Solbraces Alpha +
+1077,Golden Lunebraces Beta +
+1082,Golden Lunebraces Alpha +
+1087,Zinogre Braces Beta +
+1092,Zinogre Braces Alpha +
+1097,Garuga Vambraces Beta +
+1102,Garuga Vambraces Alpha +
+1107,Zorah Claws Beta +
+1112,Zorah Claws Alpha +
+1117,Shara Ishvalda Braces Beta +
+1122,Shara Ishvalda Braces Alpha +
+1127,Tentacle Gloves Beta +
+1132,Tentacle Gloves Alpha +
+1137,Kirin Longarms Beta +
+1142,Kirin Longarms Alpha +
+1147,Kushala Grip Beta +
+1152,Kushala Grip Alpha +
+1157,Kaiser Vambraces Beta +
+1162,Kaiser Vambraces Alpha +
+1167,Fellshroud Braces Beta +
+1172,Fellshroud Braces Alpha +
+1177,Rimeguard Vambraces Beta +
+1182,Rimeguard Vambraces Alpha +
+1187,Guild Palace Braces Beat +
+1192,Guild Palace Braces Alpha +
+1197,Esurient Vambraces Beta +
+1202,Esurient Vambraces Alpha +
+1207,Pride Vambraces Beta +
+1212,Pride Vambraces Alpha +
+1217,Damascus Vambraces Beta +
+1222,Damascus Vambraces Alpha +
+1227,Dober Vambraces Beta +
+1232,Dober Vambraces Alpha +
+1237,Black Belt Braces Beta +
+1242,Black Belt Braces Alpha +
+1247,Rex Roar Braces Beta +
+1252,Rex Roar Braces Alpha +
+1257,Tigrex Braces Beta +
+1262,Tigrex Braces Alpha +
+1267,Brachydios Braces Beta +
+1272,Brachydios Braces Alpha +
+1277,Acidic Glavenus Braces Beta +
+1282,Acidic Glavenus Braces Alpha +
+1287,Golden Kote Beta +
+1292,Golden Kote Alpha +
+1297,Glavenus Braces Beta +
+1302,Glavenus Braces Alpha +
+1307,Nargacuga Braces Beta +
+1312,Nargacuga Braces Alpha +
+1317,Uragaan Vambraces Beta +
+1322,Uragaan Vambraces Alpha +
+1327,Lavasioth Vambraces Beta +
+1332,Lavasioth Vambraces Alpha +
+1337,Death Garon Braces Beta +
+1342,Death Garon Braces Alpha +
+1347,Odogaron Vambraces Beta +
+1352,Odogaron Vambraces Alpha +
+1357,Hoarcry Vambraces Beta +
+1362,Hoarcry Vambraces Alpha +
+1367,Legiana Vambraces Beta +
+1372,Legiana Vambraces Alpha +
+1377,Diablos Nero Braces Beta +
+1382,Diablos Nero Braces Alpha +
+1387,Diablos Vambraces Beta +
+1392,Diablos Vambraces Alpha +
+1397,Rath Soul Braces Beta +
+1402,Rath Soul Braces Alpha +
+1407,Rathalos Vambraces Beta +
+1412,Rathalos Vambraces Alpha +
+1417,Barioth Vambraces Beta +
+1422,Barioth Vambraces Alpha +
+1427,Empress Vambraces Beta +
+1432,Empress Vambraces Alpha +
+1437,Claire's Arms Alpha +
+1442,Leon's Arms Alpha +
+1447,Stygian Vambraces Alpha +
+1452,Stygian Vambraces Beta +
+1457,Safi Crested Vambraces Alpha +
+1462,Safi Crested Vambraces Beta +
+1467,Oolong Sleeves Alpha +
+1471,Buff Arms Alpha +
+1479,Origin Vambraces
+1485,Queen Beetle Brachia
+1490,Butterfly Brachia M
+1495,Queen Beetle Brachia Alpha
+1501,Queen Beetle Brachia Beta
+1506,Diver's Braces
+1512,Diver's Braces Alpha
+1517,Harvest Trama
+1522,Harvest Trama Alpha
+1527,Orion Vambraces
+1532,Orion Vambraces Alpha
+1537,Aloy's Arms Alpha
+1542,Aloy's Arms Gamma
+1547,Ryu's Arms
+1552,Ryu's Arms Alpha
+1557,Sakura's Arms Alpha
+1562,Geralt's Arms Alpha
+1567,Ciri's Arms Alpha
+1574,Astral  Scarf Alpha +
+1579,Banuk Arms Alpha +
+1587,Shield-Weaver Arms +
+1592,Defender Vambraces Alpha
+1597,Guardian Vambraces Alpha +
+1602,Grand God's Peer Arms Alpha +
+1607,Grand God's Peer Arms Beta +
+1612,Brachydium Braces Alpha +
+1617,Brachydium Braces Beta +
+1622,Rose Arms Alpha +
+1627,Kulve Taroth's Rage Alpha +
+1632,Kulve Taroth's Rage Beta +
+1637,Tentacle Gloves Gamma +
+1641,Escadora Armguards Alpha +
+1646,Escadora Armguards Beta +
+1651,Frostfang Vambraces Alpha +
+1656,Frostfang Vambraces Beta +
+1661,Passionate Arms Alpha +
+1666,Dragonclaws Alpha +
+1671,Dragonclaws Beta +
+1676,Demonlord Blackarm Alpha +
+1681,Rimeguard Vambraces Gamma +
+1686,Azure Age Sleeve Alpha +
