@@ -29,7 +29,8 @@ a.home {
 	margin-left: 0px;
 	transition-duration: 0.4s;
 }
-a.home:hover, a.git:hover {
+a.home:hover,
+a.git:hover {
 	background-color: #4bd821;
 }
 a.git {
@@ -46,21 +47,33 @@ table {
 }
 th {
 	font-size: x-large;
-	text-align: left;
+	text-align: center;
 }
 col.col1 {
-	width: 100px;
+	width: 105px;
 }
-col.col2, col.col3 {
+col.col2 {
 	width: 200px;
 }
-tr.labels, tr.torso, tr.belt {
-	background-color: #aaaaaa;
+col.col3,
+col.col4{
+	width: 100px;
 }
-tr.head, tr.arms, tr.legs {
+tr.labels,
+tr.torso,
+tr.belt {
+	background-color: #dadada;
+}
+tr.head,
+tr.arms,
+tr.legs {
 	background-color: #ffffff;
 }
-.swapHead, .swapTorso, .swapArms, .swapBelt, .swapLegs {
+.swapHead,
+.swapTorso,
+.swapArms,
+.swapBelt,
+.swapLegs {
 	border-width: 0px;
 	padding-top: calc(100% - 25px);
 	padding-bottom: calc(100% - 25px);
@@ -69,7 +82,11 @@ tr.head, tr.arms, tr.legs {
 	background-color: transparent;
 	transition-duration: 0.4s;
 }
-.swapHead:hover, .swapTorso:hover, .swapArms:hover, .swapBelt:hover, .swapLegs:hover {
+.swapHead:hover,
+.swapTorso:hover,
+.swapArms:hover,
+.swapBelt:hover,
+.swapLegs:hover {
 	background-color: #04AA6D;
 }
 .swapIcon {
@@ -80,12 +97,58 @@ img.armor {
 	width: 200px;
 	height: 200px;
 }
+.name {
+	visibility: hidden;
+	width: 200px;
+	max-width: 200px;
+	background-color: black;
+	color: #fff;
+	text-align: center;
+	border-radius: 0px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+
+	/* Position the tooltip */
+	position: absolute;
+	z-index: 1;
+	left: 0px;
+	top: 0px;
+}
+.headBox:hover .name,
+.torsoBox:hover .name,
+.armsBox:hover .name,
+.beltBox:hover .name,
+.legsBox:hover .name {
+	visibility: visible;
+}
+.headImg {
+	position: absolute;
+	left: 0%;
+	top: 0%;
+}
 td {
+	position: relative;
 	margin: 0px;
 	border-width: 0px;
 	padding: 0px;
 	vertical-align: top;
 }
+td.statBox, td.slotBox {
+	padding-top: 5px;
+	padding-left: 10px;
+}
+.statIcon {
+	height: 18px;
+	display: inline;
+	margin: 0px;
+}
 p {
 	margin: 0px;
+}
+p.stat {
+	display: inline;
+	vertical-align: top;
+}
+img.slotIcon {
+	height: 24px;
 }

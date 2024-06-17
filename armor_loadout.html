@@ -22,11 +22,13 @@
 					<col class="col1">
 					<col class="col2">
 					<col class="col3">
+					<col class="col4">
 				</colgroup>
 				<tr class="labels">
-					<th class="label1">Swap Piece</th>
-					<th class="label2">Armor Pieces</th>
-					<th class="label3">Stats</th>
+					<th class="label">SWITCH</th>
+					<th class="label">ARMOR</th>
+					<th class="label">STATS</th>
+					<th class="label">SLOTS</th>
 				</tr>
 				<tr class="head">
 					<td>
@@ -34,16 +36,25 @@
 							<img src="images/swap.png" class="swapIcon">
 						</button>
 					</td>
-					<td><img class="armor" id="headImg" alt="HEAD PIECE"></td>
-					<td>
-						<p id="headDef">Defense: 100</p>
-						<p id="headF">Fire Res: 2</p>
-						<p id="headW">Water Res: 2</p>
-						<p id="headI">Ice Res: 2</p>
-						<p id="headT">Thunder Res: 2</p>
-						<p id="headD">Dragon Res: 2</p>
-						
+					<td class="headBox">
+						<span class="name" id="headName">Tooltip</span>
+						<img class="armor" id="headImg" alt="HEAD PIECE">
 					</td>
+					<td class="statBox">
+						<img src="images/defense.png" class="statIcon">
+						<p id="headDef" class="stat">100</p><br>
+						<img src="images/fire.png" class="statIcon">
+						<p id="headF" class="stat">2</p><br>
+						<img src="images/water.png" class="statIcon">
+						<p id="headW" class="stat">2</p><br>
+						<img src="images/ice.png" class="statIcon">
+						<p id="headI" class="stat">2</p><br>
+						<img src="images/thunder.png" class="statIcon">
+						<p id="headT" class="stat">2</p><br>
+						<img src="images/dragon.png" class="statIcon">
+						<p id="headD" class="stat">2</p>
+					</td>
+					<td class="slotBox" id="headSlots"></td>
 				</tr>
 				<tr class="torso">
 					<td>
@@ -51,16 +62,25 @@
 							<img src="images/swap.png" class="swapIcon">
 						</button>
 					</td>
-					<td><img class="armor" id="torsoImg" alt="TORSO PIECE"></td>
-					<td>
-						<p id="torsoDef">Defense: 100</p>
-						<p id="torsoF">Fire Res: 2</p>
-						<p id="torsoW">Water Res: 2</p>
-						<p id="torsoI">Ice Res: 2</p>
-						<p id="torsoT">Thunder Res: 2</p>
-						<p id="torsoD">Dragon Res: 2</p>
-						
+					<td class="torsoBox">
+						<span class="name" id="torsoName">Tooltip</span>
+						<img class="armor" id="torsoImg" alt="TORSO PIECE">
 					</td>
+					<td class="statBox">
+						<img src="images/defense.png" class="statIcon">
+						<p id="torsoDef" class="stat">100</p><br>
+						<img src="images/fire.png" class="statIcon">
+						<p id="torsoF" class="stat">2</p><br>
+						<img src="images/water.png" class="statIcon">
+						<p id="torsoW" class="stat">2</p><br>
+						<img src="images/ice.png" class="statIcon">
+						<p id="torsoI" class="stat">2</p><br>
+						<img src="images/thunder.png" class="statIcon">
+						<p id="torsoT" class="stat">2</p><br>
+						<img src="images/dragon.png" class="statIcon">
+						<p id="torsoD" class="stat">2</p>
+					</td>
+					<td class="slotBox" id="torsoSlots"></td>
 				</tr>
 				<tr class="arms">
 					<td>
@@ -68,16 +88,25 @@
 							<img src="images/swap.png" class="swapIcon">
 						</button>
 					</td>
-					<td><img class="armor" id="armsImg" alt="ARM PIECE"></td>
-					<td>
-						<p id="armsDef">Defense: 100</p>
-						<p id="armsF">Fire Res: 2</p>
-						<p id="armsW">Water Res: 2</p>
-						<p id="armsI">Ice Res: 2</p>
-						<p id="armsT">Thunder Res: 2</p>
-						<p id="armsD">Dragon Res: 2</p>
-						
+					<td class="armsBox">
+						<span class="name" id="armsName">Tooltip</span>
+						<img class="armor" id="armsImg" alt="ARM PIECE">
 					</td>
+					<td class="statBox">
+						<img src="images/defense.png" class="statIcon">
+						<p id="armsDef" class="stat">100</p><br>
+						<img src="images/fire.png" class="statIcon">
+						<p id="armsF" class="stat">2</p><br>
+						<img src="images/water.png" class="statIcon">
+						<p id="armsW" class="stat">2</p><br>
+						<img src="images/ice.png" class="statIcon">
+						<p id="armsI" class="stat">2</p><br>
+						<img src="images/thunder.png" class="statIcon">
+						<p id="armsT" class="stat">2</p><br>
+						<img src="images/dragon.png" class="statIcon">
+						<p id="armsD" class="stat">2</p>
+					</td>
+					<td class="slotBox" id="armsSlots"></td>
 				</tr>
 				<tr class="belt">
 					<td>
@@ -85,16 +114,25 @@
 							<img src="images/swap.png" class="swapIcon">
 						</button>
 					</td>
-					<td><img class="armor" id="beltImg" alt="BELT PIECE"></td>
-					<td>
-						<p id="beltDef">Defense: 100</p>
-						<p id="beltF">Fire Res: 2</p>
-						<p id="beltW">Water Res: 2</p>
-						<p id="beltI">Ice Res: 2</p>
-						<p id="beltT">Thunder Res: 2</p>
-						<p id="beltD">Dragon Res: 2</p>
-						
+					<td class="beltBox">
+						<span class="name" id="beltName">Tooltip</span>
+						<img class="armor" id="beltImg" alt="BELT PIECE">
 					</td>
+					<td class="statBox">
+						<img src="images/defense.png" class="statIcon">
+						<p id="beltDef" class="stat">100</p><br>
+						<img src="images/fire.png" class="statIcon">
+						<p id="beltF" class="stat">2</p><br>
+						<img src="images/water.png" class="statIcon">
+						<p id="beltW" class="stat">2</p><br>
+						<img src="images/ice.png" class="statIcon">
+						<p id="beltI" class="stat">2</p><br>
+						<img src="images/thunder.png" class="statIcon">
+						<p id="beltT" class="stat">2</p><br>
+						<img src="images/dragon.png" class="statIcon">
+						<p id="beltD" class="stat">2</p>
+					</td>
+					<td class="slotBox" id="beltSlots"></td>
 				</tr>
 				<tr class="legs">
 					<td>
@@ -102,16 +140,25 @@
 							<img src="images/swap.png" class="swapIcon">
 						</button>
 					</td>
-					<td><img class="armor" id="legsImg" alt="LEG PIECE"></td>
-					<td>
-						<p id="legsDef">Defense: 100</p>
-						<p id="legsF">Fire Res: 2</p>
-						<p id="legsW">Water Res: 2</p>
-						<p id="legsI">Ice Res: 2</p>
-						<p id="legsT">Thunder Res: 2</p>
-						<p id="legsD">Dragon Res: 2</p>
-						
+					<td class="legsBox">
+						<span class="name" id="legsName">Tooltip</span>
+						<img class="armor" id="legsImg" alt="LEG PIECE">
 					</td>
+					<td class="statBox">
+						<img src="images/defense.png" class="statIcon">
+						<p id="legsDef" class="stat">100</p><br>
+						<img src="images/fire.png" class="statIcon">
+						<p id="legsF" class="stat">2</p><br>
+						<img src="images/water.png" class="statIcon">
+						<p id="legsW" class="stat">2</p><br>
+						<img src="images/ice.png" class="statIcon">
+						<p id="legsI" class="stat">2</p><br>
+						<img src="images/thunder.png" class="statIcon">
+						<p id="legsT" class="stat">2</p><br>
+						<img src="images/dragon.png" class="statIcon">
+						<p id="legsD" class="stat">2</p>
+					</td>
+					<td class="slotBox" id="legsSlots"></td>
 				</tr>
 			</table>
 			<script src="armor_data.js"></script>

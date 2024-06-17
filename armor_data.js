@@ -23,19 +23,26 @@ function fetchPartData(id, part) {
 			switch(armor['assets']) {
 				case null:
 				case undefined:
-					document.getElementById(part+'Img').src = './images/missing-image.png';
+					document.getElementById(part+'Img').src = './images/' + part + '-icon.png';
 					break;
 				default:
 					document.getElementById(part+'Img').src = armor['assets']['imageMale'];
 					break;
 			}
 			
-			document.getElementById(part+'Def').innerText = 'Defense: ' + armor['defense']['base'];
-			document.getElementById(part+'F').innerText = 'Fire: ' + armor['resistances']['fire'];
-			document.getElementById(part+'W').innerText = 'Water: ' + armor['resistances']['water'];
-			document.getElementById(part+'I').innerText = 'Ice: ' + armor['resistances']['ice'];
-			document.getElementById(part+'T').innerText = 'Thunder: ' + armor['resistances']['thunder'];
-			document.getElementById(part+'D').innerText = 'Dragon: ' + armor['resistances']['dragon'];
+			document.getElementById(part+'Name').innerText = armor['name'];
+			document.getElementById(part+'Def').innerText = armor['defense']['base'];
+			document.getElementById(part+'F').innerText = armor['resistances']['fire'];
+			document.getElementById(part+'W').innerText = armor['resistances']['water'];
+			document.getElementById(part+'I').innerText = armor['resistances']['ice'];
+			document.getElementById(part+'T').innerText =  armor['resistances']['thunder'];
+			document.getElementById(part+'D').innerText = armor['resistances']['dragon'];
+
+			let slots = []
+			armor['slots'].forEach((element) => {
+				slots.push('<img src="images/gem_level_' + element['rank'] +'.png" class="slotIcon">')
+			});
+			document.getElementById(part+'Slots').innerHTML = slots.join('<br>');
 		})
 		.catch((err) => console.error(err));
 }
