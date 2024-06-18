@@ -12,7 +12,7 @@ document.onload = [
 	const part = value.toLowerCase();
 	// Opens modal box for swaping process
 	document.getElementById('swap'+value).addEventListener('click', () => {
-		swapArmor(part);
+		//swapArmor(part);
 		const modal = document.getElementById(part+'Swap');
 		modal.style.display = 'block';
 	});
@@ -21,11 +21,64 @@ document.onload = [
 	document.getElementsByClassName('close')[index].onclick = () => {
 		document.getElementById(part+'Swap').style.display = 'none';
 	};
+
+	document.getElementById(part+'SearchButton').onclick = () => {
+		const armor = document.getElementById(part+'Search').value.toLowerCase();
+		fetch('./csv/'+part+'_list.csv')
+			.then(response => response.text())
+			.then(response => response.split('\n'))
+			.then(response => response.map((r) => r.split(',')))
+			.then((nameList) => {
+				let pointer = Math.floor(nameList.length/2);
+				for(let hit = true, div = 4, i = 0; hit && i < 15; i++) {
+					const focus = nameList[pointer][1].toLowerCase();
+					if(focus.startsWith(armor)) hit = false;
+					else if(armor > focus) {
+						pointer += Math.floor(nameList.length/div);
+						div = Math.min(256, div*2);
+					} else if(armor < focus) {
+						pointer -= Math.floor(nameList.length/div);
+						div = Math.min(256, div*2);
+					}
+					//console.log(focus+' '+pointer);
+				}
+
+				while(nameList[Math.max(pointer,0)][1].toLowerCase().startsWith(armor) && pointer >= 0)
+					pointer--;
+				pointer++;
+
+				const matches = [];
+				while(nameList[Math.min(pointer,nameList.length-1)][1].toLowerCase().startsWith(armor) && pointer < nameList.length) {
+					matches.push([...nameList[pointer]]);
+					pointer++;
+				}
+				return matches;
+			})
+			.then((matches) => {
+				console.log(matches);
+				let options = matches.map((m) => {
+					return '<button type="button" class="searchSelection">'+m[1]+'</button>';
+				}).join('<br>');
+				document.getElementById(part+'SearchResults').innerHTML = options;
+
+				const select = document.getElementsByClassName('searchSelection');
+				//console.log(select);
+				//console.log(matches);
+				for(let k = 0; k < select.length; k++) {
+					select[k].onclick = () => {
+						console.log('click'); //Cannot read properties of undefined (reading '0') at select.<computed>.onclick (armor_data.js:70:37)
+						fetchPartData(matches[k][0],part);
+						document.getElementById(part+'Swap').style.display = 'none';
+					}
+				}
+			})
+			.catch((err) => console.error(err));
+	};
 });
 
 // Fetches data for a single armor piece
 function fetchPartData(id, part) {
-	console.log('fetch');
+	console.log('fetch, id: %i, part:%s',id,part);
 	fetch('https://mhw-db.com/armor/' + id.toString())
 		.then(response => response.json())
 		.then(armor => {
@@ -56,8 +109,7 @@ function fetchPartData(id, part) {
 		.catch((err) => console.error(err));
 }
 
-// TODO: Currently switches randomly, find an alternative
-// Switches a specific piece of armor
+// Randomly switches a specific piece of armor
 function swapArmor(piece) {
 	fetch('./csv/' + piece + '_list.csv')
 		.then(response => response.text())

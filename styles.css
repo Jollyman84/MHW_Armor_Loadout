@@ -106,7 +106,7 @@ tr.legs {
 	top: 0;
 	width: 505px;
 	height: inherit;
-	overflow: auto;
+	overflow: hidden;
 }
 .swapMenu {
 	background-color: #fefefe;
@@ -156,6 +156,24 @@ tr.legs {
 .armorSearchButton:hover {
 	background-color: #007de4;
 	cursor: pointer;
+}
+.armorSearchResults {
+	height: 152px;
+	overflow-y: auto;
+}
+.searchSelection {
+	margin: 0px;
+	border-width: 0px;
+	border-radius: 0px;
+	padding: 5px;
+	width: 314px;
+	text-align: start;
+	background-color: white;
+	color:  black;
+}
+.searchSelection:hover {
+	background-color: black;
+	color:  white;
 }
 img.armor {
 	display: block;
