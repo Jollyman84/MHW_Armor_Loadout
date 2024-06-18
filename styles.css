@@ -81,6 +81,7 @@ tr.legs {
 	padding-left: calc(50% - 25px);
 	background-color: transparent;
 	transition-duration: 0.4s;
+	height: 200px;
 }
 .swapHead:hover,
 .swapTorso:hover,
@@ -93,7 +94,71 @@ tr.legs {
 	height: 50px;
 	width: 50px;
 }
+.headSwap,
+.torsoSwap,
+.armsSwap,
+.beltSwap,
+.legsSwap {
+	display: none;
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 505px;
+	height: inherit;
+	overflow: auto;
+}
+.swapMenu {
+	background-color: #fefefe;
+	margin: auto;
+	border: 1px solid #000000;
+	width: auto;
+	height: 198px;
+}
+.close {
+	color: white;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	width: 32px;
+	height: 32px;
+	text-align: center;
+	background-color: red;
+}
+.close:hover,
+.close:focus {
+	color: #000000;
+	text-decoration: none;
+	cursor: pointer;
+}
+.innerModal {
+	margin-top: 5px;
+	margin-left: 10px;
+}
+.armorSearch {
+	padding: 5px;
+	margin-bottom: 10px;
+	width: 300px;
+	font-size: 15px;
+	border-radius: 0px;
+	border-style: solid;
+}
+.armorSearchButton {
+	margin: 0px;
+	border-width: 0px;
+	border-radius: 0px;
+	background-color: #2196f3;
+	color: white;
+	font-size: 15px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+}
+.armorSearchButton:hover {
+	background-color: #007de4;
+	cursor: pointer;
+}
 img.armor {
+	display: block;
 	width: 200px;
 	height: 200px;
 }
@@ -107,8 +172,6 @@ img.armor {
 	border-radius: 0px;
 	padding-top: 5px;
 	padding-bottom: 5px;
-
-	/* Position the tooltip */
 	position: absolute;
 	z-index: 1;
 	left: 0px;
@@ -133,9 +196,10 @@ td {
 	padding: 0px;
 	vertical-align: top;
 }
-td.statBox, td.slotBox {
+.statBox, .slotBox {
 	padding-top: 5px;
 	padding-left: 10px;
+	height: 195px;
 }
 .statIcon {
 	height: 18px;

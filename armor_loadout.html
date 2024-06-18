@@ -35,130 +35,187 @@
 						<button class="swapHead" id="swapHead" type="menu">
 							<img src="images/swap.png" class="swapIcon">
 						</button>
+						<div class="headSwap" id="headSwap">
+							<div class="swapMenu">
+								<span class="close">&times;</span>
+								<div class="innerModal">
+									<input type="text" placeholder="Helmet" id="headSearch" class="armorSearch">
+									<button type="submit" id="headSearchButton" class="armorSearchButton">Search</button>
+									<p>Some text in the Modal..</p>
+								</div>
+							</div>
+						</div>
 					</td>
 					<td class="headBox">
 						<span class="name" id="headName">Tooltip</span>
 						<img class="armor" id="headImg" alt="HEAD PIECE">
 					</td>
 					<td class="statBox">
-						<img src="images/defense.png" class="statIcon">
-						<p id="headDef" class="stat">100</p><br>
-						<img src="images/fire.png" class="statIcon">
-						<p id="headF" class="stat">2</p><br>
-						<img src="images/water.png" class="statIcon">
-						<p id="headW" class="stat">2</p><br>
-						<img src="images/ice.png" class="statIcon">
-						<p id="headI" class="stat">2</p><br>
-						<img src="images/thunder.png" class="statIcon">
-						<p id="headT" class="stat">2</p><br>
-						<img src="images/dragon.png" class="statIcon">
-						<p id="headD" class="stat">2</p>
+						<div>
+							<img src="images/defense.png" class="statIcon">
+							<p id="headDef" class="stat">100</p><br>
+							<img src="images/fire.png" class="statIcon">
+							<p id="headF" class="stat">2</p><br>
+							<img src="images/water.png" class="statIcon">
+							<p id="headW" class="stat">2</p><br>
+							<img src="images/ice.png" class="statIcon">
+							<p id="headI" class="stat">2</p><br>
+							<img src="images/thunder.png" class="statIcon">
+							<p id="headT" class="stat">2</p><br>
+							<img src="images/dragon.png" class="statIcon">
+							<p id="headD" class="stat">2</p>
+						</div>
+						
 					</td>
-					<td class="slotBox" id="headSlots"></td>
+					<td class="slotBox" id="headSlots">
+						<div id="headSlotsInner"></div>
+					</td>
 				</tr>
 				<tr class="torso">
 					<td>
 						<button class="swapTorso" id="swapTorso" type="menu">
 							<img src="images/swap.png" class="swapIcon">
 						</button>
+						<div class="torsoSwap" id="torsoSwap">
+							<div class="swapMenu">
+								<span class="close">&times;</span>
+								<p>Some text in the Modal..</p>
+							</div>
+						</div>
 					</td>
 					<td class="torsoBox">
-						<span class="name" id="torsoName">Tooltip</span>
-						<img class="armor" id="torsoImg" alt="TORSO PIECE">
+						<div>
+							<span class="name" id="torsoName">Tooltip</span>
+							<img class="armor" id="torsoImg" alt="TORSO PIECE">
+						</div>
 					</td>
 					<td class="statBox">
-						<img src="images/defense.png" class="statIcon">
-						<p id="torsoDef" class="stat">100</p><br>
-						<img src="images/fire.png" class="statIcon">
-						<p id="torsoF" class="stat">2</p><br>
-						<img src="images/water.png" class="statIcon">
-						<p id="torsoW" class="stat">2</p><br>
-						<img src="images/ice.png" class="statIcon">
-						<p id="torsoI" class="stat">2</p><br>
-						<img src="images/thunder.png" class="statIcon">
-						<p id="torsoT" class="stat">2</p><br>
-						<img src="images/dragon.png" class="statIcon">
-						<p id="torsoD" class="stat">2</p>
+						<div>
+							<img src="images/defense.png" class="statIcon">
+							<p id="torsoDef" class="stat">100</p><br>
+							<img src="images/fire.png" class="statIcon">
+							<p id="torsoF" class="stat">2</p><br>
+							<img src="images/water.png" class="statIcon">
+							<p id="torsoW" class="stat">2</p><br>
+							<img src="images/ice.png" class="statIcon">
+							<p id="torsoI" class="stat">2</p><br>
+							<img src="images/thunder.png" class="statIcon">
+							<p id="torsoT" class="stat">2</p><br>
+							<img src="images/dragon.png" class="statIcon">
+							<p id="torsoD" class="stat">2</p>
+						</div>
 					</td>
-					<td class="slotBox" id="torsoSlots"></td>
+					<td class="slotBox" id="torsoSlots">
+						<div id="torsoSlotsInner"></div>
+					</td>
 				</tr>
 				<tr class="arms">
 					<td>
 						<button class="swapArms" id="swapArms" type="menu">
 							<img src="images/swap.png" class="swapIcon">
 						</button>
+						<div class="armsSwap" id="armsSwap">
+							<div class="swapMenu">
+								<span class="close">&times;</span>
+								<p>Some text in the Modal..</p>
+							</div>
+						</div>
 					</td>
 					<td class="armsBox">
 						<span class="name" id="armsName">Tooltip</span>
 						<img class="armor" id="armsImg" alt="ARM PIECE">
 					</td>
 					<td class="statBox">
-						<img src="images/defense.png" class="statIcon">
-						<p id="armsDef" class="stat">100</p><br>
-						<img src="images/fire.png" class="statIcon">
-						<p id="armsF" class="stat">2</p><br>
-						<img src="images/water.png" class="statIcon">
-						<p id="armsW" class="stat">2</p><br>
-						<img src="images/ice.png" class="statIcon">
-						<p id="armsI" class="stat">2</p><br>
-						<img src="images/thunder.png" class="statIcon">
-						<p id="armsT" class="stat">2</p><br>
-						<img src="images/dragon.png" class="statIcon">
-						<p id="armsD" class="stat">2</p>
+						<div>
+							<img src="images/defense.png" class="statIcon">
+							<p id="armsDef" class="stat">100</p><br>
+							<img src="images/fire.png" class="statIcon">
+							<p id="armsF" class="stat">2</p><br>
+							<img src="images/water.png" class="statIcon">
+							<p id="armsW" class="stat">2</p><br>
+							<img src="images/ice.png" class="statIcon">
+							<p id="armsI" class="stat">2</p><br>
+							<img src="images/thunder.png" class="statIcon">
+							<p id="armsT" class="stat">2</p><br>
+							<img src="images/dragon.png" class="statIcon">
+							<p id="armsD" class="stat">2</p>
+						</div>
 					</td>
-					<td class="slotBox" id="armsSlots"></td>
+					<td class="slotBox" id="armsSlots">
+						<div id="armsSlotsInner"></div>
+					</td>
 				</tr>
 				<tr class="belt">
 					<td>
 						<button class="swapBelt" id="swapBelt" type="menu">
 							<img src="images/swap.png" class="swapIcon">
 						</button>
+						<div class="beltSwap" id="beltSwap">
+							<div class="swapMenu">
+								<span class="close">&times;</span>
+								<p>Some text in the Modal..</p>
+							</div>
+						</div>
 					</td>
 					<td class="beltBox">
 						<span class="name" id="beltName">Tooltip</span>
 						<img class="armor" id="beltImg" alt="BELT PIECE">
 					</td>
 					<td class="statBox">
-						<img src="images/defense.png" class="statIcon">
-						<p id="beltDef" class="stat">100</p><br>
-						<img src="images/fire.png" class="statIcon">
-						<p id="beltF" class="stat">2</p><br>
-						<img src="images/water.png" class="statIcon">
-						<p id="beltW" class="stat">2</p><br>
-						<img src="images/ice.png" class="statIcon">
-						<p id="beltI" class="stat">2</p><br>
-						<img src="images/thunder.png" class="statIcon">
-						<p id="beltT" class="stat">2</p><br>
-						<img src="images/dragon.png" class="statIcon">
-						<p id="beltD" class="stat">2</p>
+						<div>
+							<img src="images/defense.png" class="statIcon">
+							<p id="beltDef" class="stat">100</p><br>
+							<img src="images/fire.png" class="statIcon">
+							<p id="beltF" class="stat">2</p><br>
+							<img src="images/water.png" class="statIcon">
+							<p id="beltW" class="stat">2</p><br>
+							<img src="images/ice.png" class="statIcon">
+							<p id="beltI" class="stat">2</p><br>
+							<img src="images/thunder.png" class="statIcon">
+							<p id="beltT" class="stat">2</p><br>
+							<img src="images/dragon.png" class="statIcon">
+							<p id="beltD" class="stat">2</p>
+						</div>
 					</td>
-					<td class="slotBox" id="beltSlots"></td>
+					<td class="slotBox" id="beltSlots">
+						<div id="beltSlotsInner"></div>
+					</td>
 				</tr>
 				<tr class="legs">
 					<td>
 						<button class="swapLegs" id="swapLegs" type="menu">
 							<img src="images/swap.png" class="swapIcon">
 						</button>
+						<div class="legsSwap" id="legsSwap">
+							<div class="swapMenu">
+								<span class="close">&times;</span>
+								<p>Some text in the Modal..</p>
+							</div>
+						</div>
 					</td>
 					<td class="legsBox">
 						<span class="name" id="legsName">Tooltip</span>
 						<img class="armor" id="legsImg" alt="LEG PIECE">
 					</td>
 					<td class="statBox">
-						<img src="images/defense.png" class="statIcon">
-						<p id="legsDef" class="stat">100</p><br>
-						<img src="images/fire.png" class="statIcon">
-						<p id="legsF" class="stat">2</p><br>
-						<img src="images/water.png" class="statIcon">
-						<p id="legsW" class="stat">2</p><br>
-						<img src="images/ice.png" class="statIcon">
-						<p id="legsI" class="stat">2</p><br>
-						<img src="images/thunder.png" class="statIcon">
-						<p id="legsT" class="stat">2</p><br>
-						<img src="images/dragon.png" class="statIcon">
-						<p id="legsD" class="stat">2</p>
+						<div>
+							<img src="images/defense.png" class="statIcon">
+							<p id="legsDef" class="stat">100</p><br>
+							<img src="images/fire.png" class="statIcon">
+							<p id="legsF" class="stat">2</p><br>
+							<img src="images/water.png" class="statIcon">
+							<p id="legsW" class="stat">2</p><br>
+							<img src="images/ice.png" class="statIcon">
+							<p id="legsI" class="stat">2</p><br>
+							<img src="images/thunder.png" class="statIcon">
+							<p id="legsT" class="stat">2</p><br>
+							<img src="images/dragon.png" class="statIcon">
+							<p id="legsD" class="stat">2</p>
+						</div>
 					</td>
-					<td class="slotBox" id="legsSlots"></td>
+					<td class="slotBox" id="legsSlots">
+						<div id="legsSlotsInner"></div>
+					</td>
 				</tr>
 			</table>
 			<script src="armor_data.js"></script>

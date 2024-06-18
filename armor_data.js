@@ -8,11 +8,20 @@ document.onload = [
 ];
 
 // Swaps picture and info for respective armor piece upon button click
-document.getElementById('swapHead').addEventListener('click', () => swapArmor('head'));
-document.getElementById('swapTorso').addEventListener('click', () => swapArmor('torso'));
-document.getElementById('swapArms').addEventListener('click', () => swapArmor('arms'));
-document.getElementById('swapBelt').addEventListener('click', () => swapArmor('belt'));
-document.getElementById('swapLegs').addEventListener('click', () => swapArmor('legs'));
+['Head','Torso','Arms','Belt','Legs'].forEach((value, index) => {
+	const part = value.toLowerCase();
+	// Opens modal box for swaping process
+	document.getElementById('swap'+value).addEventListener('click', () => {
+		swapArmor(part);
+		const modal = document.getElementById(part+'Swap');
+		modal.style.display = 'block';
+	});
+
+	// Closes madal box
+	document.getElementsByClassName('close')[index].onclick = () => {
+		document.getElementById(part+'Swap').style.display = 'none';
+	};
+});
 
 // Fetches data for a single armor piece
 function fetchPartData(id, part) {
@@ -42,7 +51,7 @@ function fetchPartData(id, part) {
 			armor['slots'].forEach((element) => {
 				slots.push('<img src="images/gem_level_' + element['rank'] +'.png" class="slotIcon">')
 			});
-			document.getElementById(part+'Slots').innerHTML = slots.join('<br>');
+			document.getElementById(part+'SlotsInner').innerHTML = slots.join('<br>');
 		})
 		.catch((err) => console.error(err));
 }
