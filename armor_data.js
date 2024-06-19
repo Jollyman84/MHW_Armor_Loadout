@@ -12,16 +12,16 @@ document.onload = [
 	const part = value.toLowerCase();
 	// Opens modal box for swaping process
 	document.getElementById('swap'+value).addEventListener('click', () => {
-		//swapArmor(part);
 		const modal = document.getElementById(part+'Swap');
 		modal.style.display = 'block';
 	});
 
-	// Closes madal box
+	// Closes modal box
 	document.getElementsByClassName('close')[index].onclick = () => {
 		document.getElementById(part+'Swap').style.display = 'none';
 	};
 
+	// Searches for armor piece starting with user input
 	document.getElementById(part+'SearchButton').onclick = () => {
 		const armor = document.getElementById(part+'Search').value.toLowerCase();
 		fetch('./csv/'+part+'_list.csv')
@@ -57,22 +57,40 @@ document.onload = [
 			.then((matches) => {
 				console.log(matches);
 				let options = matches.map((m) => {
-					return '<button type="button" class="searchSelection">'+m[1]+'</button>';
+					return '<button type="button" class="'+part+'Selection">'+m[1]+'</button>';
 				}).join('<br>');
 				document.getElementById(part+'SearchResults').innerHTML = options;
 
-				const select = document.getElementsByClassName('searchSelection');
+				const select = document.getElementsByClassName(part+'Selection');
 				//console.log(select);
 				//console.log(matches);
 				for(let k = 0; k < select.length; k++) {
 					select[k].onclick = () => {
-						console.log('click'); //Cannot read properties of undefined (reading '0') at select.<computed>.onclick (armor_data.js:70:37)
+						console.log('click');
 						fetchPartData(matches[k][0],part);
 						document.getElementById(part+'Swap').style.display = 'none';
 					}
 				}
 			})
 			.catch((err) => console.error(err));
+	};
+
+	// Randomly switches a specific piece of armor
+	document.getElementById(part+'Random').onclick = () => {
+		fetch('./csv/' + part + '_list.csv')
+			.then(response => response.text())
+			.then(response => response.split('\n'))
+			.then(response => response.map((x) => x.split(',')))
+			.then(armor => {
+				const index = Math.floor(Math.random()*armor.length);
+				console.log(armor[index][0]);
+				return armor[index][0];
+			})
+			.then(id => fetchPartData(id,part))
+			.then(document.getElementById(part+'Swap').style.display = 'none')
+			.catch((err) => {
+				console.error(err);
+			});
 	};
 });
 
@@ -81,7 +99,8 @@ function fetchPartData(id, part) {
 	console.log('fetch, id: %i, part:%s',id,part);
 	fetch('https://mhw-db.com/armor/' + id.toString())
 		.then(response => response.json())
-		.then(armor => {
+		.then(async armor => {
+			// Displays image
 			switch(armor['assets']) {
 				case null:
 				case undefined:
@@ -92,6 +111,7 @@ function fetchPartData(id, part) {
 					break;
 			}
 			
+			// Displays Stats
 			document.getElementById(part+'Name').innerText = armor['name'];
 			document.getElementById(part+'Def').innerText = armor['defense']['base'];
 			document.getElementById(part+'F').innerText = armor['resistances']['fire'];
@@ -100,29 +120,29 @@ function fetchPartData(id, part) {
 			document.getElementById(part+'T').innerText =  armor['resistances']['thunder'];
 			document.getElementById(part+'D').innerText = armor['resistances']['dragon'];
 
-			let slots = []
+			// Displays empty slots
+			const slots = []
 			armor['slots'].forEach((element) => {
 				slots.push('<img src="images/gem_level_' + element['rank'] +'.png" class="slotIcon">')
 			});
 			document.getElementById(part+'SlotsInner').innerHTML = slots.join('<br>');
+
+			// Displays Skills
+			const skills = [];
+			try {
+				const setRaw = await fetch('https://mhw-db.com/armor/sets/'+armor['armorSet']['id']);
+				if(!setRaw.ok) throw new Error('Failed to access armor set data.');
+				const set = await setRaw.json();
+				if(set['bonus'] == null) return;
+				console.log(set['bonus']);
+				skills.push(set['bonus']['name']);
+			} catch(err) {
+				console.error(err);
+			}
+			armor['skills'].forEach((element) => {
+				skills.push('<p>'+element['level']+' &times; '+element['skillName']+'</p>')
+			});
+			document.getElementById(part+'Skills').innerHTML = skills.join('');
 		})
 		.catch((err) => console.error(err));
-}
-
-// Randomly switches a specific piece of armor
-function swapArmor(piece) {
-	fetch('./csv/' + piece + '_list.csv')
-		.then(response => response.text())
-		.then(response => response.split('\n'))
-		.then(response => response.map((x) => x.split(',')))
-		.then(armor => {
-			const index = Math.floor(Math.random()*armor.length);
-			console.log(armor[index][0]);
-			return armor[index][0];
-		})
-		.then(id => fetchPartData(id,piece))
-		.catch((err) => {
-			console.error(err);
-			return 1;
-		});
 }

@@ -23,12 +23,16 @@
 					<col class="col2">
 					<col class="col3">
 					<col class="col4">
+					<col class="col5">
+					<col class="col6">
 				</colgroup>
 				<tr class="labels">
 					<th class="label">SWITCH</th>
 					<th class="label">ARMOR</th>
 					<th class="label">STATS</th>
 					<th class="label">SLOTS</th>
+					<th class="label">SKILLS</th>
+					<th class="label">SET INFO</th>
 				</tr>
 				<tr class="head">
 					<td>
@@ -39,11 +43,10 @@
 							<div class="swapMenu">
 								<span class="close">&times;</span>
 								<div class="innerModal">
-									<input type="text" placeholder="Helmets" id="headSearch" class="armorSearch">
+									<input type="text" placeholder="Helmets" id="headSearch" class="armorSearch" autocomplete="off">
 									<button type="submit" id="headSearchButton" class="armorSearchButton">Search</button>
-									<div class="armorSearchResults" id="headSearchResults">
-										<p>Some text in the Modal..</p>
-									</div>
+									<button type="submit" id="headRandom" class="armorSearchButton">Random</button>
+									<div class="armorSearchResults" id="headSearchResults"></div>
 								</div>
 							</div>
 						</div>
@@ -72,6 +75,9 @@
 					<td class="slotBox" id="headSlots">
 						<div id="headSlotsInner"></div>
 					</td>
+					<td>
+						<div class="skill" id="headSkills"></div>
+					</td>
 				</tr>
 				<tr class="torso">
 					<td>
@@ -82,11 +88,10 @@
 							<div class="swapMenu">
 								<span class="close">&times;</span>
 								<div class="innerModal">
-									<input type="text" placeholder="Chestplates" id="torsoSearch" class="armorSearch">
+									<input type="text" placeholder="Chestplates" id="torsoSearch" class="armorSearch" autocomplete="off">
 									<button type="submit" id="torsoSearchButton" class="armorSearchButton">Search</button>
-									<div class="armorSearchResults" id="torsoSearchResults">
-										<p>Some text in the Modal..</p>
-									</div>
+									<button type="submit" id="torsoRandom" class="armorSearchButton">Random</button>
+									<div class="armorSearchResults" id="torsoSearchResults"></div>
 								</div>
 							</div>
 						</div>
@@ -116,6 +121,9 @@
 					<td class="slotBox" id="torsoSlots">
 						<div id="torsoSlotsInner"></div>
 					</td>
+					<td>
+						<div class="skill" id="torsoSkills"></div>
+					</td>
 				</tr>
 				<tr class="arms">
 					<td>
@@ -126,11 +134,10 @@
 							<div class="swapMenu">
 								<span class="close">&times;</span>
 								<div class="innerModal">
-									<input type="text" placeholder="Guantlets" id="armsSearch" class="armorSearch">
+									<input type="text" placeholder="Guantlets" id="armsSearch" class="armorSearch" autocomplete="off">
 									<button type="submit" id="armsSearchButton" class="armorSearchButton">Search</button>
-									<div class="armorSearchResults" id="armsSearchResults">
-										<p>Some text in the Modal..</p>
-									</div>
+									<button type="submit" id="armsRandom" class="armorSearchButton">Random</button>
+									<div class="armorSearchResults" id="armsSearchResults"></div>
 								</div>
 							</div>
 						</div>
@@ -158,6 +165,9 @@
 					<td class="slotBox" id="armsSlots">
 						<div id="armsSlotsInner"></div>
 					</td>
+					<td>
+						<div class="skill" id="armsSkills"></div>
+					</td>
 				</tr>
 				<tr class="belt">
 					<td>
@@ -168,11 +178,10 @@
 							<div class="swapMenu">
 								<span class="close">&times;</span>
 								<div class="innerModal">
-									<input type="text" placeholder="Belts" id="beltSearch" class="armorSearch">
+									<input type="text" placeholder="Belts" id="beltSearch" class="armorSearch" autocomplete="off">
 									<button type="submit" id="beltSearchButton" class="armorSearchButton">Search</button>
-									<div class="armorSearchResults" id="beltSearchResults">
-										<p>Some text in the Modal..</p>
-									</div>
+									<button type="submit" id="beltRandom" class="armorSearchButton">Random</button>
+									<div class="armorSearchResults" id="beltSearchResults"></div>
 								</div>
 							</div>
 						</div>
@@ -200,6 +209,9 @@
 					<td class="slotBox" id="beltSlots">
 						<div id="beltSlotsInner"></div>
 					</td>
+					<td>
+						<div class="skill" id="beltSkills"></div>
+					</td>
 				</tr>
 				<tr class="legs">
 					<td>
@@ -210,11 +222,10 @@
 							<div class="swapMenu">
 								<span class="close">&times;</span>
 								<div class="innerModal">
-									<input type="text" placeholder="Boots" id="legsSearch" class="armorSearch">
+									<input type="text" placeholder="Boots" id="legsSearch" class="armorSearch" autocomplete="off">
 									<button type="submit" id="legsSearchButton" class="armorSearchButton">Search</button>
-									<div class="armorSearchResults" id="legsSearchResults">
-										<p>Some text in the Modal..</p>
-									</div>
+									<button type="submit" id="legsRandom" class="armorSearchButton">Random</button>
+									<div class="armorSearchResults" id="legsSearchResults"></div>
 								</div>
 							</div>
 						</div>
@@ -241,6 +252,9 @@
 					</td>
 					<td class="slotBox" id="legsSlots">
 						<div id="legsSlotsInner"></div>
+					</td>
+					<td>
+						<div class="skill" id="legsSkills"></div>
 					</td>
 				</tr>
 			</table>

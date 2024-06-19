@@ -41,6 +41,7 @@ a.git {
 div.mainDiv {
 	display: grid;
 	place-items: center;
+	margin-bottom: 150px;
 }
 table {
 	border-collapse: collapse;
@@ -58,6 +59,9 @@ col.col2 {
 col.col3,
 col.col4{
 	width: 100px;
+}
+col.col5 {
+	width: 175px;
 }
 tr.labels,
 tr.torso,
@@ -161,7 +165,11 @@ tr.legs {
 	height: 152px;
 	overflow-y: auto;
 }
-.searchSelection {
+.headSelection,
+.torsoSelection,
+.armsSelection,
+.beltSelection,
+.legsSelection {
 	margin: 0px;
 	border-width: 0px;
 	border-radius: 0px;
@@ -171,7 +179,11 @@ tr.legs {
 	background-color: white;
 	color:  black;
 }
-.searchSelection:hover {
+.headSelection:hover,
+.torsoSelection:hover,
+.armsSelection:hover,
+.beltSelection:hover,
+.legsSelection:hover {
 	background-color: black;
 	color:  white;
 }
@@ -214,10 +226,11 @@ td {
 	padding: 0px;
 	vertical-align: top;
 }
-.statBox, .slotBox {
-	padding-top: 5px;
+.statBox,
+.slotBox {
+	padding-top: 10px;
 	padding-left: 10px;
-	height: 195px;
+	height: 190px;
 }
 .statIcon {
 	height: 18px;
@@ -233,4 +246,8 @@ p.stat {
 }
 img.slotIcon {
 	height: 24px;
+}
+div.skill {
+	padding-left: 10px;
+	padding-top: 10px;
 }
