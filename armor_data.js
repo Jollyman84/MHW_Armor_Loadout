@@ -122,10 +122,38 @@ function fetchPartData(id, part) {
 
 			// Displays empty slots
 			const slots = []
-			armor['slots'].forEach((element) => {
-				slots.push('<img src="images/gem_level_' + element['rank'] +'.png" class="slotIcon">')
+			armor['slots'].forEach((element,index) => {
+				let slotButton = '<button class="slotButton" id="' + part + 'Slot' + index + '" data-rank="' + element['rank'] + '" type="menu">\n';
+				slotButton += '<img src="images/gem_level_' + element['rank'] +'.png" class="slotIcon">\n';
+				slots.push(slotButton + '</button>');
 			});
 			document.getElementById(part+'SlotsInner').innerHTML = slots.join('<br>');
+
+			// Opens modal box for swaping process
+			armor['slots'].forEach((element,index) => {
+				//console.log(element);
+				document.getElementById(part+'Slot'+index).addEventListener('click', () => {
+					const modal = document.getElementById(part+'SlotMenu');
+					modal.style.display = 'block';
+					document.getElementById(part+'SlotButton').dataset.rank = document.getElementById(part+'Slot'+index).dataset.rank;
+				});
+			});
+
+			// Closes modal box
+			document.getElementById(part+'CloseSlot').onclick = () => {
+				document.getElementById(part+'SlotResults').innerHTML = '';
+				document.getElementById(part+'SlotMenu').style.display = 'none';
+			};
+
+			document.getElementById(part+'SlotButton').onclick = () => {
+				const deco = document.getElementById(part+'SlotSearch').value.toLowerCase();
+				fetch('https://mhw-db.com/decorations?q={"slot":' + document.getElementById(part+'SlotButton').dataset.rank + '}')
+					.then(response => response.json())
+					.then(response => console.log(response))
+					.catch(err => {
+						console.error(err);
+					});
+			};
 
 			// Displays Skills
 			const skills = [];

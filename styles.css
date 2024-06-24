@@ -112,14 +112,26 @@ tr.legs {
 	height: inherit;
 	overflow: hidden;
 }
-.swapMenu {
+.headSlotMenu {
+	display: none;
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 275px;
+	height: inherit;
+	overflow: hidden;
+}
+.swapMenu,
+.slotMenu {
 	background-color: #fefefe;
 	margin: auto;
 	border: 1px solid #000000;
 	width: auto;
 	height: 198px;
 }
-.close {
+.close,
+.closeSlot {
 	color: white;
 	float: right;
 	font-size: 28px;
@@ -130,7 +142,9 @@ tr.legs {
 	background-color: red;
 }
 .close:hover,
-.close:focus {
+.close:focus,
+.closeSlot:hover,
+.closeSlot:focus {
 	color: #000000;
 	text-decoration: none;
 	cursor: pointer;
@@ -139,15 +153,22 @@ tr.legs {
 	margin-top: 5px;
 	margin-left: 10px;
 }
-.armorSearch {
+.armorSearch,
+.slotSearch {
 	padding: 5px;
 	margin-bottom: 10px;
-	width: 300px;
 	font-size: 15px;
 	border-radius: 0px;
 	border-style: solid;
 }
-.armorSearchButton {
+.armorSearch {
+	width: 300px;
+}
+.slotSearch {
+	width: 150px;
+}
+.armorSearchButton,
+.slotSearchButton {
 	margin: 0px;
 	border-width: 0px;
 	border-radius: 0px;
@@ -157,11 +178,13 @@ tr.legs {
 	padding-top: 7px;
 	padding-bottom: 7px;
 }
-.armorSearchButton:hover {
+.armorSearchButton:hover,
+.slotSearchButton:hover {
 	background-color: #007de4;
 	cursor: pointer;
 }
-.armorSearchResults {
+.armorSearchResults,
+.slotSearchResults {
 	height: 152px;
 	overflow-y: auto;
 }
@@ -231,6 +254,13 @@ td {
 	padding-top: 10px;
 	padding-left: 10px;
 	height: 190px;
+}
+.slotButton {
+	background-color: transparent;
+	border-width: 0px;
+}
+.slotButton:hover {
+	cursor: pointer;
 }
 .statIcon {
 	height: 18px;
