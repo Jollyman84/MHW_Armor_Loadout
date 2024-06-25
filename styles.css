@@ -112,14 +112,18 @@ tr.legs {
 	height: inherit;
 	overflow: hidden;
 }
-.headSlotMenu {
+.headSlotMenu,
+.torsoSlotMenu,
+.armsSlotMenu,
+.beltSlotMenu,
+.legsSlotMenu {
 	display: none;
 	position: absolute;
 	z-index: 1;
 	left: 0;
 	top: 0;
 	width: 275px;
-	height: inherit;
+	height: 200px;
 	overflow: hidden;
 }
 .swapMenu,
@@ -202,11 +206,30 @@ tr.legs {
 	background-color: white;
 	color:  black;
 }
+.headSlotSelection,
+.torsoSlotSelection,
+.armsSlotSelection,
+.beltSlotSelection,
+.legsSlotSelection {
+	margin: 0px;
+	border-width: 0px;
+	border-radius: 0px;
+	padding: 5px;
+	width: 228px;
+	text-align: start;
+	background-color: white;
+	color:  black;
+}
 .headSelection:hover,
 .torsoSelection:hover,
 .armsSelection:hover,
 .beltSelection:hover,
-.legsSelection:hover {
+.legsSelection:hover,
+.headSlotSelection:hover,
+.torsoSlotSelection:hover,
+.armsSlotSelection:hover,
+.beltSlotSelection:hover,
+.legsSlotSelection:hover {
 	background-color: black;
 	color:  white;
 }
@@ -277,7 +300,10 @@ p.stat {
 img.slotIcon {
 	height: 24px;
 }
-div.skill {
+div.skill1 {
 	padding-left: 10px;
 	padding-top: 10px;
+}
+div.skill2 {
+	padding-left: 10px;
 }

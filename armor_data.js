@@ -12,8 +12,8 @@ document.onload = [
 	const part = value.toLowerCase();
 	// Opens modal box for swaping process
 	document.getElementById('swap'+value).addEventListener('click', () => {
-		const modal = document.getElementById(part+'Swap');
-		modal.style.display = 'block';
+		document.getElementById(part+'SlotMenu').style.display = 'none';
+		document.getElementById(part+'Swap').style.display = 'block';
 	});
 
 	// Closes modal box
@@ -69,6 +69,10 @@ document.onload = [
 						console.log('click');
 						fetchPartData(matches[k][0],part);
 						document.getElementById(part+'Swap').style.display = 'none';
+						
+						document.getElementById(part+'SlotSkills0').innerHTML = '';
+						document.getElementById(part+'SlotSkills1').innerHTML = '';
+						document.getElementById(part+'SlotSkills2').innerHTML = '';
 					}
 				}
 			})
@@ -88,6 +92,11 @@ document.onload = [
 			})
 			.then(id => fetchPartData(id,part))
 			.then(document.getElementById(part+'Swap').style.display = 'none')
+			.then(() => {
+				document.getElementById(part+'SlotSkills0').innerHTML = '';
+				document.getElementById(part+'SlotSkills1').innerHTML = '';
+				document.getElementById(part+'SlotSkills2').innerHTML = '';
+			})
 			.catch((err) => {
 				console.error(err);
 			});
@@ -136,6 +145,9 @@ function fetchPartData(id, part) {
 					const modal = document.getElementById(part+'SlotMenu');
 					modal.style.display = 'block';
 					document.getElementById(part+'SlotButton').dataset.rank = document.getElementById(part+'Slot'+index).dataset.rank;
+					document.getElementById(part+'SlotButton').dataset.index = index;
+					document.getElementById(part+'SlotSearch').value = '';
+					document.getElementById(part+'SlotResults').innerHTML = '';
 				});
 			});
 
@@ -149,7 +161,28 @@ function fetchPartData(id, part) {
 				const deco = document.getElementById(part+'SlotSearch').value.toLowerCase();
 				fetch('https://mhw-db.com/decorations?q={"slot":' + document.getElementById(part+'SlotButton').dataset.rank + '}')
 					.then(response => response.json())
-					.then(response => console.log(response))
+					.then(gems => {
+						return gems.filter((value) => value['name'].toLowerCase().includes(deco));
+					})
+					.then(matches => {
+						console.log(matches);
+						let options = matches.map((m) => {
+							return '<button type="button" class="'+part+'SlotSelection">'+m['name']+'</button>';
+						}).join('<br>');
+						document.getElementById(part+'SlotResults').innerHTML = options;
+		
+						const select = document.getElementsByClassName(part+'SlotSelection');
+						for(let k = 0; k < select.length; k++) {
+							select[k].onclick = () => {
+								const skills = document.getElementById(part+'SlotSkills'+document.getElementById(part+'SlotButton').dataset.index);
+								skills.innerHTML = '';
+								matches[k]['skills'].forEach((val) => {
+									skills.innerHTML = '<p>'+val['level']+' &times; '+val['skillName']+'</p>';
+								});
+								document.getElementById(part+'SlotMenu').style.display = 'none';
+							}
+						}
+					})
 					.catch(err => {
 						console.error(err);
 					});
@@ -168,7 +201,7 @@ function fetchPartData(id, part) {
 				console.error(err);
 			}
 			armor['skills'].forEach((element) => {
-				skills.push('<p>'+element['level']+' &times; '+element['skillName']+'</p>')
+				skills.push('<p>'+element['level']+' &times; '+element['skillName']+'</p>');
 			});
 			document.getElementById(part+'Skills').innerHTML = skills.join('');
 		})
