@@ -1,11 +1,24 @@
 // Loads default information upon page load 
 document.onload = [
+	document.getElementById('sex').dataset.sex = 'imageMale',
 	fetchPartData(1,'head'),
 	fetchPartData(2,'torso'),
 	fetchPartData(3,'arms'),
 	fetchPartData(4,'belt'),
 	fetchPartData(5,'legs')
 ];
+
+document.getElementById('sex').addEventListener('change', () => {
+	const checkbox = document.getElementById('sex');
+	if(checkbox.checked) checkbox.dataset.sex = 'imageFemale';
+	else checkbox.dataset.sex = 'imageMale';
+	
+	['head','torso','arms','belt','legs'].forEach(part => 
+		fetchPartData(document.getElementsByClassName(part)[0].dataset.id,part)
+	);
+	
+	console.log(checkbox.dataset.sex);
+});
 
 // Swaps picture and info for respective armor piece upon button click
 ['Head','Torso','Arms','Belt','Legs'].forEach((value, index) => {
@@ -105,7 +118,9 @@ document.onload = [
 
 // Fetches data for a single armor piece
 function fetchPartData(id, part) {
+	document.getElementsByClassName(part)[0].dataset.id = id;
 	console.log('fetch, id: %i, part:%s',id,part);
+
 	fetch('https://mhw-db.com/armor/' + id.toString())
 		.then(response => response.json())
 		.then(async armor => {
@@ -116,7 +131,7 @@ function fetchPartData(id, part) {
 					document.getElementById(part+'Img').src = './images/' + part + '-icon.png';
 					break;
 				default:
-					document.getElementById(part+'Img').src = armor['assets']['imageMale'];
+					document.getElementById(part+'Img').src = armor['assets'][document.getElementById('sex').dataset.sex];
 					break;
 			}
 			
@@ -165,7 +180,7 @@ function fetchPartData(id, part) {
 						return gems.filter((value) => value['name'].toLowerCase().includes(deco));
 					})
 					.then(matches => {
-						console.log(matches);
+						//console.log(matches);
 						let options = matches.map((m) => {
 							return '<button type="button" class="'+part+'SlotSelection">'+m['name']+'</button>';
 						}).join('<br>');
@@ -194,9 +209,10 @@ function fetchPartData(id, part) {
 				const setRaw = await fetch('https://mhw-db.com/armor/sets/'+armor['armorSet']['id']);
 				if(!setRaw.ok) throw new Error('Failed to access armor set data.');
 				const set = await setRaw.json();
-				if(set['bonus'] == null) return;
-				console.log(set['bonus']);
-				skills.push(set['bonus']['name']);
+				if(set['bonus'] != null) {
+					console.log(set['bonus']);
+					skills.push(set['bonus']['name']);
+				}
 			} catch(err) {
 				console.error(err);
 			}
