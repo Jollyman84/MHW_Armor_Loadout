@@ -8,6 +8,7 @@ document.onload = [
 	fetchPartData(5,'legs')
 ];
 
+// Alternates between male and female armor images
 document.getElementById('sex').addEventListener('change', () => {
 	const checkbox = document.getElementById('sex');
 	if(checkbox.checked) checkbox.dataset.sex = 'imageFemale';
@@ -37,46 +38,19 @@ document.getElementById('sex').addEventListener('change', () => {
 	// Searches for armor piece starting with user input
 	document.getElementById(part+'SearchButton').onclick = () => {
 		const armor = document.getElementById(part+'Search').value.toLowerCase();
-		fetch('./csv/'+part+'_list.csv')
+		fetch('./csv/' + part + '_list.csv')
 			.then(response => response.text())
-			.then(response => response.split('\n'))
-			.then(response => response.map((r) => r.split(',')))
-			.then((nameList) => {
-				let pointer = Math.floor(nameList.length/2);
-				for(let hit = true, div = 4, i = 0; hit && i < 15; i++) {
-					const focus = nameList[pointer][1].toLowerCase();
-					if(focus.startsWith(armor)) hit = false;
-					else if(armor > focus) {
-						pointer += Math.floor(nameList.length/div);
-						div = Math.min(256, div*2);
-					} else if(armor < focus) {
-						pointer -= Math.floor(nameList.length/div);
-						div = Math.min(256, div*2);
-					}
-					//console.log(focus+' '+pointer);
-				}
-
-				while(nameList[Math.max(pointer,0)][1].toLowerCase().startsWith(armor) && pointer >= 0)
-					pointer--;
-				pointer++;
-
-				const matches = [];
-				while(nameList[Math.min(pointer,nameList.length-1)][1].toLowerCase().startsWith(armor) && pointer < nameList.length) {
-					matches.push([...nameList[pointer]]);
-					pointer++;
-				}
-				return matches;
-			})
-			.then((matches) => {
+			.then(response => response.split('\r\n'))
+			.then(response => response.map(r => r.split(',')))
+			.then(nameList => nameList.filter(value => value[1].toLowerCase().startsWith(armor)))
+			.then(matches => {
 				console.log(matches);
-				let options = matches.map((m) => {
+				const options = matches.map(m => {
 					return '<button type="button" class="'+part+'Selection">'+m[1]+'</button>';
 				}).join('<br>');
 				document.getElementById(part+'SearchResults').innerHTML = options;
 
 				const select = document.getElementsByClassName(part+'Selection');
-				//console.log(select);
-				//console.log(matches);
 				for(let k = 0; k < select.length; k++) {
 					select[k].onclick = () => {
 						console.log('click');
@@ -96,7 +70,7 @@ document.getElementById('sex').addEventListener('change', () => {
 	document.getElementById(part+'Random').onclick = () => {
 		fetch('./csv/' + part + '_list.csv')
 			.then(response => response.text())
-			.then(response => response.split('\n'))
+			.then(response => response.split('\r\n'))
 			.then(response => response.map((x) => x.split(',')))
 			.then(armor => {
 				const index = Math.floor(Math.random()*armor.length);
@@ -110,9 +84,7 @@ document.getElementById('sex').addEventListener('change', () => {
 				document.getElementById(part+'SlotSkills1').innerHTML = '';
 				document.getElementById(part+'SlotSkills2').innerHTML = '';
 			})
-			.catch((err) => {
-				console.error(err);
-			});
+			.catch((err) => onsole.error(err));
 	};
 });
 
@@ -137,6 +109,7 @@ function fetchPartData(id, part) {
 			
 			// Displays Stats
 			document.getElementById(part+'Name').innerText = armor['name'];
+			document.getElementById(part+'R').innerText = armor['rarity'];
 			document.getElementById(part+'Def').innerText = armor['defense']['base'];
 			document.getElementById(part+'F').innerText = armor['resistances']['fire'];
 			document.getElementById(part+'W').innerText = armor['resistances']['water'];
@@ -176,12 +149,9 @@ function fetchPartData(id, part) {
 				const deco = document.getElementById(part+'SlotSearch').value.toLowerCase();
 				fetch('https://mhw-db.com/decorations?q={"slot":' + document.getElementById(part+'SlotButton').dataset.rank + '}')
 					.then(response => response.json())
-					.then(gems => {
-						return gems.filter((value) => value['name'].toLowerCase().includes(deco));
-					})
+					.then(gems => gems.filter((value) => value['name'].toLowerCase().includes(deco)))
 					.then(matches => {
-						//console.log(matches);
-						let options = matches.map((m) => {
+						const options = matches.map(m => {
 							return '<button type="button" class="'+part+'SlotSelection">'+m['name']+'</button>';
 						}).join('<br>');
 						document.getElementById(part+'SlotResults').innerHTML = options;
@@ -198,9 +168,7 @@ function fetchPartData(id, part) {
 							}
 						}
 					})
-					.catch(err => {
-						console.error(err);
-					});
+					.catch(err => console.error(err));
 			};
 
 			// Displays Skills
@@ -216,9 +184,8 @@ function fetchPartData(id, part) {
 			} catch(err) {
 				console.error(err);
 			}
-			armor['skills'].forEach((element) => {
-				skills.push('<p>'+element['level']+' &times; '+element['skillName']+'</p>');
-			});
+
+			armor['skills'].forEach((element) => skills.push('<p>'+element['level']+' &times; '+element['skillName']+'</p>'));
 			document.getElementById(part+'Skills').innerHTML = skills.join('');
 		})
 		.catch((err) => console.error(err));
