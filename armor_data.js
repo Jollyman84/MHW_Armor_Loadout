@@ -1,3 +1,6 @@
+// Creates armor set object
+const setInfo = new armorSet();
+
 // Loads default information upon page load 
 document.onload = [
 	document.getElementById('sex').dataset.sex = 'imageMale',
@@ -7,6 +10,8 @@ document.onload = [
 	fetchPartData(4,'belt'),
 	fetchPartData(5,'legs')
 ];
+
+
 
 // Alternates between male and female armor images
 document.getElementById('sex').addEventListener('change', () => {
@@ -84,7 +89,7 @@ document.getElementById('sex').addEventListener('change', () => {
 				document.getElementById(part+'SlotSkills1').innerHTML = '';
 				document.getElementById(part+'SlotSkills2').innerHTML = '';
 			})
-			.catch((err) => onsole.error(err));
+			.catch((err) => console.error(err));
 	};
 });
 
@@ -107,7 +112,7 @@ function fetchPartData(id, part) {
 					break;
 			}
 			
-			// Displays Stats
+			// Displays stats
 			document.getElementById(part+'Name').innerText = armor['name'];
 			document.getElementById(part+'R').innerText = armor['rarity'];
 			document.getElementById(part+'Def').innerText = armor['defense']['base'];
@@ -116,6 +121,14 @@ function fetchPartData(id, part) {
 			document.getElementById(part+'I').innerText = armor['resistances']['ice'];
 			document.getElementById(part+'T').innerText =  armor['resistances']['thunder'];
 			document.getElementById(part+'D').innerText = armor['resistances']['dragon'];
+
+			// Passes stats to set object
+			setInfo.setStat(part, 'defense',armor['defense']['base']);
+			setInfo.setStat(part, 'fire', armor['resistances']['fire']);
+			setInfo.setStat(part, 'water', armor['resistances']['water']);
+			setInfo.setStat(part, 'ice', armor['resistances']['ice']);
+			setInfo.setStat(part, 'thunder', armor['resistances']['thunder']);
+			setInfo.setStat(part, 'dragon', armor['resistances']['dragon']);
 
 			// Displays empty slots
 			const slots = []
@@ -188,5 +201,16 @@ function fetchPartData(id, part) {
 			armor['skills'].forEach((element) => skills.push('<p>'+element['level']+' &times; '+element['skillName']+'</p>'));
 			document.getElementById(part+'Skills').innerHTML = skills.join('');
 		})
+		.then(updateSetInfo)
 		.catch((err) => console.error(err));
+}
+
+// Updates displayed info for armor set
+function updateSetInfo() {
+	document.getElementById('setDef').innerText = setInfo.getDefense();
+	document.getElementById('setF').innerText = setInfo.getFire();
+	document.getElementById('setW').innerText = setInfo.getWater();
+	document.getElementById('setI').innerText = setInfo.getIce();
+	document.getElementById('setT').innerText =  setInfo.getThunder();
+	document.getElementById('setD').innerText = setInfo.getDragon();
 }
