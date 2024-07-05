@@ -48,10 +48,10 @@
 				<!--Head armor info-->
 				<tr class="head">
 					<td>
-						<button class="swapHead" id="swapHead" type="menu">
+						<button class="swap" id="swapHead" type="menu">
 							<img src="images/swap.png" class="swapIcon">
 						</button>
-						<div class="headSwap" id="headSwap">
+						<div class="swap" id="headSwap">
 							<div class="swapMenu">
 								<span class="close">&times;</span>
 								<div class="innerModal">
@@ -63,7 +63,7 @@
 							</div>
 						</div>
 					</td>
-					<td class="headBox">
+					<td class="imgBox">
 						<span class="name" id="headName">Tooltip</span>
 						<img class="armor" id="headImg" alt="HEAD PIECE">
 					</td>
@@ -105,8 +105,12 @@
 						<div class="skill2" id="headSlotSkills1"></div>
 						<div class="skill2" id="headSlotSkills2"></div>
 					</td>
-					<td rowspan="5" class="set">
+					<td rowspan="6" class="set">
 						<div id="setStats">
+							<img src="images/attack.png" class="statIcon">
+							<p id="setAtt" class="stat">+0</p><br>
+							<img src="images/affinity.png" class="statIcon">
+							<p id="setAff" class="stat">+0%</p><br>
 							<img src="images/defense.png" class="statIcon">
 							<p id="setDef" class="stat">100</p><br>
 							<img src="images/fire.png" class="statIcon">
@@ -130,10 +134,10 @@
 				<!--Torso armor info-->
 				<tr class="torso">
 					<td>
-						<button class="swapTorso" id="swapTorso" type="menu">
+						<button class="swap" id="swapTorso" type="menu">
 							<img src="images/swap.png" class="swapIcon">
 						</button>
-						<div class="torsoSwap" id="torsoSwap">
+						<div class="swap" id="torsoSwap">
 							<div class="swapMenu">
 								<span class="close">&times;</span>
 								<div class="innerModal">
@@ -145,7 +149,7 @@
 							</div>
 						</div>
 					</td>
-					<td class="torsoBox">
+					<td class="imgBox">
 						<div>
 							<span class="name" id="torsoName">Tooltip</span>
 							<img class="armor" id="torsoImg" alt="TORSO PIECE">
@@ -193,10 +197,10 @@
 				<!--Arms armor info-->
 				<tr class="arms">
 					<td>
-						<button class="swapArms" id="swapArms" type="menu">
+						<button class="swap" id="swapArms" type="menu">
 							<img src="images/swap.png" class="swapIcon">
 						</button>
-						<div class="armsSwap" id="armsSwap">
+						<div class="swap" id="armsSwap">
 							<div class="swapMenu">
 								<span class="close">&times;</span>
 								<div class="innerModal">
@@ -208,7 +212,7 @@
 							</div>
 						</div>
 					</td>
-					<td class="armsBox">
+					<td class="imgBox">
 						<span class="name" id="armsName">Tooltip</span>
 						<img class="armor" id="armsImg" alt="ARM PIECE">
 					</td>
@@ -254,10 +258,10 @@
 				<!--Belt armor info-->
 				<tr class="belt">
 					<td>
-						<button class="swapBelt" id="swapBelt" type="menu">
+						<button class="swap" id="swapBelt" type="menu">
 							<img src="images/swap.png" class="swapIcon">
 						</button>
-						<div class="beltSwap" id="beltSwap">
+						<div class="swap" id="beltSwap">
 							<div class="swapMenu">
 								<span class="close">&times;</span>
 								<div class="innerModal">
@@ -269,7 +273,7 @@
 							</div>
 						</div>
 					</td>
-					<td class="beltBox">
+					<td class="imgBox">
 						<span class="name" id="beltName">Tooltip</span>
 						<img class="armor" id="beltImg" alt="BELT PIECE">
 					</td>
@@ -315,10 +319,10 @@
 				<!--Legs armor info-->
 				<tr class="legs">
 					<td>
-						<button class="swapLegs" id="swapLegs" type="menu">
+						<button class="swap" id="swapLegs" type="menu">
 							<img src="images/swap.png" class="swapIcon">
 						</button>
-						<div class="legsSwap" id="legsSwap">
+						<div class="swap" id="legsSwap">
 							<div class="swapMenu">
 								<span class="close">&times;</span>
 								<div class="innerModal">
@@ -330,7 +334,7 @@
 							</div>
 						</div>
 					</td>
-					<td class="legsBox">
+					<td class="imgBox">
 						<span class="name" id="legsName">Tooltip</span>
 						<img class="armor" id="legsImg" alt="LEG PIECE">
 					</td>
@@ -370,6 +374,35 @@
 						<div class="skill2" id="legsSlotSkills0"></div>
 						<div class="skill2" id="legsSlotSkills1"></div>
 						<div class="skill2" id="legsSlotSkills2"></div>
+					</td>
+				</tr>
+
+				<!--Charm info-->
+				<tr class="charm">
+					<td>
+						<button class="swap" id="swapCharm" type="menu">
+							<img src="images/swap.png" class="swapIcon">
+						</button>
+						<div class="swap" id="charmSwap">
+							<div class="swapMenu">
+								<span class="close">&times;</span>
+								<div class="innerModal">
+									<input type="text" placeholder="Charms" id="charmSearch" class="armorSearch" autocomplete="off">
+									<button type="submit" id="charmSearchButton" class="armorSearchButton">Search</button>
+									<button type="submit" id="charmRandom" class="armorSearchButton">Random</button>
+									<div class="armorSearchResults" id="charmSearchResults"></div>
+								</div>
+							</div>
+						</div>
+					</td>
+					<td class="imgBox">
+						<span class="name" id="charmName">Empty</span>
+						<img src="images/charm-icon.png" class="armor" id="charmImg" alt="CHARM">
+					</td>
+					<td class="statBox"></td>
+					<td class="slotBox" id="charmSlots"></td>
+					<td>
+						<div class="skill1" id="charmSkills"></div>
 					</td>
 				</tr>
 			</table>

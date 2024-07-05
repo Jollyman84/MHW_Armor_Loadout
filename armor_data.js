@@ -27,11 +27,12 @@ document.getElementById('sex').addEventListener('change', () => {
 });
 
 // Swaps picture and info for respective armor piece upon button click
-['Head','Torso','Arms','Belt','Legs'].forEach((value, index) => {
+['Head','Torso','Arms','Belt','Legs','Charm'].forEach((value, index) => {
 	const part = value.toLowerCase();
 	// Opens modal box for swaping process
 	document.getElementById('swap'+value).addEventListener('click', () => {
-		document.getElementById(part+'SlotMenu').style.display = 'none';
+		if(value !== 'Charm')
+			document.getElementById(part+'SlotMenu').style.display = 'none';
 		document.getElementById(part+'Swap').style.display = 'block';
 	});
 
@@ -85,9 +86,11 @@ document.getElementById('sex').addEventListener('change', () => {
 			.then(id => fetchPartData(id,part))
 			.then(document.getElementById(part+'Swap').style.display = 'none')
 			.then(() => {
-				document.getElementById(part+'SlotSkills0').innerHTML = '';
-				document.getElementById(part+'SlotSkills1').innerHTML = '';
-				document.getElementById(part+'SlotSkills2').innerHTML = '';
+				if(part !== 'charm') {
+					document.getElementById(part+'SlotSkills0').innerHTML = '';
+					document.getElementById(part+'SlotSkills1').innerHTML = '';
+					document.getElementById(part+'SlotSkills2').innerHTML = '';
+				}
 			})
 			.catch((err) => console.error(err));
 	};
@@ -98,7 +101,11 @@ function fetchPartData(id, part) {
 	document.getElementsByClassName(part)[0].dataset.id = id;
 	console.log('fetch, id: %i, part:%s',id,part);
 
-	fetch('https://mhw-db.com/armor/' + id.toString())
+	let url;
+	if(part === 'charm') url = 'https://mhw-db.com/charms/' + id.toString();
+	else url = 'https://mhw-db.com/armor/' + id.toString();
+
+	fetch(url)
 		.then(response => response.json())
 		.then(async armor => {
 			// Displays image
@@ -112,94 +119,104 @@ function fetchPartData(id, part) {
 					break;
 			}
 			
-			// Displays stats
+			
 			document.getElementById(part+'Name').innerText = armor['name'];
-			document.getElementById(part+'R').innerText = armor['rarity'];
-			document.getElementById(part+'Def').innerText = armor['defense']['base'];
-			document.getElementById(part+'F').innerText = armor['resistances']['fire'];
-			document.getElementById(part+'W').innerText = armor['resistances']['water'];
-			document.getElementById(part+'I').innerText = armor['resistances']['ice'];
-			document.getElementById(part+'T').innerText =  armor['resistances']['thunder'];
-			document.getElementById(part+'D').innerText = armor['resistances']['dragon'];
 
-			// Passes stats to set object
-			setInfo.setStat(part, 'defense',armor['defense']['base']);
-			setInfo.setStat(part, 'fire', armor['resistances']['fire']);
-			setInfo.setStat(part, 'water', armor['resistances']['water']);
-			setInfo.setStat(part, 'ice', armor['resistances']['ice']);
-			setInfo.setStat(part, 'thunder', armor['resistances']['thunder']);
-			setInfo.setStat(part, 'dragon', armor['resistances']['dragon']);
+			if(part !== 'charm') {
+				// Displays stats
+				document.getElementById(part+'R').innerText = armor['rarity'];
+				document.getElementById(part+'Def').innerText = armor['defense']['base'];
+				document.getElementById(part+'F').innerText = armor['resistances']['fire'];
+				document.getElementById(part+'W').innerText = armor['resistances']['water'];
+				document.getElementById(part+'I').innerText = armor['resistances']['ice'];
+				document.getElementById(part+'T').innerText =  armor['resistances']['thunder'];
+				document.getElementById(part+'D').innerText = armor['resistances']['dragon'];
 
-			// Displays empty slots
-			const slots = []
-			armor['slots'].forEach((element,index) => {
-				let slotButton = '<button class="slotButton" id="' + part + 'Slot' + index + '" data-rank="' + element['rank'] + '" type="menu">\n';
-				slotButton += '<img src="images/gem_level_' + element['rank'] +'.png" class="slotIcon">\n';
-				slots.push(slotButton + '</button>');
-			});
-			document.getElementById(part+'SlotsInner').innerHTML = slots.join('<br>');
+				// Passes stats to set object\
+				setInfo.setStat(part, 'defense',armor['defense']['base']);
+				setInfo.setStat(part, 'fire', armor['resistances']['fire']);
+				setInfo.setStat(part, 'water', armor['resistances']['water']);
+				setInfo.setStat(part, 'ice', armor['resistances']['ice']);
+				setInfo.setStat(part, 'thunder', armor['resistances']['thunder']);
+				setInfo.setStat(part, 'dragon', armor['resistances']['dragon']);
 
-			// Opens modal box for swaping process
-			armor['slots'].forEach((element,index) => {
-				//console.log(element);
-				document.getElementById(part+'Slot'+index).addEventListener('click', () => {
-					const modal = document.getElementById(part+'SlotMenu');
-					modal.style.display = 'block';
-					document.getElementById(part+'SlotButton').dataset.rank = document.getElementById(part+'Slot'+index).dataset.rank;
-					document.getElementById(part+'SlotButton').dataset.index = index;
-					document.getElementById(part+'SlotSearch').value = '';
-					document.getElementById(part+'SlotResults').innerHTML = '';
+				// Displays empty slots
+				const slots = []
+				armor['slots'].forEach((element,index) => {
+					let slotButton = '<button class="slotButton" id="' + part + 'Slot' + index + '" data-rank="' + element['rank'] + '" type="menu">\n';
+					slotButton += '<img src="images/gem_level_' + element['rank'] +'.png" class="slotIcon">\n';
+					slots.push(slotButton + '</button>');
 				});
-			});
+				document.getElementById(part+'SlotsInner').innerHTML = slots.join('<br>');
 
-			// Closes modal box
-			document.getElementById(part+'CloseSlot').onclick = () => {
-				document.getElementById(part+'SlotResults').innerHTML = '';
-				document.getElementById(part+'SlotMenu').style.display = 'none';
-			};
+				// Opens modal box for swaping process
+				armor['slots'].forEach((element,index) => {
+					//console.log(element);
+					document.getElementById(part+'Slot'+index).addEventListener('click', () => {
+						const modal = document.getElementById(part+'SlotMenu');
+						modal.style.display = 'block';
+						document.getElementById(part+'SlotButton').dataset.rank = document.getElementById(part+'Slot'+index).dataset.rank;
+						document.getElementById(part+'SlotButton').dataset.index = index;
+						document.getElementById(part+'SlotSearch').value = '';
+						document.getElementById(part+'SlotResults').innerHTML = '';
+					});
+				});
 
-			document.getElementById(part+'SlotButton').onclick = () => {
-				const deco = document.getElementById(part+'SlotSearch').value.toLowerCase();
-				fetch('https://mhw-db.com/decorations?q={"slot":' + document.getElementById(part+'SlotButton').dataset.rank + '}')
-					.then(response => response.json())
-					.then(gems => gems.filter((value) => value['name'].toLowerCase().includes(deco)))
-					.then(matches => {
-						const options = matches.map(m => {
-							return '<button type="button" class="'+part+'SlotSelection">'+m['name']+'</button>';
-						}).join('<br>');
-						document.getElementById(part+'SlotResults').innerHTML = options;
-		
-						const select = document.getElementsByClassName(part+'SlotSelection');
-						for(let k = 0; k < select.length; k++) {
-							select[k].onclick = () => {
-								const skills = document.getElementById(part+'SlotSkills'+document.getElementById(part+'SlotButton').dataset.index);
-								skills.innerHTML = '';
-								matches[k]['skills'].forEach((val) => {
-									skills.innerHTML = '<p>'+val['level']+' &times; '+val['skillName']+'</p>';
-								});
-								document.getElementById(part+'SlotMenu').style.display = 'none';
+				// Closes modal box
+				document.getElementById(part+'CloseSlot').onclick = () => {
+					document.getElementById(part+'SlotResults').innerHTML = '';
+					document.getElementById(part+'SlotMenu').style.display = 'none';
+				};
+
+				document.getElementById(part+'SlotButton').onclick = () => {
+					const deco = document.getElementById(part+'SlotSearch').value.toLowerCase();
+					fetch('https://mhw-db.com/decorations?q={"slot":' + document.getElementById(part+'SlotButton').dataset.rank + '}')
+						.then(response => response.json())
+						.then(gems => gems.filter((value) => value['name'].toLowerCase().includes(deco)))
+						.then(matches => {
+							const options = matches.map(m => {
+								return '<button type="button" class="'+part+'SlotSelection">'+m['name']+'</button>';
+							}).join('<br>');
+							document.getElementById(part+'SlotResults').innerHTML = options;
+			
+							const select = document.getElementsByClassName(part+'SlotSelection');
+							for(let k = 0; k < select.length; k++) {
+								select[k].onclick = () => {
+									const skills = document.getElementById(part+'SlotSkills'+document.getElementById(part+'SlotButton').dataset.index);
+									skills.innerHTML = '';
+									matches[k]['skills'].forEach((val) => {
+										skills.innerHTML = '<p>'+val['level']+' &times; '+val['skillName']+'</p>';
+									});
+									document.getElementById(part+'SlotMenu').style.display = 'none';
+								}
 							}
-						}
-					})
-					.catch(err => console.error(err));
-			};
+						})
+						.catch(err => console.error(err));
+				};
 
-			// Displays Skills
-			const skills = [];
-			try {
-				const setRaw = await fetch('https://mhw-db.com/armor/sets/'+armor['armorSet']['id']);
-				if(!setRaw.ok) throw new Error('Failed to access armor set data.');
-				const set = await setRaw.json();
-				if(set['bonus'] != null) {
-					console.log(set['bonus']);
-					skills.push(set['bonus']['name']);
+				// Displays set bonus
+				const skills = [];
+				try {
+					const setRaw = await fetch('https://mhw-db.com/armor/sets/'+armor['armorSet']['id']);
+					if(!setRaw.ok) throw new Error('Failed to access armor set data.');
+					const set = await setRaw.json();
+					if(set['bonus'] != null) {
+						console.log(set['bonus']);
+						skills.push(set['bonus']['name']);
+					}
+				} catch(err) {
+					console.error(err);
 				}
-			} catch(err) {
-				console.error(err);
-			}
 
-			armor['skills'].forEach((element) => skills.push('<p>'+element['level']+' &times; '+element['skillName']+'</p>'));
-			document.getElementById(part+'Skills').innerHTML = skills.join('');
+				// Displays armor skills
+				armor['skills'].forEach((element) => skills.push('<p>'+element['level']+' &times; '+element['skillName']+'</p>'));
+				document.getElementById(part+'Skills').innerHTML = skills.join('');
+			} else {
+				// Displays charm skills
+				const skills = [];
+				armor['ranks'].pop()['skills'].forEach((element) => skills.push('<p>'+element['level']+' &times; '+element['skillName']+'</p>'));
+				document.getElementById(part+'Skills').innerHTML = skills.join('');
+			}
 		})
 		.then(updateSetInfo)
 		.catch((err) => console.error(err));

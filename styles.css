@@ -115,7 +115,8 @@ col.col5 {
 }
 tr.labels,
 tr.torso,
-tr.belt {
+tr.belt,
+tr.charm {
 	background-color: #dadada;
 }
 tr.head,
@@ -123,11 +124,7 @@ tr.arms,
 tr.legs {
 	background-color: #ffffff;
 }
-.swapHead,
-.swapTorso,
-.swapArms,
-.swapBelt,
-.swapLegs {
+button.swap {
 	border-width: 0px;
 	padding-top: calc(100% - 25px);
 	padding-bottom: calc(100% - 25px);
@@ -137,22 +134,14 @@ tr.legs {
 	transition-duration: 0.4s;
 	height: 200px;
 }
-.swapHead:hover,
-.swapTorso:hover,
-.swapArms:hover,
-.swapBelt:hover,
-.swapLegs:hover {
+button.swap:hover {
 	background-color: #04AA6D;
 }
 .swapIcon {
 	height: 50px;
 	width: 50px;
 }
-.headSwap,
-.torsoSwap,
-.armsSwap,
-.beltSwap,
-.legsSwap {
+div.swap {
 	display: none;
 	position: absolute;
 	z-index: 1;
@@ -303,11 +292,7 @@ img.armor {
 	left: 0px;
 	top: 0px;
 }
-.headBox:hover .name,
-.torsoBox:hover .name,
-.armsBox:hover .name,
-.beltBox:hover .name,
-.legsBox:hover .name {
+.imgBox:hover .name {
 	visibility: visible;
 }
 .headImg {
