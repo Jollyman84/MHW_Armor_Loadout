@@ -235,7 +235,8 @@ div.swap {
 .torsoSelection,
 .armsSelection,
 .beltSelection,
-.legsSelection {
+.legsSelection,
+.charmSelection {
 	margin: 0px;
 	border-width: 0px;
 	border-radius: 0px;
@@ -264,6 +265,7 @@ div.swap {
 .armsSelection:hover,
 .beltSelection:hover,
 .legsSelection:hover,
+.charmSelection:hover,
 .headSlotSelection:hover,
 .torsoSlotSelection:hover,
 .armsSlotSelection:hover,

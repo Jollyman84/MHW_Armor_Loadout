@@ -63,9 +63,11 @@ document.getElementById('sex').addEventListener('change', () => {
 						fetchPartData(matches[k][0],part);
 						document.getElementById(part+'Swap').style.display = 'none';
 						
-						document.getElementById(part+'SlotSkills0').innerHTML = '';
-						document.getElementById(part+'SlotSkills1').innerHTML = '';
-						document.getElementById(part+'SlotSkills2').innerHTML = '';
+						if(part !== 'charm') {
+							document.getElementById(part+'SlotSkills0').innerHTML = '';
+							document.getElementById(part+'SlotSkills1').innerHTML = '';
+							document.getElementById(part+'SlotSkills2').innerHTML = '';
+						}
 					}
 				}
 			})
