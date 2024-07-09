@@ -64,7 +64,24 @@ class armorSet {
         }
     }
 
-    addBonus(bonus) {
-        this.bonus[bonus] += 1;
+    addBonus(input) {
+        if(/^[0-9]+$/.test(this.bonus[input]))
+            this.bonus[input] += 1;
+        else if(!(input===undefined || input===null))
+            this.bonus[input] = 1;
+    }
+
+    removeBonus(input) {
+        if(/^[1-9]+$/.test(this.bonus[input]))
+            this.bonus[input] -= 1;
+    }
+
+    getBonus() {
+        const active = [];
+        for(let val in this.bonus) {
+            if(this.bonus[val] >= 1)
+                active[val] = this.bonus[val];
+        }
+        return active;
     }
 }

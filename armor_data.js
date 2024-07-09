@@ -1,5 +1,6 @@
 // Creates armor set object
 const setInfo = new armorSet();
+let head, torso, arms, belt, legs, charm;
 
 // Loads default information upon page load 
 document.onload = [
@@ -10,8 +11,6 @@ document.onload = [
 	fetchPartData(4,'belt'),
 	fetchPartData(5,'legs')
 ];
-
-
 
 // Alternates between male and female armor images
 document.getElementById('sex').addEventListener('change', () => {
@@ -110,6 +109,49 @@ function fetchPartData(id, part) {
 	fetch(url)
 		.then(response => response.json())
 		.then(async armor => {
+			await fetch('https://mhw-db.com/armor/sets/'+armor['armorSet']['id'])
+				.then(set => set.json())
+				.then(set => {
+					if(set['bonus'] != null) {
+						console.log(set['bonus']);
+						armor['bonus'] = set['bonus'];
+					} else {
+						armor['bonus'] = [];
+						armor['bonus']['id'] = -1;
+						armor['bonus']['name'] = 'Empty';
+					}
+				})
+				.catch(err => console.error('Failed to access armor set data.\n' + err));
+
+			switch(part) {
+				case 'head':
+					if(head != undefined) setInfo.removeBonus(head['bonus']['name']);
+					head = armor;
+					break;
+				case 'torso':
+					if(torso != undefined) setInfo.removeBonus(torso['bonus']['name']);
+					torso = armor;
+					break;
+				case 'arms':
+					if(arms != undefined) setInfo.removeBonus(arms['bonus']['name']);
+					arms = armor;
+					break;
+				case 'belt':
+					if(belt != undefined) setInfo.removeBonus(belt['bonus']['name']);
+					belt = armor;
+					break;
+				case 'legs':
+					if(legs != undefined) setInfo.removeBonus(legs['bonus']['name']);
+					legs = armor;
+					break;
+				case 'charm':
+					charm = armor;
+					break;
+			}
+
+			return armor;
+		})
+		.then(armor => {
 			// Displays image
 			switch(armor['assets']) {
 				case null:
@@ -120,7 +162,6 @@ function fetchPartData(id, part) {
 					document.getElementById(part+'Img').src = armor['assets'][document.getElementById('sex').dataset.sex];
 					break;
 			}
-			
 			
 			document.getElementById(part+'Name').innerText = armor['name'];
 
@@ -198,16 +239,16 @@ function fetchPartData(id, part) {
 
 				// Displays set bonus
 				const skills = [];
-				try {
-					const setRaw = await fetch('https://mhw-db.com/armor/sets/'+armor['armorSet']['id']);
-					if(!setRaw.ok) throw new Error('Failed to access armor set data.');
-					const set = await setRaw.json();
-					if(set['bonus'] != null) {
-						console.log(set['bonus']);
-						skills.push(set['bonus']['name']);
+				if(armor['bonus']['name'] !== 'Empty') {
+					skills.push(armor['bonus']['name']);
+					setInfo.addBonus(armor['bonus']['name']);
+
+					const totalBonus = setInfo.getBonus();
+					const bonusText = [];
+					for(let val in totalBonus) {
+						bonusText.push('<p>'+totalBonus[val]+' &times; '+val+'</p>');
 					}
-				} catch(err) {
-					console.error(err);
+					document.getElementById('bonus').innerHTML = bonusText.join('');
 				}
 
 				// Displays armor skills
