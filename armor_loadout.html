@@ -18,13 +18,6 @@
 		</div>
 
 		<div class="mainDiv">
-			<div class="overBar">
-				<label class="switch">
-					<input type="checkbox" id="sex">
-					<span class="slider"></span>
-				</label>
-			</div>
-
 			<table>
 				<colgroup>
 					<col class="col1">
@@ -107,7 +100,13 @@
 					</td>
 
 					<!--Armor set info-->
-					<td rowspan="6" class="set">
+					<td rowspan="6" class="set">			
+						<div class="sexBox">
+							<label class="switch">
+								<input type="checkbox" id="sex">
+								<span class="slider"></span>
+							</label>
+						</div>
 						<div id="setStats">
 							<img src="images/attack.png" class="statIcon">
 							<p id="setAtt" class="stat">+0</p><br>
@@ -410,6 +409,7 @@
 			</table>
 		</div>
 		<script src="armor_set.js"></script>
+		<script src="skill_list.js"></script>
 		<script src="armor_data.js"></script>
 	</body>
 </html>

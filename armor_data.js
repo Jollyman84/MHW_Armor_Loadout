@@ -61,12 +61,6 @@ document.getElementById('sex').addEventListener('change', () => {
 						console.log('click');
 						fetchPartData(matches[k][0],part);
 						document.getElementById(part+'Swap').style.display = 'none';
-						
-						if(part !== 'charm') {
-							document.getElementById(part+'SlotSkills0').innerHTML = '';
-							document.getElementById(part+'SlotSkills1').innerHTML = '';
-							document.getElementById(part+'SlotSkills2').innerHTML = '';
-						}
 					}
 				}
 			})
@@ -86,13 +80,6 @@ document.getElementById('sex').addEventListener('change', () => {
 			})
 			.then(id => fetchPartData(id,part))
 			.then(document.getElementById(part+'Swap').style.display = 'none')
-			.then(() => {
-				if(part !== 'charm') {
-					document.getElementById(part+'SlotSkills0').innerHTML = '';
-					document.getElementById(part+'SlotSkills1').innerHTML = '';
-					document.getElementById(part+'SlotSkills2').innerHTML = '';
-				}
-			})
 			.catch((err) => console.error(err));
 	};
 });
@@ -109,7 +96,8 @@ function fetchPartData(id, part) {
 	fetch(url)
 		.then(response => response.json())
 		.then(async armor => {
-			await fetch('https://mhw-db.com/armor/sets/'+armor['armorSet']['id'])
+			if(part != 'charm') {
+				await fetch('https://mhw-db.com/armor/sets/'+armor['armorSet']['id'])
 				.then(set => set.json())
 				.then(set => {
 					if(set['bonus'] != null) {
@@ -122,33 +110,82 @@ function fetchPartData(id, part) {
 					}
 				})
 				.catch(err => console.error('Failed to access armor set data.\n' + err));
+			}
+
+			function removeSlotSkill(part) {
+				let  skills = document.getElementById(part+'SlotSkills0').innerText.split('\n\n');
+				skills.push(...document.getElementById(part+'SlotSkills1').innerText.split('\n\n'));
+				skills.push(...document.getElementById(part+'SlotSkills2').innerText.split('\n\n'));
+				skills = skills.filter(x => x != '');
+
+				console.log(skills);
+				if(skills[0] != '') {
+					skills.forEach(x => {
+						const t = x.split(' \u00D7 ');
+						setInfo.removeSkill(t[1],t[0]);
+					});
+				}
+			}
 
 			switch(part) {
 				case 'head':
-					if(head != undefined) setInfo.removeBonus(head['bonus']['name']);
+					if(head != undefined) {
+						setInfo.removeBonus(head['bonus']['name']);
+						head['skills'].forEach(x => setInfo.removeSkill(x['skillName'],x['level']));
+						removeSlotSkill('head');
+					}
 					head = armor;
 					break;
 				case 'torso':
-					if(torso != undefined) setInfo.removeBonus(torso['bonus']['name']);
+					if(torso != undefined) {
+						setInfo.removeBonus(torso['bonus']['name']);
+						torso['skills'].forEach(x => setInfo.removeSkill(x['skillName'],x['level']));
+						removeSlotSkill('torso');
+					}
 					torso = armor;
 					break;
 				case 'arms':
-					if(arms != undefined) setInfo.removeBonus(arms['bonus']['name']);
+					if(arms != undefined) {
+						setInfo.removeBonus(arms['bonus']['name']);
+						arms['skills'].forEach(x => setInfo.removeSkill(x['skillName'],x['level']));
+						removeSlotSkill('arms');
+					}
 					arms = armor;
 					break;
 				case 'belt':
-					if(belt != undefined) setInfo.removeBonus(belt['bonus']['name']);
+					if(belt != undefined) {
+						setInfo.removeBonus(belt['bonus']['name']);
+						belt['skills'].forEach(x => setInfo.removeSkill(x['skillName'],x['level']));
+						removeSlotSkill('belt');
+					}
 					belt = armor;
 					break;
 				case 'legs':
-					if(legs != undefined) setInfo.removeBonus(legs['bonus']['name']);
+					if(legs != undefined) {
+						setInfo.removeBonus(legs['bonus']['name']);
+						legs['skills'].forEach(x => setInfo.removeSkill(x['skillName'],x['level']));
+						removeSlotSkill('legs');
+					}
 					legs = armor;
 					break;
 				case 'charm':
+					if(charm != undefined) {
+						const r = charm['ranks'].length - 1;
+						console.log(charm); 
+						charm['ranks'][r]['skills'].forEach(x => setInfo.removeSkill(x['skillName'],x['level']));
+					}
 					charm = armor;
 					break;
 			}
 
+			return armor;
+		})
+		.then(armor => {
+			if(part !== 'charm') {
+				document.getElementById(part+'SlotSkills0').innerHTML = '';
+				document.getElementById(part+'SlotSkills1').innerHTML = '';
+				document.getElementById(part+'SlotSkills2').innerHTML = '';
+			}
 			return armor;
 		})
 		.then(armor => {
@@ -226,11 +263,20 @@ function fetchPartData(id, part) {
 							for(let k = 0; k < select.length; k++) {
 								select[k].onclick = () => {
 									const skills = document.getElementById(part+'SlotSkills'+document.getElementById(part+'SlotButton').dataset.index);
+									if(skills.innerHTML != '') {
+										skills.innerText.split('\n\n').forEach(x => {
+											const t = x.split(' \u00D7 ');
+											setInfo.removeSkill(t[1],t[0]);
+										});
+									}
 									skills.innerHTML = '';
-									matches[k]['skills'].forEach((val) => {
-										skills.innerHTML = '<p>'+val['level']+' &times; '+val['skillName']+'</p>';
+
+									matches[k]['skills'].forEach(val => {
+										skills.innerHTML += '<p>'+val['level']+' &times; '+val['skillName']+'</p>\n';
+										setInfo.addSkill(val['skillName'],val['level']);
 									});
 									document.getElementById(part+'SlotMenu').style.display = 'none';
+									updateSetInfo();
 								}
 							}
 						})
@@ -242,22 +288,21 @@ function fetchPartData(id, part) {
 				if(armor['bonus']['name'] !== 'Empty') {
 					skills.push(armor['bonus']['name']);
 					setInfo.addBonus(armor['bonus']['name']);
-
-					const totalBonus = setInfo.getBonus();
-					const bonusText = [];
-					for(let val in totalBonus) {
-						bonusText.push('<p>'+totalBonus[val]+' &times; '+val+'</p>');
-					}
-					document.getElementById('bonus').innerHTML = bonusText.join('');
 				}
 
 				// Displays armor skills
-				armor['skills'].forEach((element) => skills.push('<p>'+element['level']+' &times; '+element['skillName']+'</p>'));
+				armor['skills'].forEach(element => {
+					skills.push('<p>'+element['level']+' &times; '+element['skillName']+'</p>');
+					setInfo.addSkill(element['skillName'],element['level']);
+				});
 				document.getElementById(part+'Skills').innerHTML = skills.join('');
 			} else {
 				// Displays charm skills
 				const skills = [];
-				armor['ranks'].pop()['skills'].forEach((element) => skills.push('<p>'+element['level']+' &times; '+element['skillName']+'</p>'));
+				armor['ranks'][armor['ranks'].length-1]['skills'].forEach(element => {
+					skills.push('<p>'+element['level']+' &times; '+element['skillName']+'</p>');
+					setInfo.addSkill(element['skillName'],element['level']);
+				});
 				document.getElementById(part+'Skills').innerHTML = skills.join('');
 			}
 		})
@@ -273,4 +318,10 @@ function updateSetInfo() {
 	document.getElementById('setI').innerText = setInfo.getIce();
 	document.getElementById('setT').innerText =  setInfo.getThunder();
 	document.getElementById('setD').innerText = setInfo.getDragon();
+
+	const bonusText = setInfo.getBonus().map(val => '<p>'+val[1]+' &times; '+val[0]+'</p>');
+	document.getElementById('bonus').innerHTML = bonusText.join('');
+
+	const skillText = setInfo.getSkills().map(val => '<p>'+val[1][2]+' &times; '+val[0]+'</p>');
+	document.getElementById('skillList').innerHTML = skillText.join('');
 }

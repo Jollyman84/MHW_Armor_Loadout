@@ -1,87 +1,95 @@
 class armorSet {
-    constructor() {
-        this.defense = [0, 0, 0, 0, 0];
-        this.fire = [0, 0, 0, 0, 0];
-        this.water = [0, 0, 0, 0, 0];
-        this.ice = [0, 0, 0, 0, 0];
-        this.thunder = [0, 0, 0, 0, 0];
-        this.dragon = [0, 0, 0, 0, 0];
-        this.bonus = [];
-    }
+	constructor() {
+		this.defense = [0, 0, 0, 0, 0];
+		this.fire = [0, 0, 0, 0, 0];
+		this.water = [0, 0, 0, 0, 0];
+		this.ice = [0, 0, 0, 0, 0];
+		this.thunder = [0, 0, 0, 0, 0];
+		this.dragon = [0, 0, 0, 0, 0];
+		this.bonus = [];
+		this.skills = new skillList();
+	}
 
-    getDefense() {return this.defense.reduce((prev, curr) => prev+curr);}
+	getDefense() {return this.defense.reduce((prev, curr) => prev+curr);}
 
-    getFire() {return this.fire.reduce((prev, curr) => prev+curr);}
+	getFire() {return this.fire.reduce((prev, curr) => prev+curr);}
 
-    getWater() {return this.water.reduce((prev, curr) => prev+curr);}
+	getWater() {return this.water.reduce((prev, curr) => prev+curr);}
 
-    getIce() {return this.ice.reduce((prev, curr) => prev+curr);}
+	getIce() {return this.ice.reduce((prev, curr) => prev+curr);}
 
-    getThunder() {return this.thunder.reduce((prev, curr) => prev+curr);}
+	getThunder() {return this.thunder.reduce((prev, curr) => prev+curr);}
 
-    getDragon() {return this.dragon.reduce((prev, curr) => prev+curr);}
+	getDragon() {return this.dragon.reduce((prev, curr) => prev+curr);}
 
-    setStat(part, stat, value) {
-        let index;
+	setStat(part, stat, value) {
+		let index;
 
-        switch(part) {
-            case 'head':
-                index = 0;
-                break;
-            case 'torso':
-                index = 1;
-                break;
-            case 'arms':
-                index = 2;
-                break;
-            case 'belt':
-                index = 3;
-                break;
-            case 'legs':
-                index = 4;
-                break;
-        }
+		switch(part) {
+			case 'head':
+				index = 0;
+				break;
+			case 'torso':
+				index = 1;
+				break;
+			case 'arms':
+				index = 2;
+				break;
+			case 'belt':
+				index = 3;
+				break;
+			case 'legs':
+				index = 4;
+				break;
+		}
 
-        switch(stat) {
-            case 'defense':
-                this.defense[index] = value;
-                break;
-            case 'fire':
-                this.fire[index] = value;
-                break;
-            case 'water':
-                this.water[index] = value;
-                break;
-            case 'ice':
-                this.ice[index] = value;
-                break;
-            case 'thunder':
-                this.thunder[index] = value;
-                break;
-            case 'dragon':
-                this.dragon[index] = value;
-                break;
-        }
-    }
+		switch(stat) {
+			case 'defense':
+				this.defense[index] = value;
+				break;
+			case 'fire':
+				this.fire[index] = value;
+				break;
+			case 'water':
+				this.water[index] = value;
+				break;
+			case 'ice':
+				this.ice[index] = value;
+				break;
+			case 'thunder':
+				this.thunder[index] = value;
+				break;
+			case 'dragon':
+				this.dragon[index] = value;
+				break;
+		}
+	}
 
-    addBonus(input) {
-        if(/^[0-9]+$/.test(this.bonus[input]))
-            this.bonus[input] += 1;
-        else if(!(input===undefined || input===null))
-            this.bonus[input] = 1;
-    }
+	addBonus(input) {
+		if(/^[0-9]+$/.test(this.bonus[input]))
+			this.bonus[input] += 1;
+		else if(!(input===undefined || input===null))
+			this.bonus[input] = 1;
+	}
 
-    removeBonus(input) {
-        if(/^[1-9]+$/.test(this.bonus[input]))
-            this.bonus[input] -= 1;
-    }
+	removeBonus(input) {
+		if(/^[1-9]+$/.test(this.bonus[input]))
+			this.bonus[input] -= 1;
+	}
 
-    getBonus() {
-        const active = [];
-        for(let val in this.bonus) {
-            if(this.bonus[val] >= 1)
-                active[val] = this.bonus[val];
-        }
-        return active;
-    }
+	getBonus() {
+		return Object.entries(this.bonus).filter(x => x[1] >= 1);
+	}
+
+	addSkill(name, level) {
+		this.skills[name][2] = Math.min(this.skills[name][2]+level,this.skills[name][1]);
+	}
+
+	removeSkill(name, level) {
+		this.skills[name][2] = Math.max(this.skills[name][2]-level,0);
+	}
+
+	getSkills() {
+		return Object.entries(this.skills).filter(x => x[1][2] >= 1);
+	}
 }
