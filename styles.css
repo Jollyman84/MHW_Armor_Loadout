@@ -348,3 +348,20 @@ td.set {
 	padding-top: 10px;
 	padding-left: 10px;
 }
+
+.description {
+	visibility: hidden;
+	width: 200px;
+	background-color: black;
+	color: #fff;
+	text-align: center;
+	border-radius: 0px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	position: absolute;
+	z-index: 1;
+	left: 100px
+}
+p:hover .description {
+	visibility: visible;
+}

@@ -82,14 +82,27 @@ class armorSet {
 	}
 
 	addSkill(name, level) {
-		this.skills[name][2] = Math.min(this.skills[name][2]+level,this.skills[name][1]);
+		this.skills[name][2] += level;
 	}
 
 	removeSkill(name, level) {
 		this.skills[name][2] = Math.max(this.skills[name][2]-level,0);
 	}
 
-	getSkills() {
-		return Object.entries(this.skills).filter(x => x[1][2] >= 1);
+	async getSkills() {
+		return Object
+			.entries(this.skills).filter(x => x[1][2] >= 1)
+			.map(x => [x[0], [x[1][0], x[1][1], Math.min(x[1][2], x[1][1])]])
+			.map(async x => {
+				try {
+					const raw = await fetch('https://mhw-db.com/skills/' + x[1][0]);
+					const data = await raw.json();
+					//console.log(data['ranks'][x[1][2] - 1]['description']);
+					return [...x, data['ranks'][x[1][2] - 1]['description']];
+				} catch(err) {
+					console.error(err);
+					return [...x, 'Failed to retrieve description'];
+				}
+			});
 	}
 }

@@ -64,7 +64,7 @@ document.getElementById('sex').addEventListener('change', () => {
 					}
 				}
 			})
-			.catch((err) => console.error(err));
+			.catch(err => console.error(err));
 	};
 
 	// Randomly switches a specific piece of armor
@@ -80,7 +80,7 @@ document.getElementById('sex').addEventListener('change', () => {
 			})
 			.then(id => fetchPartData(id,part))
 			.then(document.getElementById(part+'Swap').style.display = 'none')
-			.catch((err) => console.error(err));
+			.catch(err => console.error(err));
 	};
 });
 
@@ -131,7 +131,7 @@ function fetchPartData(id, part) {
 				case 'head':
 					if(head != undefined) {
 						setInfo.removeBonus(head['bonus']['name']);
-						head['skills'].forEach(x => setInfo.removeSkill(x['skillName'],x['level']));
+						head['skills'].forEach(x => setInfo.removeSkill(x['skillName'], x['level']));
 						removeSlotSkill('head');
 					}
 					head = armor;
@@ -139,7 +139,7 @@ function fetchPartData(id, part) {
 				case 'torso':
 					if(torso != undefined) {
 						setInfo.removeBonus(torso['bonus']['name']);
-						torso['skills'].forEach(x => setInfo.removeSkill(x['skillName'],x['level']));
+						torso['skills'].forEach(x => setInfo.removeSkill(x['skillName'], x['level']));
 						removeSlotSkill('torso');
 					}
 					torso = armor;
@@ -147,7 +147,7 @@ function fetchPartData(id, part) {
 				case 'arms':
 					if(arms != undefined) {
 						setInfo.removeBonus(arms['bonus']['name']);
-						arms['skills'].forEach(x => setInfo.removeSkill(x['skillName'],x['level']));
+						arms['skills'].forEach(x => setInfo.removeSkill(x['skillName'], x['level']));
 						removeSlotSkill('arms');
 					}
 					arms = armor;
@@ -155,7 +155,7 @@ function fetchPartData(id, part) {
 				case 'belt':
 					if(belt != undefined) {
 						setInfo.removeBonus(belt['bonus']['name']);
-						belt['skills'].forEach(x => setInfo.removeSkill(x['skillName'],x['level']));
+						belt['skills'].forEach(x => setInfo.removeSkill(x['skillName'], x['level']));
 						removeSlotSkill('belt');
 					}
 					belt = armor;
@@ -163,7 +163,7 @@ function fetchPartData(id, part) {
 				case 'legs':
 					if(legs != undefined) {
 						setInfo.removeBonus(legs['bonus']['name']);
-						legs['skills'].forEach(x => setInfo.removeSkill(x['skillName'],x['level']));
+						legs['skills'].forEach(x => setInfo.removeSkill(x['skillName'], x['level']));
 						removeSlotSkill('legs');
 					}
 					legs = armor;
@@ -172,7 +172,7 @@ function fetchPartData(id, part) {
 					if(charm != undefined) {
 						const r = charm['ranks'].length - 1;
 						console.log(charm); 
-						charm['ranks'][r]['skills'].forEach(x => setInfo.removeSkill(x['skillName'],x['level']));
+						charm['ranks'][r]['skills'].forEach(x => setInfo.removeSkill(x['skillName'], x['level']));
 					}
 					charm = armor;
 					break;
@@ -248,17 +248,20 @@ function fetchPartData(id, part) {
 					document.getElementById(part+'SlotMenu').style.display = 'none';
 				};
 
+				// Searches database for decorations which contains input string
 				document.getElementById(part+'SlotButton').onclick = () => {
 					const deco = document.getElementById(part+'SlotSearch').value.toLowerCase();
 					fetch('https://mhw-db.com/decorations?q={"slot":' + document.getElementById(part+'SlotButton').dataset.rank + '}')
 						.then(response => response.json())
-						.then(gems => gems.filter((value) => value['name'].toLowerCase().includes(deco)))
+						.then(gems => gems.filter(value => value['name'].toLowerCase().includes(deco)))
 						.then(matches => {
+							// Displays decorations matching string as buttons
 							const options = matches.map(m => {
 								return '<button type="button" class="'+part+'SlotSelection">'+m['name']+'</button>';
 							}).join('<br>');
 							document.getElementById(part+'SlotResults').innerHTML = options;
 			
+							// Onclick respective decorations' info will be injected into armor part and set 
 							const select = document.getElementsByClassName(part+'SlotSelection');
 							for(let k = 0; k < select.length; k++) {
 								select[k].onclick = () => {
@@ -307,11 +310,11 @@ function fetchPartData(id, part) {
 			}
 		})
 		.then(updateSetInfo)
-		.catch((err) => console.error(err));
+		.catch(err => console.error(err));
 }
 
 // Updates displayed info for armor set
-function updateSetInfo() {
+async function updateSetInfo() {
 	document.getElementById('setDef').innerText = setInfo.getDefense();
 	document.getElementById('setF').innerText = setInfo.getFire();
 	document.getElementById('setW').innerText = setInfo.getWater();
@@ -322,6 +325,10 @@ function updateSetInfo() {
 	const bonusText = setInfo.getBonus().map(val => '<p>'+val[1]+' &times; '+val[0]+'</p>');
 	document.getElementById('bonus').innerHTML = bonusText.join('');
 
-	const skillText = setInfo.getSkills().map(val => '<p>'+val[1][2]+' &times; '+val[0]+'</p>');
-	document.getElementById('skillList').innerHTML = skillText.join('');
+
+	const set = await setInfo.getSkills();
+	const group = await Promise.all(set);
+	document.getElementById('skillList').innerHTML = group
+		.map(val => '<p>' + val[1][2] + ' &times; ' + val[0] + '<br><span class="description">' + val[2] + '</span></p>')
+		.join('');
 }
