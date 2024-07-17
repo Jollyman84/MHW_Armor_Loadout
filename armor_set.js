@@ -66,19 +66,23 @@ class armorSet {
 	}
 
 	addBonus(input) {
-		if(/^[0-9]+$/.test(this.bonus[input]))
-			this.bonus[input] += 1;
-		else if(!(input===undefined || input===null))
-			this.bonus[input] = 1;
+		if(this.bonus[input['name']] == undefined)
+			this.bonus[input['name']] = input;
+		
+		if(/^[0-9]+$/.test(this.bonus[input['name']]['count']))
+			this.bonus[input['name']]['count'] += 1;
+		else
+			this.bonus[input['name']]['count'] = 1;
 	}
 
 	removeBonus(input) {
-		if(/^[1-9]+$/.test(this.bonus[input]))
-			this.bonus[input] -= 1;
+		if(this.bonus[input] == undefined);
+		else if(/^[1-9]+$/.test(this.bonus[input]['count']))
+			this.bonus[input]['count'] -= 1;
 	}
 
 	getBonus() {
-		return Object.entries(this.bonus).filter(x => x[1] >= 1);
+		return Object.entries(this.bonus).filter(x => x[1]['count'] >= 1);
 	}
 
 	addSkill(name, level) {

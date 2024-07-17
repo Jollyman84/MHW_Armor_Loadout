@@ -22,7 +22,7 @@ document.getElementById('sex').addEventListener('change', () => {
 		fetchPartData(document.getElementsByClassName(part)[0].dataset.id,part)
 	);
 	
-	console.log(checkbox.dataset.sex);
+	//console.log(checkbox.dataset.sex);
 });
 
 // Swaps picture and info for respective armor piece upon button click
@@ -58,7 +58,7 @@ document.getElementById('sex').addEventListener('change', () => {
 				const select = document.getElementsByClassName(part+'Selection');
 				for(let k = 0; k < select.length; k++) {
 					select[k].onclick = () => {
-						console.log('click');
+						//console.log('click');
 						fetchPartData(matches[k][0],part);
 						document.getElementById(part+'Swap').style.display = 'none';
 					}
@@ -75,7 +75,7 @@ document.getElementById('sex').addEventListener('change', () => {
 			.then(response => response.map((x) => x.split(',')))
 			.then(armor => {
 				const index = Math.floor(Math.random()*armor.length);
-				console.log(armor[index][0]);
+				//console.log(armor[index][0]);
 				return armor[index][0];
 			})
 			.then(id => fetchPartData(id,part))
@@ -87,7 +87,7 @@ document.getElementById('sex').addEventListener('change', () => {
 // Fetches data for a single armor piece
 function fetchPartData(id, part) {
 	document.getElementsByClassName(part)[0].dataset.id = id;
-	console.log('fetch, id: %i, part:%s',id,part);
+	//console.log('fetch, id: %i, part:%s',id,part);
 
 	let url;
 	if(part === 'charm') url = 'https://mhw-db.com/charms/' + id.toString();
@@ -101,10 +101,10 @@ function fetchPartData(id, part) {
 				.then(set => set.json())
 				.then(set => {
 					if(set['bonus'] != null) {
-						console.log(set['bonus']);
+						//console.log(set['bonus']);
 						armor['bonus'] = set['bonus'];
 					} else {
-						armor['bonus'] = [];
+						armor['bonus'] = new Object;
 						armor['bonus']['id'] = -1;
 						armor['bonus']['name'] = 'Empty';
 					}
@@ -118,7 +118,7 @@ function fetchPartData(id, part) {
 				skills.push(...document.getElementById(part+'SlotSkills2').innerText.split('\n\n'));
 				skills = skills.filter(x => x != '');
 
-				console.log(skills);
+				//console.log(skills);
 				if(skills[0] != '') {
 					skills.forEach(x => {
 						const t = x.split(' \u00D7 ');
@@ -171,7 +171,7 @@ function fetchPartData(id, part) {
 				case 'charm':
 					if(charm != undefined) {
 						const r = charm['ranks'].length - 1;
-						console.log(charm); 
+						//console.log(charm); 
 						charm['ranks'][r]['skills'].forEach(x => setInfo.removeSkill(x['skillName'], x['level']));
 					}
 					charm = armor;
@@ -212,7 +212,7 @@ function fetchPartData(id, part) {
 				document.getElementById(part+'T').innerText =  armor['resistances']['thunder'];
 				document.getElementById(part+'D').innerText = armor['resistances']['dragon'];
 
-				// Passes stats to set object\
+				// Passes stats to set object
 				setInfo.setStat(part, 'defense',armor['defense']['base']);
 				setInfo.setStat(part, 'fire', armor['resistances']['fire']);
 				setInfo.setStat(part, 'water', armor['resistances']['water']);
@@ -290,7 +290,7 @@ function fetchPartData(id, part) {
 				const skills = [];
 				if(armor['bonus']['name'] !== 'Empty') {
 					skills.push(armor['bonus']['name']);
-					setInfo.addBonus(armor['bonus']['name']);
+					setInfo.addBonus(armor['bonus']);
 				}
 
 				// Displays armor skills
@@ -322,13 +322,17 @@ async function updateSetInfo() {
 	document.getElementById('setT').innerText =  setInfo.getThunder();
 	document.getElementById('setD').innerText = setInfo.getDragon();
 
-	const bonusText = setInfo.getBonus().map(val => '<p>'+val[1]+' &times; '+val[0]+'</p>');
-	document.getElementById('bonus').innerHTML = bonusText.join('');
+	document.getElementById('bonus').innerHTML = setInfo.getBonus().map(val => {
+		let bonusText = `<p>${val[1]['count']} &times; ${val[0]}<br><span class="description">`;
+		bonusText += val[1]['ranks'].map(r => `[${r['pieces']}] ${r['description']}`).join('<br>');
+		bonusText += '</span></p>';
+		return bonusText
+	})
+	.join('');
 
-
-	const set = await setInfo.getSkills();
-	const group = await Promise.all(set);
-	document.getElementById('skillList').innerHTML = group
-		.map(val => '<p>' + val[1][2] + ' &times; ' + val[0] + '<br><span class="description">' + val[2] + '</span></p>')
+	const setSkills = await setInfo.getSkills();
+	const skillText = await Promise.all(setSkills);
+	document.getElementById('skillList').innerHTML = skillText
+		.map(val => `<p>${val[1][2]} &times; ${val[0]}<br><span class="description">${val[2]}</span></p>`)
 		.join('');
 }

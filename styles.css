@@ -354,10 +354,9 @@ td.set {
 	width: 200px;
 	background-color: black;
 	color: #fff;
-	text-align: center;
+	text-align: left;
 	border-radius: 0px;
-	padding-top: 5px;
-	padding-bottom: 5px;
+	padding: 5px;
 	position: absolute;
 	z-index: 1;
 	left: 100px
