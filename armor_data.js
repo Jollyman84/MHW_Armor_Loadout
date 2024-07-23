@@ -72,7 +72,7 @@ document.getElementById('sex').addEventListener('change', () => {
 		fetch('./csv/' + part + '_list.csv')
 			.then(response => response.text())
 			.then(response => response.split('\r\n'))
-			.then(response => response.map((x) => x.split(',')))
+			.then(response => response.map(x => x.split(',')))
 			.then(armor => {
 				const index = Math.floor(Math.random()*armor.length);
 				//console.log(armor[index][0]);

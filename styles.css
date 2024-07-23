@@ -1,6 +1,19 @@
 body {
 	margin: 0px;
 }
+body:before {
+	background-image: url(images/monster-hunter-background.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: top;
+	background-color: white;
+	display: block;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	content: "";
+	z-index: -1;
+}
 div.banner{
 	background-color: #2ec400;
 	display: grid;
@@ -116,12 +129,12 @@ tr.labels,
 tr.torso,
 tr.belt,
 tr.charm {
-	background-color: #dadada;
+	background-color: #00000040;
 }
 tr.head,
 tr.arms,
 tr.legs {
-	background-color: #ffffff;
+	background-color: #aaaaaa40;
 }
 button.swap {
 	border-width: 0px;
@@ -147,7 +160,7 @@ div.swap {
 	left: 0;
 	top: 0;
 	width: 505px;
-	height: inherit;
+	height: 200px;
 	overflow: hidden;
 }
 .headSlotMenu,
@@ -166,11 +179,12 @@ div.swap {
 }
 .swapMenu,
 .slotMenu {
-	background-color: #fefefe;
-	margin: auto;
-	border: 1px solid #000000;
+	background-color: #ffffff;
+	margin: 0px;
+	border: 0px;
 	width: auto;
-	height: 198px;
+	height: 200px;
+
 }
 .close,
 .closeSlot {
@@ -192,12 +206,12 @@ div.swap {
 	cursor: pointer;
 }
 .innerModal {
-	margin-top: 5px;
 	margin-left: 10px;
 }
 .armorSearch,
 .slotSearch {
 	padding: 5px;
+	margin-top: 5px;
 	margin-bottom: 10px;
 	font-size: 15px;
 	border-radius: 0px;
@@ -310,7 +324,7 @@ td {
 }
 .statBox,
 .slotBox {
-	padding-top: 10px;
+	vertical-align: middle;
 	padding-left: 10px;
 	height: 190px;
 }
@@ -344,7 +358,7 @@ div.skill2 {
 	padding-left: 10px;
 }
 td.set {
-	border-left: 5px double black;
+	border-left: 2px solid black;
 	padding-top: 10px;
 	padding-left: 10px;
 }
