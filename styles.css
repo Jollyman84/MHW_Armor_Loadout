@@ -22,20 +22,20 @@ div.banner{
 }
 h1.title {
 	text-align: center;
-	font-size: 50px;
+	font-size: clamp(22pt,45pt,min(45pt,5vw));
 	margin: auto;
 	color: white;
 }
+img.home, img.git {
+	padding: 20px;
+	height: clamp(50px, 70px, min(70px, 10vw));
+}
 img.home {
 	margin-right: auto;
-	padding: 20px;
-	height: 70px;
 }
 img.git {
 	margin-left: auto;
 	margin-right: auto;
-	padding: 20px;
-	height: 70px;
 }
 a.home {
 	margin: auto;
@@ -102,7 +102,11 @@ input:checked + .slider:before {
 div.mainDiv {
 	display: grid;
 	place-items: center;
+	width: auto;
+    margin-left: auto;
+    margin-right: auto;
 	margin-bottom: 150px;
+	overflow-x: auto;
 }
 table {
 	border-collapse: collapse;
@@ -113,17 +117,21 @@ th {
 }
 col.col1 {
 	width: 105px;
+	min-width: 105px;
 }
 col.col2,
 col.col6 {
 	width: 200px;
+	min-width: 200px;
 }
 col.col3,
 col.col4{
 	width: 100px;
+	min-width: 100px;
 }
 col.col5 {
 	width: 175px;
+	min-width: 175px;
 }
 tr.labels,
 tr.torso,
@@ -373,7 +381,7 @@ td.set {
 	padding: 5px;
 	position: absolute;
 	z-index: 1;
-	left: 100px
+	left: clamp(-11px, 100px, min(100px, calc((100vw - 980px) / 2)));
 }
 p:hover .description {
 	visibility: visible;
