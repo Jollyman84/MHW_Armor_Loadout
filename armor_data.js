@@ -45,7 +45,7 @@ document.getElementById('sex').addEventListener('change', () => {
 		const armor = document.getElementById(part+'Search').value.toLowerCase();
 		fetch('./csv/' + part + '_list.csv')
 			.then(response => response.text())
-			.then(response => response.split('\r\n'))
+			.then(response => response.split('\n'))
 			.then(response => response.map(r => r.split(',')))
 			.then(nameList => nameList.filter(value => value[1].toLowerCase().startsWith(armor)))
 			.then(matches => {
@@ -71,7 +71,7 @@ document.getElementById('sex').addEventListener('change', () => {
 	document.getElementById(part+'Random').onclick = () => {
 		fetch('./csv/' + part + '_list.csv')
 			.then(response => response.text())
-			.then(response => response.split('\r\n'))
+			.then(response => response.split('\n'))
 			.then(response => response.map(x => x.split(',')))
 			.then(armor => {
 				const index = Math.floor(Math.random()*armor.length);
