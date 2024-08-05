@@ -49,20 +49,18 @@ document.getElementById('sex').addEventListener('change', () => {
 			.then(response => response.map(r => r.split(',')))
 			.then(nameList => nameList.filter(value => value[1].toLowerCase().startsWith(armor)))
 			.then(matches => {
-				console.log(matches);
-				const options = matches.map(m => {
-					return '<button type="button" class="'+part+'Selection">'+m[1]+'</button>';
+				//console.log(matches);
+				document.getElementById(part+'SearchResults').innerHTML = matches.map(m => {
+					return `<button type="button" class="partSelection" data-id="${m[0]}">${m[1]}</button>`;
 				}).join('<br>');
-				document.getElementById(part+'SearchResults').innerHTML = options;
 
-				const select = document.getElementsByClassName(part+'Selection');
-				for(let k = 0; k < select.length; k++) {
-					select[k].onclick = () => {
+				document.getElementById(part+'SearchResults').addEventListener('click', element => {
+					if(element.target.matches('.partSelection')) {
 						//console.log('click');
-						fetchPartData(matches[k][0],part);
+						fetchPartData(element.target.dataset.id,part);
 						document.getElementById(part+'Swap').style.display = 'none';
 					}
-				}
+				});
 			})
 			.catch(err => console.error(err));
 	};
@@ -256,15 +254,13 @@ function fetchPartData(id, part) {
 						.then(gems => gems.filter(value => value['name'].toLowerCase().includes(deco)))
 						.then(matches => {
 							// Displays decorations matching string as buttons
-							const options = matches.map(m => {
-								return '<button type="button" class="'+part+'SlotSelection">'+m['name']+'</button>';
+							document.getElementById(part+'SlotResults').innerHTML = matches.map((m,i) => {
+								return `<button type="button" class="partSlotSelection" data-index="${i}">${m['name']}</button>`;
 							}).join('<br>');
-							document.getElementById(part+'SlotResults').innerHTML = options;
 			
 							// Onclick respective decorations' info will be injected into armor part and set 
-							const select = document.getElementsByClassName(part+'SlotSelection');
-							for(let k = 0; k < select.length; k++) {
-								select[k].onclick = () => {
+							document.getElementById(`${part}SlotResults`).addEventListener('click', element => {
+								if(element.target.matches('.partSlotSelection')) {
 									const skills = document.getElementById(part+'SlotSkills'+document.getElementById(part+'SlotButton').dataset.index);
 									if(skills.innerHTML != '') {
 										skills.innerText.split('\n\n').forEach(x => {
@@ -272,16 +268,17 @@ function fetchPartData(id, part) {
 											setInfo.removeSkill(t[1],t[0]);
 										});
 									}
-									skills.innerHTML = '';
 
-									matches[k]['skills'].forEach(val => {
+									skills.innerHTML = '';
+									matches[element.target.dataset.index]['skills'].forEach(val => {
 										skills.innerHTML += '<p>'+val['level']+' &times; '+val['skillName']+'</p>\n';
 										setInfo.addSkill(val['skillName'],val['level']);
 									});
+
 									document.getElementById(part+'SlotMenu').style.display = 'none';
 									updateSetInfo();
 								}
-							}
+							});
 						})
 						.catch(err => console.error(err));
 				};

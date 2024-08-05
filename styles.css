@@ -171,17 +171,13 @@ div.swap {
 	height: 200px;
 	overflow: hidden;
 }
-.headSlotMenu,
-.torsoSlotMenu,
-.armsSlotMenu,
-.beltSlotMenu,
-.legsSlotMenu {
+.outerSlotMenu{
 	display: none;
 	position: absolute;
 	z-index: 1;
 	left: 0;
 	top: 0;
-	width: 275px;
+	width: 274px;
 	height: 200px;
 	overflow: hidden;
 }
@@ -252,12 +248,7 @@ div.swap {
 	height: 152px;
 	overflow-y: auto;
 }
-.headSelection,
-.torsoSelection,
-.armsSelection,
-.beltSelection,
-.legsSelection,
-.charmSelection {
+.partSelection {
 	margin: 0px;
 	border-width: 0px;
 	border-radius: 0px;
@@ -267,11 +258,7 @@ div.swap {
 	background-color: white;
 	color:  black;
 }
-.headSlotSelection,
-.torsoSlotSelection,
-.armsSlotSelection,
-.beltSlotSelection,
-.legsSlotSelection {
+.partSlotSelection {
 	margin: 0px;
 	border-width: 0px;
 	border-radius: 0px;
@@ -281,17 +268,8 @@ div.swap {
 	background-color: white;
 	color:  black;
 }
-.headSelection:hover,
-.torsoSelection:hover,
-.armsSelection:hover,
-.beltSelection:hover,
-.legsSelection:hover,
-.charmSelection:hover,
-.headSlotSelection:hover,
-.torsoSlotSelection:hover,
-.armsSlotSelection:hover,
-.beltSlotSelection:hover,
-.legsSlotSelection:hover {
+.partSelection:hover,
+.partSlotSelection:hover {
 	background-color: black;
 	color:  white;
 }
@@ -370,7 +348,6 @@ td.set {
 	padding-top: 10px;
 	padding-left: 10px;
 }
-
 .description {
 	visibility: hidden;
 	width: 200px;
