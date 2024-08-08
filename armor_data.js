@@ -221,9 +221,9 @@ function fetchPartData(id, part) {
 				// Displays empty slots
 				const slots = []
 				armor['slots'].forEach((element,index) => {
-					let slotButton = '<button class="slotButton" id="' + part + 'Slot' + index + '" data-rank="' + element['rank'] + '" type="menu">\n';
-					slotButton += '<img src="images/gem_level_' + element['rank'] +'.png" class="slotIcon">\n';
-					slots.push(slotButton + '</button>');
+					let slotButton = `<button class="slotButton" id="${part}Slot${index}" data-rank="${element['rank']}" type="menu">\n`;
+					slotButton += `<img src="images/gem_level_${element['rank']}.png" class="slotIcon">\n</button>`;
+					slots.push(slotButton);
 				});
 				document.getElementById(part+'SlotsInner').innerHTML = slots.join('<br>');
 
@@ -271,7 +271,7 @@ function fetchPartData(id, part) {
 
 									skills.innerHTML = '';
 									matches[element.target.dataset.index]['skills'].forEach(val => {
-										skills.innerHTML += '<p>'+val['level']+' &times; '+val['skillName']+'</p>\n';
+										skills.innerHTML += `<p>${val['level']} &times; ${val['skillName']}</p>\n`;
 										setInfo.addSkill(val['skillName'],val['level']);
 									});
 
@@ -292,7 +292,7 @@ function fetchPartData(id, part) {
 
 				// Displays armor skills
 				armor['skills'].forEach(element => {
-					skills.push('<p>'+element['level']+' &times; '+element['skillName']+'</p>');
+					skills.push(`<p>${element['level']} &times; ${element['skillName']}</p>`);
 					setInfo.addSkill(element['skillName'],element['level']);
 				});
 				document.getElementById(part+'Skills').innerHTML = skills.join('');
@@ -300,7 +300,7 @@ function fetchPartData(id, part) {
 				// Displays charm skills
 				const skills = [];
 				armor['ranks'][armor['ranks'].length-1]['skills'].forEach(element => {
-					skills.push('<p>'+element['level']+' &times; '+element['skillName']+'</p>');
+					skills.push(`<p>${element['level']} &times; ${element['skillName']}</p>`);
 					setInfo.addSkill(element['skillName'],element['level']);
 				});
 				document.getElementById(part+'Skills').innerHTML = skills.join('');
