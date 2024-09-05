@@ -1,0 +1,182 @@
+skill,id,max_level,level
+Adrenaline,112,1,0
+Affinity Sliding,107,1,0
+Agitator,52,7,0
+Agitator Secret,154,1,0
+Airborne,50,1,0
+All Elemental Resistance,180,1,0
+Ancient Armory,169,1,0
+Aquatic/Polar Mobility,96,3,0
+Artillery,61,5,0
+Artillery Secret,145,1,0
+Attack Boost,15,7,0
+BBQ Master,105,1,0
+Blast Attack,34,4,0
+Blast Functionality,132,1,0
+Blast Resistance,6,3,0
+Bleeding Resistance,7,3,0
+Blight Resistance,25,3,0
+Blindsider,98,1,0
+Bludgeoner,116,1,0
+Bombardier,77,5,0
+Bombardier Secret,139,1,0
+Botanist,86,4,0
+Bow Charge Plus,126,1,0
+Capacity Boost,59,1,0
+Capture Master,118,1,0
+Carving Master,135,1,0
+Carving Pro,83,1,0
+Cliffhanger,97,1,0
+Clutch Claw Boost,181,1,0
+Coalescence,146,3,0
+Coldproof,166,1,0
+Constitution,64,5,0
+Critical Boost,40,3,0
+Critical Draw,45,3,0
+Critical Element,114,1,0
+Critical Eye,39,7,0
+Critical Status,124,1,0
+Defense Boost,16,7,0
+Detector,104,1,0
+Divine Blessing,84,5,0
+Divine Blessing Secret,142,1,0
+Dragon Attack,30,6,0
+Dragon Resistance,24,3,0
+Dragonvein Awakening,167,1,0
+Dungmaster,12,1,0
+Earplugs,9,5,0
+Effluvia Resistance,101,3,0
+Effluvial Expert,13,1,0
+Elderseal Boost,133,1,0
+Element Acceleration,149,1,0
+Element Conversion,179,1,0
+Elemental Airborne,136,1,0
+Entomologist,100,3,0
+Evade Extender,69,3,0
+Evade Window,68,5,0
+Fire Attack,26,6,0
+Fire Resistance,20,3,0
+Flinch Free,91,3,0
+Focus,42,3,0
+Forager's Luck,103,1,0
+Fortify,55,1,0
+Free Elem/Ammo Up,38,3,0
+Free Meal,74,3,0
+Free Meal Secret,153,1,0
+Frostcraft,151,1,0
+Full Bloom's Gift,175,1,0
+Full Bloom's Gratitude,176,1,0
+Fun Fright's Gift,182,1,0
+Fun Fright's Gratitude,183,1,0
+Gaia's Veil,147,1,0
+Geologist,87,3,0
+Good Luck,125,1,0
+Gratitude's Gift,171,1,0
+Gratitudes's Blessing,170,1,0
+Great Luck,134,1,0
+Guard,70,5,0
+Guard Up,119,1,0
+Guts,120,1,0
+Handicraft,44,5,0
+Hasten Recovery,109,1,0
+Health Boost,17,3,0
+Heat Guard,14,1,0
+Heavy Artillery,62,2,0
+Heroics,54,7,0
+Heroics Secret,174,1,0
+Honey Hunter,82,1,0
+Horn Maestro,58,2,0
+Hunger Resistance,67,3,0
+Ice Attack,28,6,0
+Ice Resistance,22,3,0
+Igni Intensity,137,1,0
+Inheritance,184,1,0
+Intimidator,108,3,0
+Iron Skin,8,3,0
+Item Prolonger,73,3,0
+Joy's Gift,173,1,0
+Joy's Gratitude,172,1,0
+Jump Master,94,1,0
+Latent Power,51,7,0
+Latent Power Secret,144,1,0
+Leap of Faith,65,1,0
+Marathon Runner,63,3,0
+Master Fisher,79,1,0
+Master Gatherer,81,1,0
+Master Mounter,49,1,0
+Master's Touch,121,1,0
+Maximum Might,88,5,0
+Maximum Might Secret,158,1,0
+Mind's Eye/Ballistics,115,1,0
+Muck Resistance,5,1,0
+Mushroomancer,78,3,0
+Non-elemental Boost,117,1,0
+Normal Shots,35,2,0
+Nullify Wind Pressure,122,1,0
+Offensive Guard,138,3,0
+Palico Rally,85,5,0
+Para Functionality,130,1,0
+Paralysis Attack,32,4,0
+Paralysis Resistance,2,3,0
+Partbreaker,46,3,0
+Peak Performance,53,3,0
+Piercing Shots,36,2,0
+Poison Attack,31,4,0
+Poison Duration Up,111,1,0
+Poison Functionality,129,1,0
+Poison Resistance,1,3,0
+Power Prolonger,43,3,0
+Pro Transporter,80,1,0
+Protective Polish,128,1,0
+Provoker,164,1,0
+Punishing Draw,127,1,0
+Quick Sheath,71,3,0
+Razor Sharp/Spare Shot,123,1,0
+Recovery Speed,19,3,0
+Recovery Up,18,3,0
+Resentment,56,5,0
+Resuscitate,57,1,0
+Safe Landing,165,1,0
+Scenthound,102,1,0
+Scholar,99,1,0
+Scoutfly Range Up,92,1,0
+Sizzling Gift,177,1,0
+Sizzling Gratitude,178,1,0
+Sleep Attack,33,4,0
+Sleep Functionality,131,1,0
+Sleep Resistance,3,3,0
+Slinger Capacity,89,5,0
+Slinger Capacity Secret,140,1,0
+Slugger,47,5,0
+Slugger Secret,155,1,0
+Special Ammo Boost,60,2,0
+Speed Crawler,93,1,0
+Speed Eating,75,3,0
+Speed Sharpening,76,3,0
+Spread/Power Shots,37,2,0
+Stamina Cap Up,113,1,0
+Stamina Surge,66,3,0
+Stamina Thief,48,5,0
+Stamina Thief Secret,152,1,0
+Stealth,90,3,0
+Stun Resistance,4,3,0
+Super Recovery,110,1,0
+Survival Expert,95,3,0
+Thunder Attack,29,6,0
+Thunder Resistance,23,3,0
+Tool Specialist,106,5,0
+Tool Specialist Secret,162,1,0
+Transcendence,185,1,0
+Tremor Resistance,11,3,0
+True Critical Element,141,1,0
+True Critical Status,143,1,0
+True Dragonvein Awakening,168,1,0
+True Element Acceleration,150,1,0
+True Gaia's Veil,148,1,0
+True Razor Sharp/Spare Shot,157,1,0
+Water Attack,27,6,0
+Water Resistance,21,3,0
+Weakness Exploit,41,3,0
+Wide-Range,72,5,0
+Windproof,10,5,0
+Zombie & Effluvia Res,163,1,0
