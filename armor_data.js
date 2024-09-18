@@ -1,3 +1,6 @@
+// API url
+const api = 'https://mhw-armor-loadout-api.onrender.com';
+
 // Creates armor set object
 const setInfo = new armorSet();
 let head, torso, arms, belt, legs, charm;
@@ -67,7 +70,7 @@ document.getElementById('sex').addEventListener('change', () => {
 
 	// Randomly switches a specific piece of armor
 	document.getElementById(part+'Random').onclick = () => {
-		fetch('./csv/' + part + '_list.csv')
+		fetch(`./csv/${part}_list.csv`)
 			.then(response => response.text())
 			.then(response => response.split(/(?:\r\n|\n|\\n)/i))
 			.then(response => response.map(x => x.split(',')))
@@ -88,28 +91,12 @@ function fetchPartData(id, part) {
 	//console.log('fetch, id: %i, part:%s',id,part);
 
 	let url;
-	if(part === 'charm') url = 'https://mhw-db.com/charms/' + id.toString();
-	else url = 'https://mhw-db.com/armor/' + id.toString();
+	if(part === 'charm') url = `${api}/charms/${id.toString()}`;
+	else url = `${api}/armor/${id.toString()}`;
 
 	fetch(url)
 		.then(response => response.json())
 		.then(async armor => {
-			if(part != 'charm') {
-				await fetch('https://mhw-db.com/armor/sets/'+armor['armorSet']['id'])
-				.then(set => set.json())
-				.then(set => {
-					if(set['bonus'] != null) {
-						//console.log(set['bonus']);
-						armor['bonus'] = set['bonus'];
-					} else {
-						armor['bonus'] = new Object;
-						armor['bonus']['id'] = -1;
-						armor['bonus']['name'] = 'Empty';
-					}
-				})
-				.catch(err => console.error('Failed to access armor set data.\n' + err));
-			}
-
 			function removeSlotSkill(part) {
 				let  skills = document.getElementById(part+'SlotSkills0').innerText.split('\n\n');
 				skills.push(...document.getElementById(part+'SlotSkills1').innerText.split('\n\n'));
@@ -249,7 +236,7 @@ function fetchPartData(id, part) {
 				// Searches database for decorations which contains input string
 				document.getElementById(part+'SlotButton').onclick = () => {
 					const deco = document.getElementById(part+'SlotSearch').value.toLowerCase();
-					fetch('https://mhw-db.com/decorations?q={"slot":' + document.getElementById(part+'SlotButton').dataset.rank + '}')
+					fetch(`${api}/decorations?q={"slot":${document.getElementById(part+'SlotButton').dataset.rank}}`)
 						.then(response => response.json())
 						.then(gems => gems.filter(value => value['name'].toLowerCase().includes(deco)))
 						.then(matches => {

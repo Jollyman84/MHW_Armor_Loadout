@@ -1,5 +1,6 @@
 class armorSet {
 	constructor() {
+		this.api = 'https://mhw-armor-loadout-api.onrender.com';
 		this.defense = [0, 0, 0, 0, 0];
 		this.fire = [0, 0, 0, 0, 0];
 		this.water = [0, 0, 0, 0, 0];
@@ -93,20 +94,21 @@ class armorSet {
 		this.skills[name][2] = Math.max(this.skills[name][2]-level,0);
 	}
 
-	async getSkills() {
+	getSkills() {
 		return Object
-			.entries(this.skills).filter(x => x[1][2] >= 1)
+			.entries(this.skills)
+			.filter(x => x[1][2] >= 1)
 			.map(x => [x[0], [x[1][0], x[1][1], Math.min(x[1][2], x[1][1])]])
-			.map(async x => {
-				try {
-					const raw = await fetch('https://mhw-db.com/skills/' + x[1][0]);
-					const data = await raw.json();
-					//console.log(data['ranks'][x[1][2] - 1]['description']);
-					return [...x, data['ranks'][x[1][2] - 1]['description']];
-				} catch(err) {
+			.map(x => fetch(`${this.api}/skills?q={"id":${x[1][0]}}&p={"ranks":true,"description":true}`)
+				.then(raw => raw.json())
+				.then(data => {
+					console.log(data[0]['ranks']);
+					return [...x, data[0]['ranks'][x[1][2] - 1]['description']];
+				})
+				.catch(err => {
 					console.error(err);
 					return [...x, 'Failed to retrieve description'];
-				}
-			});
+				})
+			);
 	}
 }
