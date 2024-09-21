@@ -124,8 +124,11 @@ col.col6 {
 	width: 200px;
 	min-width: 200px;
 }
-col.col3,
-col.col4{
+col.col3 {
+	width: 150px;
+	min-width: 150px;
+}
+col.col4 {
 	width: 100px;
 	min-width: 100px;
 }
@@ -134,14 +137,15 @@ col.col5 {
 	min-width: 175px;
 }
 tr.labels,
-tr.torso,
-tr.belt,
-tr.charm {
-	background-color: #00000040;
-}
 tr.head,
 tr.arms,
 tr.legs {
+	background-color: #00000040;
+}
+tr.weapon,
+tr.torso,
+tr.belt,
+tr.charm {
 	background-color: #aaaaaa40;
 }
 button.swap {
@@ -326,12 +330,57 @@ td {
 	display: inline;
 	margin: 0px;
 }
+.elderseal {
+	background-color: black;
+}
 p {
 	margin: 0px;
 }
 p.stat {
 	display: inline;
 	vertical-align: top;
+}
+div.progress {
+    height: 15px;
+	width: 100px;
+    margin-bottom: 0px;
+    background-color: black;
+	border-radius: 4px;
+	overflow: hidden;
+	border: black 2px solid;
+}
+div.progressBar {
+	float: left;
+	height: 100%;
+	color: #ffffff;
+}
+div.barRed {
+	width: 40%;
+	background-color: red;
+}
+div.barOrange {
+	width: 10%;
+	background-color: orange;
+}
+div.barYellow {
+	width: 10%;
+	background-color: yellow;
+}
+div.barGreen {
+	width: 10%;
+	background-color: green;
+}
+div.barBlue {
+	width: 10%;
+	background-color: blue;
+}
+div.barWhite {
+	width: 10%;
+	background-color: white;
+}
+div.barPurple {
+	width: 10%;
+	background-color: purple;
 }
 img.slotIcon {
 	height: 24px;

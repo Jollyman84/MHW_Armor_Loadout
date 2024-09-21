@@ -32,11 +32,123 @@
 				<!--Title row-->
 				<tr class="labels">
 					<th class="label">SWAP</th>
-					<th class="label">ARMOR</th>
+					<th class="label">EQUIPMENT</th>
 					<th class="label">STATS</th>
 					<th class="label">SLOTS</th>
 					<th class="label">SKILLS</th>
 					<th class="label">SET INFO</th>
+				</tr>
+
+				<!--Weapon info-->
+				<tr class="weapon">
+					<td>
+						<button class="swap" id="swapWeapon" type="menu">
+							<img src="images/swap.png" class="swapIcon">
+						</button>
+						<div class="swap" id="weaponSwap">
+							<div class="swapMenu">
+								<span class="close">&times;</span>
+								<div class="innerModal">
+									<input type="text" placeholder="Helmets" id="weaponSearch" class="armorSearch" autocomplete="off">
+									<button type="submit" id="weaponSearchButton" class="armorSearchButton">Search</button>
+									<button type="submit" id="weaponRandom" class="armorSearchButton">Random</button>
+									<div class="armorSearchResults" id="weaponSearchResults"></div>
+								</div>
+							</div>
+						</div>
+					</td>
+					<td class="imgBox">
+						<span class="name" id="weaponName">Tooltip</span>
+						<img class="armor" id="weaponImg" alt="WEAPON">
+					</td>
+					<td class="statBox">
+						<div>
+							<img src="images/rarity.png" class="statIcon">
+							<p id="weaponR" class="stat">1</p><br>
+							<img src="images/attack.png" class="statIcon">
+							<p id="weaponA" class="stat">100</p><br>
+							<img id="weaponElementIcon" src="images/attack.png" class="statIcon">
+							<p id="weaponE" class="stat">0</p><br id="weaponElementBreak">
+							<div class="progress" id="weaponD"> 
+								<div class="progressBar barRed">
+									&nbsp; 
+								</div>
+								<div class="progressBar barOrange">
+									&nbsp; 
+								</div>
+								<div class="progressBar barYellow">
+									&nbsp; 
+								</div>
+								<div class="progressBar barGreen">
+									&nbsp; 
+								</div>
+								<div class="progressBar barBlue">
+									&nbsp; 
+								</div>
+								<div class="progressBar barWhite">
+									&nbsp; 
+								</div>
+								<div class="progressBar barPurple">
+									&nbsp; 
+								</div>
+							</div>
+							<img src="images/hammer.png" class="statIcon">
+							<p id="weaponY" class="stat">2</p><br>
+							<img src="images/elderseal.png" class="statIcon elderseal">
+							<p id="weaponES" class="stat">None</p>
+						</div>
+					</td>
+					<td class="slotBox" id="weaponSlots">
+						<div id="weaponSlotsInner"></div>
+						<div class="outerSlotMenu" id="weaponSlotMenu">
+							<div class="slotMenu">
+								<span class="closeSlot" id="weaponCloseSlot">&times;</span>
+								<div class="innerModal">
+									<input type="text" placeholder="Decoration" id="weaponSlotSearch" class="slotSearch" autocomplete="off">
+									<button type="submit" id="weaponSlotButton" class="slotSearchButton">Search</button>
+									<div class="slotSearchResults" id="weaponSlotResults"></div>
+								</div>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div class="skill1" id="weaponSkills"></div>
+						<div class="skill2" id="weaponSlotSkills0"></div>
+						<div class="skill2" id="weaponSlotSkills1"></div>
+						<div class="skill2" id="weaponSlotSkills2"></div>
+					</td>
+
+					<!--Armor set info-->
+					<td rowspan="7" class="set">			
+						<div class="sexBox">
+							<label class="switch">
+								<input type="checkbox" id="sex">
+								<span class="slider"></span>
+							</label>
+						</div>
+						<div id="setStats">
+							<img src="images/attack.png" class="statIcon">
+							<p id="setAtt" class="stat">+0</p><br>
+							<img src="images/affinity.png" class="statIcon">
+							<p id="setAff" class="stat">+0%</p><br>
+							<img src="images/defense.png" class="statIcon">
+							<p id="setDef" class="stat">100</p><br>
+							<img src="images/fire.png" class="statIcon">
+							<p id="setF" class="stat">2</p><br>
+							<img src="images/water.png" class="statIcon">
+							<p id="setW" class="stat">2</p><br>
+							<img src="images/ice.png" class="statIcon">
+							<p id="setI" class="stat">2</p><br>
+							<img src="images/thunder.png" class="statIcon">
+							<p id="setT" class="stat">2</p><br>
+							<img src="images/dragon.png" class="statIcon">
+							<p id="setD" class="stat">2</p><br>
+						</div>
+						<div id="skills">
+							<br><div id="bonus"></div>
+							<br><div id="skillList"></div>
+						</div>
+					</td>
 				</tr>
 
 				<!--Head armor info-->
@@ -59,7 +171,7 @@
 					</td>
 					<td class="imgBox">
 						<span class="name" id="headName">Tooltip</span>
-						<img class="armor" id="headImg" alt="HEAD PIECE">
+						<img class="armor" id="headImg" alt="WEAPON PIECE">
 					</td>
 					<td class="statBox">
 						<div>
@@ -98,38 +210,6 @@
 						<div class="skill2" id="headSlotSkills0"></div>
 						<div class="skill2" id="headSlotSkills1"></div>
 						<div class="skill2" id="headSlotSkills2"></div>
-					</td>
-
-					<!--Armor set info-->
-					<td rowspan="6" class="set">			
-						<div class="sexBox">
-							<label class="switch">
-								<input type="checkbox" id="sex">
-								<span class="slider"></span>
-							</label>
-						</div>
-						<div id="setStats">
-							<img src="images/attack.png" class="statIcon">
-							<p id="setAtt" class="stat">+0</p><br>
-							<img src="images/affinity.png" class="statIcon">
-							<p id="setAff" class="stat">+0%</p><br>
-							<img src="images/defense.png" class="statIcon">
-							<p id="setDef" class="stat">100</p><br>
-							<img src="images/fire.png" class="statIcon">
-							<p id="setF" class="stat">2</p><br>
-							<img src="images/water.png" class="statIcon">
-							<p id="setW" class="stat">2</p><br>
-							<img src="images/ice.png" class="statIcon">
-							<p id="setI" class="stat">2</p><br>
-							<img src="images/thunder.png" class="statIcon">
-							<p id="setT" class="stat">2</p><br>
-							<img src="images/dragon.png" class="statIcon">
-							<p id="setD" class="stat">2</p><br>
-						</div>
-						<div id="skills">
-							<br><div id="bonus"></div>
-							<br><div id="skillList"></div>
-						</div>
 					</td>
 				</tr>
 

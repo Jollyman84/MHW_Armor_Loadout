@@ -102,7 +102,7 @@ class armorSet {
 			.map(x => fetch(`${this.api}/skills?q={"id":${x[1][0]}}&p={"ranks":true,"description":true}`)
 				.then(raw => raw.json())
 				.then(data => {
-					console.log(data[0]['ranks']);
+					// console.log(data[0]['ranks']);
 					return [...x, data[0]['ranks'][x[1][2] - 1]['description']];
 				})
 				.catch(err => {
