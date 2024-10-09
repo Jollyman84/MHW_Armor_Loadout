@@ -262,6 +262,7 @@ function fetchPartData(id, part) {
 					document.getElementById('weaponA').innerText = armor['attack']['display'];
 					document.getElementById('weaponY').innerText = armor['damageType'] || 'None';
 					document.getElementById('weaponES').innerText = armor['elderseal'] == null ? 'None' : armor['elderseal'];
+					document.getElementById('weaponF').innerText = armor['affinity'] + '%';
 
 					if(armor['elements'] != null && armor['elements'].length > 0) {
 						document.getElementById('weaponElementIcon').style.display = 'inline';
@@ -277,19 +278,19 @@ function fetchPartData(id, part) {
 
 					if(armor["durability"].length > 0) {
 						document.getElementById('weaponD').removeAttribute("hidden");
-						const durability = armor["durability"][0]["red"] +
-							armor["durability"][0]["orange"] + armor["durability"][0]["yellow"] +
-							armor["durability"][0]["green"] + armor["durability"][0]["blue"] +
-							armor["durability"][0]["white"] + armor["durability"][0]["purple"];
-						
 						['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'White', 'Purple'].forEach(color => {
 							document.getElementsByClassName('bar'+color)[0].style.width =
-								(armor['durability'][0][color.toLowerCase()]*100/durability) + '%';
+								(armor['durability'][0][color.toLowerCase()]/4) + '%';
 						});
 					} else {
 						document.getElementById('weaponD').setAttribute("hidden", "hidden");
 					}
+
+					// Passes stats to set object
+					setInfo.setAttack(armor['attack']['display']);
+					setInfo.setAffinity(armor['affinity']);
 					
+					// Manages slots for weapon
 					displaySlots(part, armor);
 					openModal(part, armor);
 					closeModal(part);
@@ -315,6 +316,7 @@ function fetchPartData(id, part) {
 					setInfo.setStat(part, 'thunder', armor['resistances']['thunder']);
 					setInfo.setStat(part, 'dragon', armor['resistances']['dragon']);
 
+					// Manages slots for armor piece
 					displaySlots(part, armor);
 					openModal(part, armor);
 					closeModal(part);
@@ -343,6 +345,8 @@ function fetchPartData(id, part) {
 
 // Updates displayed info for armor set
 async function updateSetInfo() {
+	document.getElementById('setAtt').innerText = setInfo.getAttack();
+	document.getElementById('setAff').innerText = setInfo.getAffinity() + '%';
 	document.getElementById('setDef').innerText = setInfo.getDefense();
 	document.getElementById('setF').innerText = setInfo.getFire();
 	document.getElementById('setW').innerText = setInfo.getWater();

@@ -1,6 +1,8 @@
 class armorSet {
 	constructor() {
 		this.api = 'https://mhw-armor-loadout-api.onrender.com';
+		this.attack = 0;
+		this.affinity = 0;
 		this.defense = [0, 0, 0, 0, 0];
 		this.fire = [0, 0, 0, 0, 0];
 		this.water = [0, 0, 0, 0, 0];
@@ -10,6 +12,10 @@ class armorSet {
 		this.bonus = [];
 		this.skills = new skillList();
 	}
+
+	getAttack() {return this.attack;}
+
+	getAffinity() {return this.affinity;}
 
 	getDefense() {return this.defense.reduce((prev, curr) => prev+curr);}
 
@@ -22,6 +28,10 @@ class armorSet {
 	getThunder() {return this.thunder.reduce((prev, curr) => prev+curr);}
 
 	getDragon() {return this.dragon.reduce((prev, curr) => prev+curr);}
+
+	setAttack(value) {this.attack = value;}
+
+	setAffinity(value) {this.affinity = value;}
 
 	setStat(part, stat, value) {
 		let index;
