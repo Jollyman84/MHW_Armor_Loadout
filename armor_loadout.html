@@ -63,15 +63,35 @@
 						<img class="armor" id="weaponImg" alt="WEAPON">
 					</td>
 					<td class="statBox">
-						<div>
-							<img src="images/rarity.png" class="statIcon">
-							<p id="weaponR" class="stat">1</p><br>
-							<img src="images/attack.png" class="statIcon">
-							<p id="weaponA" class="stat">100</p><br>
-							<img id="weaponElementIcon" src="images/attack.png" class="statIcon">
-							<p id="weaponE" class="stat">0</p><br id="weaponElementBreak">
-							<img src="images/affinity.png" class="statIcon">
-							<p id="weaponF" class="stat">0%</p><br>
+						<div class="weaponStats">
+							<div>
+								<img src="images/rarity.png" class="statIcon">
+								<p id="weaponR" class="stat">1</p>
+							</div>
+							<div>
+								<img src="images/attack.png" class="statIcon">
+								<p id="weaponA" class="stat">100</p>
+							</div>
+							<div id="weaponElementBlock">
+								<img id="weaponElementIcon" src="images/attack.png" class="statIcon">
+								<p id="weaponE" class="stat">0</p>
+								<span id="weaponElementBlock2">
+									<img id="weaponElementIcon2" src="images/attack.png" class="statIcon">
+									<p id="weaponE2" class="stat">0</p>
+								</span>
+							</div>
+							<div>
+								<img src="images/affinity.png" class="statIcon">
+								<p id="weaponF" class="stat">0%</p>
+							</div>
+							<div id="weaponShellingBlock">
+								<img src="images/shelling.png" class="statIcon">
+								<p id="weaponS" class="stat">None 0</p>
+							</div>
+							<div id="weaponPhialBlock">
+								<img src="images/phial.png" class="statIcon">
+								<p id="weaponP" class="stat">None</p>
+							</div>
 							<div class="progress" id="weaponD"> 
 								<div class="progressBar barRed">&nbsp;</div>
 								<div class="progressBar barOrange">&nbsp;</div>
@@ -81,10 +101,24 @@
 								<div class="progressBar barWhite">&nbsp;</div>
 								<div class="progressBar barPurple">&nbsp;</div>
 							</div>
-							<img src="images/hammer.png" class="statIcon">
-							<p id="weaponY" class="stat">2</p><br>
-							<img src="images/elderseal.png" class="statIcon elderseal">
-							<p id="weaponES" class="stat">None</p>
+							<div>
+								<img src="images/hammer.png" class="statIcon">
+								<p id="weaponY" class="stat">2</p>
+							</div>
+							<div id="weaponESBlock">
+								<img src="images/elderseal.png" class="statIcon elderseal">
+								<p id="weaponES" class="stat">None</p>
+							</div>
+							<div id="weaponCoatings" class="weaponCoatings">
+								<img src="images/bow-close-range.png" class="statIcon coat" alt="close range"></img>
+								<img src="images/bow-power.png" class="statIcon coat" alt="power"></img>
+								<img src="images/bow-poison.png" class="statIcon coat" alt="poison"></img>
+								<img src="images/bow-paralysis.png" class="statIcon coat" alt="paralysis"></img>
+								<img src="images/bow-sleep.png" class="statIcon coat" alt="sleep"></img>
+								<img src="images/bow-blast.png" class="statIcon coat" alt="blast"></img>
+								<br>
+								<span id="coatingDescription" class="coatingDescription"></span>
+							</div>
 						</div>
 					</td>
 					<td class="slotBox" id="weaponSlots">

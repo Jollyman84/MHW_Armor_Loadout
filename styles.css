@@ -1,3 +1,7 @@
+:root {
+	--coating: 'none';
+}
+
 body {
 	margin: 0px;
 }
@@ -103,8 +107,8 @@ div.mainDiv {
 	display: grid;
 	place-items: center;
 	width: auto;
-    margin-left: auto;
-    margin-right: auto;
+	margin-left: auto;
+	margin-right: auto;
 	margin-bottom: 150px;
 	overflow-x: auto;
 }
@@ -273,7 +277,9 @@ div.swap {
 	color:  black;
 }
 .partSelection:hover,
-.partSlotSelection:hover {
+.partSlotSelection:hover,
+.partSelection:focus,
+.partSlotSelection:focus {
 	background-color: black;
 	color:  white;
 }
@@ -330,8 +336,41 @@ td {
 	display: inline;
 	margin: 0px;
 }
+.weaponStats {
+	display: grid;
+}
 .elderseal {
 	background-color: black;
+}
+.weaponCoatings {
+	background: rgba(0,0,0,0.8);
+	margin-left: 0px;
+	margin-right: auto;
+	padding-left: 8px;
+	padding-right: 8px;
+	display: inline-flex;
+}
+.coatingDescription {
+	visibility: hidden;
+	width: fit-content;
+	background-color: black;
+	color: #fff;
+	text-align: left;
+	border-radius: 0px;
+	padding: 5px;
+	position: absolute;
+	z-index: 2;
+	left: 10px;
+	margin-top: 24px;
+}
+.coat {
+    height: 24px;
+}
+.coat:hover ~ .coatingDescription {
+	visibility: visible;
+}
+.coat:hover ~ .coatingDescription:after {
+	content: var(--coating);
 }
 p {
 	margin: 0px;
@@ -341,10 +380,10 @@ p.stat {
 	vertical-align: top;
 }
 div.progress {
-    height: 15px;
+	height: 15px;
 	width: 100px;
-    margin-bottom: 4px;
-    background-color: black;
+	margin-bottom: 4px;
+	background-color: black;
 	border-radius: 4px;
 	overflow: hidden;
 	border: black 2px solid;

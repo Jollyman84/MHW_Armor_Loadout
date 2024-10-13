@@ -29,6 +29,13 @@ document.getElementById('sex').addEventListener('change', () => {
 	//console.log(checkbox.dataset.sex);
 });
 
+const coatingOptions = document.getElementsByClassName('coat');
+for(const coat of coatingOptions) {
+	coat.addEventListener('mouseover', () => {
+		document.documentElement.style.setProperty('--coating', "'"+coat.alt+"'");
+	});
+}
+
 // Swaps picture and info for respective armor piece upon button click
 ['Weapon','Head','Torso','Arms','Belt','Legs','Charm'].forEach((value, index) => {
 	const part = value.toLowerCase();
@@ -38,6 +45,7 @@ document.getElementById('sex').addEventListener('change', () => {
 		if(value !== 'Charm')
 			document.getElementById(part+'SlotMenu').style.display = 'none';
 		document.getElementById(part+'Swap').style.display = 'block';
+		document.getElementById(part+'Search').focus();
 	});
 
 	// Closes modal box
@@ -46,7 +54,7 @@ document.getElementById('sex').addEventListener('change', () => {
 	};
 
 	// Searches for armor piece starting with user input
-	document.getElementById(part+'SearchButton').onclick = () => {
+	function search() {
 		const armor = document.getElementById(part+'Search').value.toLowerCase();
 		fetch(`./csv/${part}_list.csv`)
 			.then(response => response.text())
@@ -56,7 +64,7 @@ document.getElementById('sex').addEventListener('change', () => {
 			.then(matches => {
 				//console.log(matches);
 				document.getElementById(part+'SearchResults').innerHTML = matches.map(m => {
-					return `<button type="button" class="partSelection" data-id="${m[0]}">${m[1]}</button>`;
+					return `<button type="button" class="partSelection ${part}Selection" data-id="${m[0]}">${m[1]}</button>`;
 				}).join('<br>');
 
 				document.getElementById(part+'SearchResults').addEventListener('click', element => {
@@ -66,9 +74,20 @@ document.getElementById('sex').addEventListener('change', () => {
 						document.getElementById(part+'Swap').style.display = 'none';
 					}
 				});
+
+				//document.getElementsByClassName(part+'Selection')[0].focus();
+
 			})
 			.catch(err => console.error(err));
 	};
+
+	document.getElementById(part+'SearchButton').onclick = search;
+	document.getElementById(part+'Search').addEventListener('keypress', event =>{
+		if(event.key == 'Enter') {
+			event.preventDefault();
+			search();
+		}
+	});
 
 	// Randomly switches a specific piece of armor
 	document.getElementById(part+'Random').onclick = () => {
@@ -122,8 +141,16 @@ function openModal(part, armor) {
 			document.getElementById(part+'SlotButton').dataset.rank = document.getElementById(part+'Slot'+index).dataset.rank;
 			document.getElementById(part+'SlotButton').dataset.index = index;
 			document.getElementById(part+'SlotSearch').value = '';
+			document.getElementById(part+'SlotSearch').focus();
 			document.getElementById(part+'SlotResults').innerHTML = '';
 		});
+	});
+
+	document.getElementById(part+'SlotSearch').addEventListener('keypress', event =>{
+		if(event.key == 'Enter') {
+			event.preventDefault();
+			getSlotSkill(part);
+		}
 	});
 }
 
@@ -261,19 +288,50 @@ function fetchPartData(id, part) {
 					document.getElementById('weaponR').innerText = armor['rarity'];
 					document.getElementById('weaponA').innerText = armor['attack']['display'];
 					document.getElementById('weaponY').innerText = armor['damageType'] || 'None';
-					document.getElementById('weaponES').innerText = armor['elderseal'] == null ? 'None' : armor['elderseal'];
 					document.getElementById('weaponF').innerText = armor['affinity'] + '%';
-
-					if(armor['elements'] != null && armor['elements'].length > 0) {
-						document.getElementById('weaponElementIcon').style.display = 'inline';
-						document.getElementById('weaponElementIcon').src = `./images/${armor['elements'][0]['type']}.png`;
-						document.getElementById('weaponE').style.display = 'inline';
-						document.getElementById('weaponE').innerText = armor['elements'][0]['damage'];
-						document.getElementById('weaponElementBreak').style.display = 'inline';
+					
+					const weaponES = document.getElementById('weaponES');
+					const weaponESBlock = document.getElementById('weaponESBlock');
+					if(armor['elderseal'] == null) {
+						weaponES.innerText = 'None';
+						weaponESBlock.style.display = 'none';
 					} else {
-						document.getElementById('weaponElementIcon').style.display = 'none';
-						document.getElementById('weaponE').style.display = 'none';
-						document.getElementById('weaponElementBreak').style.display = 'none';
+						weaponES.innerText = armor['elderseal'];
+						weaponESBlock.style.display = 'block';
+					}
+					
+					const weaponElementBlock = document.getElementById('weaponElementBlock');
+					if(armor['elements'] != null && armor['elements'].length > 0) {
+						weaponElementBlock.style.display = 'block';
+						document.getElementById('weaponElementIcon').src = `./images/${armor['elements'][0]['type']}.png`;
+						document.getElementById('weaponE').innerText = armor['elements'][0]['damage'];
+
+						const weaponElementBlock2 = document.getElementById('weaponElementBlock2');
+						if(armor['elements'].length == 2) {
+							weaponElementBlock2.style.display = 'inline-block';
+							document.getElementById('weaponElementIcon2').src = `./images/${armor['elements'][1]['type']}.png`;
+							document.getElementById('weaponE2').innerText = armor['elements'][1]['damage'];
+						} else {
+							weaponElementBlock2.style.display = 'none';
+						}
+					} else {
+						weaponElementBlock.style.display = 'none';
+					}
+
+					const weaponShellingBlock = document.getElementById('weaponShellingBlock');
+					if(armor['shelling'] != undefined) {
+						weaponShellingBlock.style.display = 'block';
+						document.getElementById('weaponS').innerText = `${armor.shelling.type} ${armor.shelling.level}`;
+					} else {
+						weaponShellingBlock.style.display = 'none';
+					}
+
+					const weaponPhialBlock = document.getElementById('weaponPhialBlock');
+					if(armor['phial'] != undefined) {
+						weaponPhialBlock.style.display = 'block';
+						document.getElementById('weaponP').innerText = armor.phial.type;
+					} else {
+						weaponPhialBlock.style.display = 'none';
 					}
 
 					if(armor["durability"].length > 0) {
@@ -284,6 +342,20 @@ function fetchPartData(id, part) {
 						});
 					} else {
 						document.getElementById('weaponD').setAttribute("hidden", "hidden");
+					}
+
+					const coatings = document.getElementById('weaponCoatings');
+					if(armor['coatings'].length > 0) {
+						coatings.style.display = 'inline-flex';
+						for(const coat of coatings.getElementsByClassName('coat')) {
+							if(armor['coatings'].includes(coat.alt)) {
+								coat.style.display = 'inline';
+							} else{
+								coat.style.display = 'none';
+							}
+						}
+					} else {
+						coatings.style.display = 'none';
 					}
 
 					// Passes stats to set object
