@@ -334,6 +334,30 @@ function fetchPartData(id, part) {
 						weaponPhialBlock.style.display = 'none';
 					}
 
+					const weaponDEBlock = document.getElementById('weaponDEBlock');
+					if(armor['deviation'] != undefined) {
+						weaponDEBlock.style.display = 'block';
+						document.getElementById('weaponDE').innerText = armor.deviation;
+					} else {
+						weaponDEBlock.style.display = 'none';
+					}
+
+					const weaponBMBlock = document.getElementById('weaponBMBlock');
+					if(armor['mods'] != undefined) {
+						weaponBMBlock.style.display = 'block';
+						document.getElementById('weaponBM').innerText = armor.mods;
+					} else {
+						weaponBMBlock.style.display = 'none';
+					}
+
+					const weaponSABlock = document.getElementById('weaponSABlock');
+					if(armor['specialAmmo'] != undefined) {
+						weaponSABlock.style.display = 'block';
+						document.getElementById('weaponSA').innerText = armor.specialAmmo;
+					} else {
+						weaponSABlock.style.display = 'none';
+					}
+
 					if(armor["durability"].length > 0) {
 						document.getElementById('weaponD').removeAttribute("hidden");
 						['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'White', 'Purple'].forEach(color => {
@@ -361,6 +385,8 @@ function fetchPartData(id, part) {
 					// Passes stats to set object
 					setInfo.setAttack(armor['attack']['display']);
 					setInfo.setAffinity(armor['affinity']);
+					if(armor['ammo'] != undefined) setInfo.setAmmo(armor['ammo']);
+					else setInfo.setAmmo([]);
 					
 					// Manages slots for weapon
 					displaySlots(part, armor);
@@ -433,6 +459,22 @@ async function updateSetInfo() {
 		return bonusText
 	})
 	.join('');
+
+	const bowgunAmmo = setInfo.getAmmo();
+	const ammoBlock = document.getElementById('ammoBlock');
+	if(bowgunAmmo.length > 0) {
+		ammoBlock.style.display = 'block';
+		const ammoTable = document.getElementById('ammoTBody');
+		ammoTable.innerHTML = bowgunAmmo.reduce((prev, ammo) => {
+			let table = '<tr>';
+			table += `<td class="ammoType">${ammo.type}</td>`;
+			table += ammo.capacities.reduce((prev, curr) => prev + `<td class="ammoAmount">${curr}</td>`, '');
+			return prev + table + '</tr>';
+		}, '<tr><th class="ammoH ammoType">Ammo Type</th><th class="ammoH">1</th><th class="ammoH">2</th><th class="ammoH">3</th></tr>');
+		
+	} else {
+		ammoBlock.style.display = 'none';
+	}
 
 	const setSkills = setInfo.getSkills();
 	const skillText = await Promise.all(setSkills);

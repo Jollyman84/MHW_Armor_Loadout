@@ -11,6 +11,7 @@ class armorSet {
 		this.dragon = [0, 0, 0, 0, 0];
 		this.bonus = [];
 		this.skills = new skillList();
+		this.ammo = [];
 	}
 
 	getAttack() {return this.attack;}
@@ -29,9 +30,13 @@ class armorSet {
 
 	getDragon() {return this.dragon.reduce((prev, curr) => prev+curr);}
 
+	getAmmo() {return this.ammo;}
+
 	setAttack(value) {this.attack = value;}
 
 	setAffinity(value) {this.affinity = value;}
+
+	setAmmo(value) {this.ammo = value;}
 
 	setStat(part, stat, value) {
 		let index;

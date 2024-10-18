@@ -451,3 +451,20 @@ td.set {
 p:hover .description {
 	visibility: visible;
 }
+.ammoBlock {
+	margin: 10px 15px 10px 5px;
+}
+.ammoTable {
+	font-size: medium;
+	width: -webkit-fill-available;
+}
+.ammoH {
+	font-size: inherit;
+}
+.ammoAmount, .ammoH {
+	text-align: right;
+}
+.ammoType {
+	text-align: left;
+	width: 84px;
+}
