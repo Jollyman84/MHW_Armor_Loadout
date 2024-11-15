@@ -438,7 +438,7 @@ td.set {
 }
 .description {
 	visibility: hidden;
-	width: 200px;
+	width: -webkit-fill-available;
 	background-color: black;
 	color: #fff;
 	text-align: left;
@@ -446,9 +446,8 @@ td.set {
 	padding: 5px;
 	position: absolute;
 	z-index: 1;
-	left: clamp(-11px, 100px, min(100px, calc((100vw - 980px) / 2)));
 }
-p:hover .description {
+p:hover + .description {
 	visibility: visible;
 }
 .ammoBlock {

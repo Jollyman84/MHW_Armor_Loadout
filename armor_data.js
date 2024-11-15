@@ -191,6 +191,9 @@ function getSlotSkill(part) {
 						setInfo.addSkill(val['skillName'],val['level']);
 					});
 
+					const img = document.getElementById(part+'Slot'+document.getElementById(part+'SlotButton').dataset.index);
+					img.innerHTML = `<img src="images/deco_level_${img.dataset.rank}.png" class="slotIcon">`;
+
 					document.getElementById(part+'SlotMenu').style.display = 'none';
 					updateSetInfo();
 				}
@@ -453,9 +456,9 @@ async function updateSetInfo() {
 	document.getElementById('setD').innerText = setInfo.getDragon();
 
 	document.getElementById('bonus').innerHTML = setInfo.getBonus().map(val => {
-		let bonusText = `<p>${val[1]['count']} &times; ${val[0]}<br><span class="description">`;
+		let bonusText = `<p>${val[1]['count']} &times; ${val[0]}</p><span class="description">`;
 		bonusText += val[1]['ranks'].map(r => `[${r['pieces']}] ${r['description']}`).join('<br>');
-		bonusText += '</span></p>';
+		bonusText += '</span>';
 		return bonusText
 	})
 	.join('');
@@ -479,6 +482,6 @@ async function updateSetInfo() {
 	const setSkills = setInfo.getSkills();
 	const skillText = await Promise.all(setSkills);
 	document.getElementById('skillList').innerHTML = skillText
-		.map(val => `<p>${val[1][2]} &times; ${val[0]}<br><span class="description">${val[2]}</span></p>`)
+		.map(val => `<p>${val[1][2]} &times; ${val[0]}</p><span class="description">${val[2]}</span>`)
 		.join('');
 }
