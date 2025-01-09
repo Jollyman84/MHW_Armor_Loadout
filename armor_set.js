@@ -14,21 +14,21 @@ class armorSet {
 		this.ammo = [];
 	}
 
-	getAttack() {return this.attack;}
+	getAttack(mod) {return mod + this.attack;}
 
-	getAffinity() {return this.affinity;}
+	getAffinity(mod) {return mod + this.affinity;}
 
-	getDefense() {return this.defense.reduce((prev, curr) => prev+curr);}
+	getDefense(mod) {return mod + this.defense.reduce((prev, curr) => prev+curr);}
 
-	getFire() {return this.fire.reduce((prev, curr) => prev+curr);}
+	getFire(mod) {return mod + this.fire.reduce((prev, curr) => prev+curr);}
 
-	getWater() {return this.water.reduce((prev, curr) => prev+curr);}
+	getWater(mod) {return mod + this.water.reduce((prev, curr) => prev+curr);}
 
-	getIce() {return this.ice.reduce((prev, curr) => prev+curr);}
+	getIce(mod) {return mod + this.ice.reduce((prev, curr) => prev+curr);}
 
-	getThunder() {return this.thunder.reduce((prev, curr) => prev+curr);}
+	getThunder(mod) {return mod + this.thunder.reduce((prev, curr) => prev+curr);}
 
-	getDragon() {return this.dragon.reduce((prev, curr) => prev+curr);}
+	getDragon(mod) {return mod + this.dragon.reduce((prev, curr) => prev+curr);}
 
 	getAmmo() {return this.ammo;}
 
@@ -118,7 +118,7 @@ class armorSet {
 				.then(raw => raw.json())
 				.then(data => {
 					// console.log(data[0]['ranks']);
-					return [...x, data[0]['ranks'][x[1][2] - 1]['description']];
+					return [...x, data[0]['ranks'][x[1][2] - 1]['description'], data[0]['ranks'][x[1][2] - 1]['modifiers']];
 				})
 				.catch(err => {
 					console.error(err);

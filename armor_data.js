@@ -165,7 +165,7 @@ function closeModal(part) {
 // Searches database for decorations which contains input string
 function getSlotSkill(part) {
 	const deco = document.getElementById(part+'SlotSearch').value.toLowerCase();
-	fetch(`${api}/decorations?q={"slot":${document.getElementById(part+'SlotButton').dataset.rank}}`)
+	fetch(`${api}/decorations?q={"slot":{"$lte":${document.getElementById(part+'SlotButton').dataset.rank}}}`)
 		.then(response => response.json())
 		.then(gems => gems.filter(value => value['name'].toLowerCase().includes(deco)))
 		.then(matches => {
@@ -446,15 +446,6 @@ function fetchPartData(id, part) {
 
 // Updates displayed info for armor set
 async function updateSetInfo() {
-	document.getElementById('setAtt').innerText = setInfo.getAttack();
-	document.getElementById('setAff').innerText = setInfo.getAffinity() + '%';
-	document.getElementById('setDef').innerText = setInfo.getDefense();
-	document.getElementById('setF').innerText = setInfo.getFire();
-	document.getElementById('setW').innerText = setInfo.getWater();
-	document.getElementById('setI').innerText = setInfo.getIce();
-	document.getElementById('setT').innerText =  setInfo.getThunder();
-	document.getElementById('setD').innerText = setInfo.getDragon();
-
 	document.getElementById('bonus').innerHTML = setInfo.getBonus().map(val => {
 		let bonusText = `<p>${val[1]['count']} &times; ${val[0]}</p><span class="description">`;
 		bonusText += val[1]['ranks'].map(r => `[${r['pieces']}] ${r['description']}`).join('<br>');
@@ -479,9 +470,31 @@ async function updateSetInfo() {
 		ammoBlock.style.display = 'none';
 	}
 
-	const setSkills = setInfo.getSkills();
-	const skillText = await Promise.all(setSkills);
-	document.getElementById('skillList').innerHTML = skillText
+	const setSkills = await Promise.all(setInfo.getSkills());
+	document.getElementById('skillList').innerHTML = setSkills
 		.map(val => `<p>${val[1][2]} &times; ${val[0]}</p><span class="description">${val[2]}</span>`)
 		.join('');
+
+	const modifiers = setSkills.reduce((prev, next) => {
+		Object.keys(prev).forEach(key => 
+			next[3][key] != undefined? prev[key] += next[3][key]: null
+		);
+		return prev;
+	}, {
+		affinity: 0, attack: 0, defense: 0, damageDragon: 0,
+		damageFire: 0, damageWater: 0, damageIce: 0, damageThunder: 0,
+		health: 0, resistAll: 0, resistDragon: 0, resistFire: 0,
+		resistWater: 0, resistIce: 0, resistThunder: 0, sharpnessBonus: 0
+	});
+	
+	document.getElementById('setAtt').innerText = setInfo.getAttack(modifiers.attack);
+	document.getElementById('setAff').innerText = setInfo.getAffinity(modifiers.affinity) + '%';
+	document.getElementById('setDef').innerText = setInfo.getDefense(modifiers.defense);
+	document.getElementById('setF').innerText = setInfo.getFire(modifiers.resistAll+modifiers.resistFire);
+	document.getElementById('setW').innerText = setInfo.getWater(modifiers.resistAll+modifiers.resistWater);
+	document.getElementById('setI').innerText = setInfo.getIce(modifiers.resistAll+modifiers.resistIce);
+	document.getElementById('setT').innerText =  setInfo.getThunder(modifiers.resistAll+modifiers.resistThunder);
+	document.getElementById('setD').innerText = setInfo.getDragon(modifiers.resistAll+modifiers.resistDragon);
+
+	// TODO: Add sharpness bar
 }
