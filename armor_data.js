@@ -3,7 +3,7 @@ const api = 'https://mhw-armor-loadout-api.onrender.com';
 
 // Creates armor set object
 const setInfo = new armorSet();
-const Equipment = new Object();
+const Equipment = {legs: null, torso: null, arms: null, weapon: null, belt: null, head: null};
 
 // Loads default information upon page load 
 document.onload = [
@@ -25,8 +25,6 @@ document.getElementById('sex').addEventListener('change', () => {
 	['head','torso','arms','belt','legs'].forEach(part => 
 		fetchPartData(document.getElementsByClassName(part)[0].dataset.id,part)
 	);
-	
-	//console.log(checkbox.dataset.sex);
 });
 
 const coatingOptions = document.getElementsByClassName('coat');
@@ -185,6 +183,7 @@ function getSlotSkill(part) {
 						});
 					}
 
+					console.log(matches);
 					skills.innerHTML = '';
 					matches[element.target.dataset.index]['skills'].forEach(val => {
 						skills.innerHTML += `<p>${val['level']} &times; ${val['skillName']}</p>\n`;
@@ -221,23 +220,23 @@ function fetchPartData(id, part) {
 
 	fetch(url)
 		.then(response => response.json())
-		.then(async armor => {
+		.then(armor => {
 			switch(part) {
 				case 'weapon':
-					if(Equipment.weapon != undefined) {
+					if(Equipment.weapon != null) {
 						removeSlotSkill('weapon');
 					}
 					Equipment.weapon = armor;
 					break;
 				case 'charm':
-					if(Equipment.charm != undefined) {
+					if(Equipment.charm != null) {
 						const r = Equipment.charm['ranks'].length - 1;
 						Equipment.charm['ranks'][r]['skills'].forEach(x => setInfo.removeSkill(x['skillName'], x['level']));
 					}
 					Equipment.charm = armor;
 					break;
 				default:
-					if(Equipment[part] != undefined) {
+					if(Equipment[part] != null) {
 						setInfo.removeBonus(Equipment[part]['bonus']['name']);
 						Equipment[part]['skills'].forEach(x => setInfo.removeSkill(x['skillName'], x['level']));
 						removeSlotSkill(part);
@@ -445,7 +444,7 @@ function fetchPartData(id, part) {
 }
 
 // Updates displayed info for armor set
-async function updateSetInfo() {
+function updateSetInfo() {
 	document.getElementById('bonus').innerHTML = setInfo.getBonus().map(val => {
 		let bonusText = `<p>${val[1]['count']} &times; ${val[0]}</p><span class="description">`;
 		bonusText += val[1]['ranks'].map(r => `[${r['pieces']}] ${r['description']}`).join('<br>');
@@ -470,31 +469,44 @@ async function updateSetInfo() {
 		ammoBlock.style.display = 'none';
 	}
 
-	const setSkills = await Promise.all(setInfo.getSkills());
-	document.getElementById('skillList').innerHTML = setSkills
-		.map(val => `<p>${val[1][2]} &times; ${val[0]}</p><span class="description">${val[2]}</span>`)
-		.join('');
+	Promise.all(setInfo.getSkills())
+		.then(setSkills => {
+			document.getElementById('skillList').innerHTML = setSkills
+				.map(val => `<p>${val[1][2]} &times; ${val[0]}</p><span class="description">${val[2]}</span>`)
+				.join('');
 
-	const modifiers = setSkills.reduce((prev, next) => {
-		Object.keys(prev).forEach(key => 
-			next[3][key] != undefined? prev[key] += next[3][key]: null
-		);
-		return prev;
-	}, {
-		affinity: 0, attack: 0, defense: 0, damageDragon: 0,
-		damageFire: 0, damageWater: 0, damageIce: 0, damageThunder: 0,
-		health: 0, resistAll: 0, resistDragon: 0, resistFire: 0,
-		resistWater: 0, resistIce: 0, resistThunder: 0, sharpnessBonus: 0
-	});
-	
-	document.getElementById('setAtt').innerText = setInfo.getAttack(modifiers.attack);
-	document.getElementById('setAff').innerText = setInfo.getAffinity(modifiers.affinity) + '%';
-	document.getElementById('setDef').innerText = setInfo.getDefense(modifiers.defense);
-	document.getElementById('setF').innerText = setInfo.getFire(modifiers.resistAll+modifiers.resistFire);
-	document.getElementById('setW').innerText = setInfo.getWater(modifiers.resistAll+modifiers.resistWater);
-	document.getElementById('setI').innerText = setInfo.getIce(modifiers.resistAll+modifiers.resistIce);
-	document.getElementById('setT').innerText =  setInfo.getThunder(modifiers.resistAll+modifiers.resistThunder);
-	document.getElementById('setD').innerText = setInfo.getDragon(modifiers.resistAll+modifiers.resistDragon);
+			return setSkills.reduce((prev, next) => {
+				Object.keys(prev).forEach(key => 
+					next[3][key] != undefined? prev[key] += next[3][key]: null
+				);
+				return prev;
+			}, {
+				affinity: 0, attack: 0, defense: 0, damageDragon: 0,
+				damageFire: 0, damageWater: 0, damageIce: 0, damageThunder: 0,
+				health: 0, resistAll: 0, resistDragon: 0, resistFire: 0,
+				resistWater: 0, resistIce: 0, resistThunder: 0, sharpnessBonus: 0
+			});
+		})
+		.then(modifiers => {
+			document.getElementById('setAtt').innerText = setInfo.getAttack(modifiers.attack);
+			document.getElementById('setAff').innerText = setInfo.getAffinity(modifiers.affinity) + '%';
+			document.getElementById('setDef').innerText = setInfo.getDefense(modifiers.defense);
+			document.getElementById('setF').innerText = setInfo.getFire(modifiers.resistAll+modifiers.resistFire);
+			document.getElementById('setW').innerText = setInfo.getWater(modifiers.resistAll+modifiers.resistWater);
+			document.getElementById('setI').innerText = setInfo.getIce(modifiers.resistAll+modifiers.resistIce);
+			document.getElementById('setT').innerText =  setInfo.getThunder(modifiers.resistAll+modifiers.resistThunder);
+			document.getElementById('setD').innerText = setInfo.getDragon(modifiers.resistAll+modifiers.resistDragon);
 
-	// TODO: Add sharpness bar
+			if(Equipment.weapon == null) ;
+			else if(Equipment.weapon.durability.length > 0) {
+				document.getElementById('sharpness').removeAttribute("hidden");
+				['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'White', 'Purple'].forEach(color => {
+					document.getElementsByClassName('bar'+color)[1].style.width =
+						(Equipment.weapon.durability[modifiers.sharpnessBonus/10][color.toLowerCase()]/4) + '%';
+				});
+			} else {
+				document.getElementById('sharpness').setAttribute("hidden", "hidden");
+			}
+		})
+		.catch(err => console.error(err));
 }
