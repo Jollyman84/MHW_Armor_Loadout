@@ -122,9 +122,9 @@ function removeSlotSkill(part) {
 // Displays empty slots for given equipment piece
 function displaySlots(part, armor) {
 	const slots = []
-	armor['slots'].forEach((element,index) => {
-		let slotButton = `<button class="slotButton" id="${part}Slot${index}" data-rank="${element['rank']}" type="menu">\n`;
-		slotButton += `<img src="images/gem_level_${element['rank']}.png" class="slotIcon">\n</button>`;
+	armor.slots.forEach((element,index) => {
+		let slotButton = `<button class="slotButton" id="${part}Slot${index}" data-rank="${element.rank}" type="menu">\n`;
+		slotButton += `<img src="images/gem_level_${element.rank}.png" class="slotIcon">\n</button>`;
 		slots.push(slotButton);
 	});
 	document.getElementById(part+'SlotsInner').innerHTML = slots.join('<br>');
@@ -132,7 +132,7 @@ function displaySlots(part, armor) {
 
 // Opens modal box for swaping process
 function openModal(part, armor) {
-	armor['slots'].forEach((element,index) => {
+	armor.slots.forEach((element,index) => {
 		document.getElementById(part+'Slot'+index).addEventListener('click', () => {
 			const modal = document.getElementById(part+'SlotMenu');
 			modal.style.display = 'block';
@@ -165,11 +165,11 @@ function getSlotSkill(part) {
 	const deco = document.getElementById(part+'SlotSearch').value.toLowerCase();
 	fetch(`${api}/decorations?q={"slot":{"$lte":${document.getElementById(part+'SlotButton').dataset.rank}}}`)
 		.then(response => response.json())
-		.then(gems => gems.filter(value => value['name'].toLowerCase().includes(deco)))
+		.then(gems => gems.filter(value => value.name.toLowerCase().includes(deco)))
 		.then(matches => {
 			// Displays decorations matching string as buttons
 			document.getElementById(part+'SlotResults').innerHTML = matches.map((m,i) => {
-				return `<button type="button" class="partSlotSelection" data-index="${i}">${m['name']}</button>`;
+				return `<button type="button" class="partSlotSelection" data-index="${i}">${m.name}</button>`;
 			}).join('<br>');
 
 			// Onclick respective decorations' info will be injected into armor part and set 
@@ -183,11 +183,11 @@ function getSlotSkill(part) {
 						});
 					}
 
-					console.log(matches);
+					//console.log(matches);
 					skills.innerHTML = '';
-					matches[element.target.dataset.index]['skills'].forEach(val => {
-						skills.innerHTML += `<p>${val['level']} &times; ${val['skillName']}</p>\n`;
-						setInfo.addSkill(val['skillName'],val['level']);
+					matches[element.target.dataset.index].skills.forEach(val => {
+						skills.innerHTML += `<p>${val.level} &times; ${val.skillName}</p>\n`;
+						setInfo.addSkill(val.skillName,val.level);
 					});
 
 					const img = document.getElementById(part+'Slot'+document.getElementById(part+'SlotButton').dataset.index);
@@ -230,15 +230,15 @@ function fetchPartData(id, part) {
 					break;
 				case 'charm':
 					if(Equipment.charm != null) {
-						const r = Equipment.charm['ranks'].length - 1;
-						Equipment.charm['ranks'][r]['skills'].forEach(x => setInfo.removeSkill(x['skillName'], x['level']));
+						const r = Equipment.charm.ranks.length - 1;
+						Equipment.charm.ranks[r].skills.forEach(x => setInfo.removeSkill(x.skillName, x.level));
 					}
 					Equipment.charm = armor;
 					break;
 				default:
 					if(Equipment[part] != null) {
-						setInfo.removeBonus(Equipment[part]['bonus']['name']);
-						Equipment[part]['skills'].forEach(x => setInfo.removeSkill(x['skillName'], x['level']));
+						setInfo.removeBonus(Equipment[part].bonus.name);
+						Equipment[part].skills.forEach(x => setInfo.removeSkill(x.skillName, x.level));
 						removeSlotSkill(part);
 					}
 					Equipment[part] = armor;
@@ -257,21 +257,21 @@ function fetchPartData(id, part) {
 		})
 		.then(armor => {
 			// Displays image
-			switch(armor['assets']) {
+			switch(armor.assets) {
 				case null:
 				case undefined:
 					document.getElementById(part+'Img').src = './images/' + part + '-icon.png';
 					break;
 				default:
 					if(part == 'weapon') {
-						document.getElementById(part+'Img').src = armor['assets']['image'];
+						document.getElementById(part+'Img').src = armor.assets.image;
 					} else {
-						document.getElementById(part+'Img').src = armor['assets'][document.getElementById('sex').dataset.sex];
+						document.getElementById(part+'Img').src = armor.assets[document.getElementById('sex').dataset.sex];
 					}
 					break;
 			}
 			
-			document.getElementById(part+'Name').innerText = armor['name'];
+			document.getElementById(part+'Name').innerText = armor.name;
 			return armor;
 		})
 		.then(armor => {
@@ -279,40 +279,40 @@ function fetchPartData(id, part) {
 				case 'charm':
 					// Displays charm skills
 					const skillsC = [];
-					armor['ranks'][armor['ranks'].length-1]['skills'].forEach(element => {
-						skillsC.push(`<p>${element['level']} &times; ${element['skillName']}</p>`);
-						setInfo.addSkill(element['skillName'],element['level']);
+					armor.ranks[armor.ranks.length-1].skills.forEach(element => {
+						skillsC.push(`<p>${element.level} &times; ${element.skillName}</p>`);
+						setInfo.addSkill(element.skillName,element.level);
 					});
 					document.getElementById('charmSkills').innerHTML = skillsC.join('');
 					break;
 				case 'weapon':
 					// Displays stats
-					document.getElementById('weaponR').innerText = armor['rarity'];
-					document.getElementById('weaponA').innerText = armor['attack']['display'];
-					document.getElementById('weaponY').innerText = armor['damageType'] || 'None';
-					document.getElementById('weaponF').innerText = armor['affinity'] + '%';
+					document.getElementById('weaponR').innerText = armor.rarity;
+					document.getElementById('weaponA').innerText = armor.attack.display;
+					document.getElementById('weaponY').innerText = armor.damageType || 'None';
+					document.getElementById('weaponF').innerText = armor.affinity + '%';
 					
 					const weaponES = document.getElementById('weaponES');
 					const weaponESBlock = document.getElementById('weaponESBlock');
-					if(armor['elderseal'] == null) {
+					if(armor.elderseal == null) {
 						weaponES.innerText = 'None';
 						weaponESBlock.style.display = 'none';
 					} else {
-						weaponES.innerText = armor['elderseal'];
+						weaponES.innerText = armor.elderseal;
 						weaponESBlock.style.display = 'block';
 					}
 					
 					const weaponElementBlock = document.getElementById('weaponElementBlock');
-					if(armor['elements'] != null && armor['elements'].length > 0) {
+					if(armor.elements != null && armor.elements.length > 0) {
 						weaponElementBlock.style.display = 'block';
-						document.getElementById('weaponElementIcon').src = `./images/${armor['elements'][0]['type']}.png`;
-						document.getElementById('weaponE').innerText = armor['elements'][0]['damage'];
+						document.getElementById('weaponElementIcon').src = `./images/${armor.elements[0].type}.png`;
+						document.getElementById('weaponE').innerText = armor.elements[0].damage;
 
 						const weaponElementBlock2 = document.getElementById('weaponElementBlock2');
-						if(armor['elements'].length == 2) {
+						if(armor.elements.length == 2) {
 							weaponElementBlock2.style.display = 'inline-block';
-							document.getElementById('weaponElementIcon2').src = `./images/${armor['elements'][1]['type']}.png`;
-							document.getElementById('weaponE2').innerText = armor['elements'][1]['damage'];
+							document.getElementById('weaponElementIcon2').src = `./images/${armor.elements[1].type}.png`;
+							document.getElementById('weaponE2').innerText = armor.elements[1].damage;
 						} else {
 							weaponElementBlock2.style.display = 'none';
 						}
@@ -321,7 +321,7 @@ function fetchPartData(id, part) {
 					}
 
 					const weaponShellingBlock = document.getElementById('weaponShellingBlock');
-					if(armor['shelling'] != undefined) {
+					if(armor.shelling != undefined) {
 						weaponShellingBlock.style.display = 'block';
 						document.getElementById('weaponS').innerText = `${armor.shelling.type} ${armor.shelling.level}`;
 					} else {
@@ -329,7 +329,7 @@ function fetchPartData(id, part) {
 					}
 
 					const weaponPhialBlock = document.getElementById('weaponPhialBlock');
-					if(armor['phial'] != undefined) {
+					if(armor.phial != undefined) {
 						weaponPhialBlock.style.display = 'block';
 						document.getElementById('weaponP').innerText = armor.phial.type;
 					} else {
@@ -337,7 +337,7 @@ function fetchPartData(id, part) {
 					}
 
 					const weaponDEBlock = document.getElementById('weaponDEBlock');
-					if(armor['deviation'] != undefined) {
+					if(armor.deviation != undefined) {
 						weaponDEBlock.style.display = 'block';
 						document.getElementById('weaponDE').innerText = armor.deviation;
 					} else {
@@ -345,7 +345,7 @@ function fetchPartData(id, part) {
 					}
 
 					const weaponBMBlock = document.getElementById('weaponBMBlock');
-					if(armor['mods'] != undefined) {
+					if(armor.mods != undefined) {
 						weaponBMBlock.style.display = 'block';
 						document.getElementById('weaponBM').innerText = armor.mods;
 					} else {
@@ -353,28 +353,28 @@ function fetchPartData(id, part) {
 					}
 
 					const weaponSABlock = document.getElementById('weaponSABlock');
-					if(armor['specialAmmo'] != undefined) {
+					if(armor.specialAmmo != undefined) {
 						weaponSABlock.style.display = 'block';
 						document.getElementById('weaponSA').innerText = armor.specialAmmo;
 					} else {
 						weaponSABlock.style.display = 'none';
 					}
 
-					if(armor["durability"].length > 0) {
+					if(armor.durability.length > 0) {
 						document.getElementById('weaponD').removeAttribute("hidden");
 						['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'White', 'Purple'].forEach(color => {
 							document.getElementsByClassName('bar'+color)[0].style.width =
-								(armor['durability'][0][color.toLowerCase()]/4) + '%';
+								(armor.durability[0][color.toLowerCase()]/4) + '%';
 						});
 					} else {
 						document.getElementById('weaponD').setAttribute("hidden", "hidden");
 					}
 
 					const coatings = document.getElementById('weaponCoatings');
-					if(armor['coatings'].length > 0) {
+					if(armor.coatings.length > 0) {
 						coatings.style.display = 'inline-flex';
 						for(const coat of coatings.getElementsByClassName('coat')) {
-							if(armor['coatings'].includes(coat.alt)) {
+							if(armor.coatings.includes(coat.alt)) {
 								coat.style.display = 'inline';
 							} else{
 								coat.style.display = 'none';
@@ -385,10 +385,11 @@ function fetchPartData(id, part) {
 					}
 
 					// Passes stats to set object
-					setInfo.setAttack(armor['attack']['display']);
-					setInfo.setAffinity(armor['affinity']);
-					if(armor['ammo'] != undefined) setInfo.setAmmo(armor['ammo']);
+					setInfo.setAttack(armor.attack.display);
+					setInfo.setAffinity(armor.affinity);
+					if(armor.ammo != undefined) setInfo.setAmmo(armor.ammo);
 					else setInfo.setAmmo([]);
+					armor.elements.forEach((value, index) => setInfo.setElement(value.type, value.damage, index));
 					
 					// Manages slots for weapon
 					displaySlots(part, armor);
@@ -400,21 +401,21 @@ function fetchPartData(id, part) {
 					break;
 				default:
 					// Displays stats
-					document.getElementById(part+'R').innerText = armor['rarity'];
-					document.getElementById(part+'Def').innerText = armor['defense']['base'];
-					document.getElementById(part+'F').innerText = armor['resistances']['fire'];
-					document.getElementById(part+'W').innerText = armor['resistances']['water'];
-					document.getElementById(part+'I').innerText = armor['resistances']['ice'];
-					document.getElementById(part+'T').innerText =  armor['resistances']['thunder'];
-					document.getElementById(part+'D').innerText = armor['resistances']['dragon'];
+					document.getElementById(part+'R').innerText = armor.rarity;
+					document.getElementById(part+'Def').innerText = armor.defense.base;
+					document.getElementById(part+'F').innerText = armor.resistances.fire;
+					document.getElementById(part+'W').innerText = armor.resistances.water;
+					document.getElementById(part+'I').innerText = armor.resistances.ice;
+					document.getElementById(part+'T').innerText =  armor.resistances.thunder;
+					document.getElementById(part+'D').innerText = armor.resistances.dragon;
 
 					// Passes stats to set object
-					setInfo.setStat(part, 'defense',armor['defense']['base']);
-					setInfo.setStat(part, 'fire', armor['resistances']['fire']);
-					setInfo.setStat(part, 'water', armor['resistances']['water']);
-					setInfo.setStat(part, 'ice', armor['resistances']['ice']);
-					setInfo.setStat(part, 'thunder', armor['resistances']['thunder']);
-					setInfo.setStat(part, 'dragon', armor['resistances']['dragon']);
+					setInfo.setStat(part, 'defense',armor.defense.base);
+					setInfo.setStat(part, 'fire', armor.resistances.fire);
+					setInfo.setStat(part, 'water', armor.resistances.water);
+					setInfo.setStat(part, 'ice', armor.resistances.ice);
+					setInfo.setStat(part, 'thunder', armor.resistances.thunder);
+					setInfo.setStat(part, 'dragon', armor.resistances.dragon);
 
 					// Manages slots for armor piece
 					displaySlots(part, armor);
@@ -425,15 +426,15 @@ function fetchPartData(id, part) {
 
 					// Displays set bonus
 					const skills = [];
-					if(armor['bonus']['name'] !== 'Empty') {
-						skills.push(armor['bonus']['name']);
-						setInfo.addBonus(armor['bonus']);
+					if(armor.bonus.name !== 'Empty') {
+						skills.push(armor.bonus.name);
+						setInfo.addBonus(armor.bonus);
 					}
 
 					// Displays armor skills
-					armor['skills'].forEach(element => {
-						skills.push(`<p>${element['level']} &times; ${element['skillName']}</p>`);
-						setInfo.addSkill(element['skillName'],element['level']);
+					armor.skills.forEach(element => {
+						skills.push(`<p>${element.level} &times; ${element.skillName}</p>`);
+						setInfo.addSkill(element.skillName,element.level);
 					});
 					document.getElementById(part+'Skills').innerHTML = skills.join('');
 					break;
@@ -446,8 +447,8 @@ function fetchPartData(id, part) {
 // Updates displayed info for armor set
 function updateSetInfo() {
 	document.getElementById('bonus').innerHTML = setInfo.getBonus().map(val => {
-		let bonusText = `<p>${val[1]['count']} &times; ${val[0]}</p><span class="description">`;
-		bonusText += val[1]['ranks'].map(r => `[${r['pieces']}] ${r['description']}`).join('<br>');
+		let bonusText = `<p>${val[1].count} &times; ${val[0]}</p><span class="description">`;
+		bonusText += val[1].ranks.map(r => `[${r.pieces}] ${r.description}`).join('<br>');
 		bonusText += '</span>';
 		return bonusText
 	})
@@ -475,6 +476,7 @@ function updateSetInfo() {
 				.map(val => `<p>${val[1][2]} &times; ${val[0]}</p><span class="description">${val[2]}</span>`)
 				.join('');
 
+			console.log(setSkills);
 			return setSkills.reduce((prev, next) => {
 				Object.keys(prev).forEach(key => 
 					next[3][key] != undefined? prev[key] += next[3][key]: null
@@ -488,14 +490,43 @@ function updateSetInfo() {
 			});
 		})
 		.then(modifiers => {
+			function calcMod(val, base) {
+				if(typeof(val) == 'number') return val + base;
+				else if(typeof(val) == 'string') {
+					const [raw, percent] = val.split('+');
+					return base + parseInt(raw) + (base * parseInt(percent) / 100);
+				}
+				else return 0;
+			}
+
 			document.getElementById('setAtt').innerText = setInfo.getAttack(modifiers.attack);
 			document.getElementById('setAff').innerText = setInfo.getAffinity(modifiers.affinity) + '%';
-			document.getElementById('setDef').innerText = setInfo.getDefense(modifiers.defense);
-			document.getElementById('setF').innerText = setInfo.getFire(modifiers.resistAll+modifiers.resistFire);
-			document.getElementById('setW').innerText = setInfo.getWater(modifiers.resistAll+modifiers.resistWater);
-			document.getElementById('setI').innerText = setInfo.getIce(modifiers.resistAll+modifiers.resistIce);
-			document.getElementById('setT').innerText =  setInfo.getThunder(modifiers.resistAll+modifiers.resistThunder);
-			document.getElementById('setD').innerText = setInfo.getDragon(modifiers.resistAll+modifiers.resistDragon);
+			document.getElementById('setDef').innerText = calcMod(modifiers.defense, setInfo.getDefense());
+			document.getElementById('setF').innerText = modifiers.resistAll + calcMod(modifiers.resistFire, setInfo.getFire());
+			document.getElementById('setW').innerText = modifiers.resistAll + calcMod(modifiers.resistWater, setInfo.getWater());
+			document.getElementById('setI').innerText = modifiers.resistAll + calcMod(modifiers.resistIce, setInfo.getIce());
+			document.getElementById('setT').innerText = modifiers.resistAll + calcMod(modifiers.resistThunder, setInfo.getThunder());
+			document.getElementById('setD').innerText = modifiers.resistAll + calcMod(modifiers.resistDragon, setInfo.getDragon());
+
+			const setElementBlock = document.getElementById('setElementBlock');
+				if(Equipment.weapon != null && Equipment.weapon.elements.length > 0) {
+					setElementBlock.style.display = 'block';
+					document.getElementById('setElementIcon').src = `./images/${setInfo.getElementType(0)}.png`;
+					const type1 = setInfo.getElementType(0).charAt(0).toUpperCase() + setInfo.getElementType(0).slice(1);
+					document.getElementById('setE').innerText = calcMod(modifiers['damage'+type1], setInfo.getElement(0));
+
+					const setElementBlock2 = document.getElementById('setElementBlock2');
+					if(Equipment.weapon.elements.length == 2) {
+						setElementBlock2.style.display = 'inline-block';
+						document.getElementById('setElementIcon2').src = `./images/${setInfo.getElementType(1)}.png`;
+						const type2 = setInfo.getElementType(1).charAt(0).toUpperCase() + setInfo.getElementType(1).slice(1);
+						document.getElementById('setE2').innerText = calcMod(modifiers['damage'+type2], setInfo.getElement(1));
+					} else {
+						setElementBlock2.style.display = 'none';
+					}
+				} else {
+					setElementBlock.style.display = 'none';
+				}
 
 			if(Equipment.weapon == null) ;
 			else if(Equipment.weapon.durability.length > 0) {

@@ -2,6 +2,8 @@ class armorSet {
 	constructor() {
 		this.api = 'https://mhw-armor-loadout-api.onrender.com';
 		this.attack = 0;
+		this.element0 = [null, 0];
+		this.element1 = [null, 0];
 		this.affinity = 0;
 		this.defense = [0, 0, 0, 0, 0];
 		this.fire = [0, 0, 0, 0, 0];
@@ -14,25 +16,31 @@ class armorSet {
 		this.ammo = [];
 	}
 
-	getAttack(mod) {return mod + this.attack;}
+	getAttack() {return this.attack;}
 
-	getAffinity(mod) {return mod + this.affinity;}
+	getElementType(index) {return this['element'+index][0];}
 
-	getDefense(mod) {return mod + this.defense.reduce((prev, curr) => prev+curr);}
+	getElement(index) {return this['element'+index][1];}
 
-	getFire(mod) {return mod + this.fire.reduce((prev, curr) => prev+curr);}
+	getAffinity() {return this.affinity;}
 
-	getWater(mod) {return mod + this.water.reduce((prev, curr) => prev+curr);}
+	getDefense() {return this.defense.reduce((prev, curr) => prev+curr);}
 
-	getIce(mod) {return mod + this.ice.reduce((prev, curr) => prev+curr);}
+	getFire() {return this.fire.reduce((prev, curr) => prev+curr);}
 
-	getThunder(mod) {return mod + this.thunder.reduce((prev, curr) => prev+curr);}
+	getWater() {return this.water.reduce((prev, curr) => prev+curr);}
 
-	getDragon(mod) {return mod + this.dragon.reduce((prev, curr) => prev+curr);}
+	getIce() {return this.ice.reduce((prev, curr) => prev+curr);}
+
+	getThunder() {return this.thunder.reduce((prev, curr) => prev+curr);}
+
+	getDragon() {return this.dragon.reduce((prev, curr) => prev+curr);}
 
 	getAmmo() {return this.ammo;}
 
 	setAttack(value) {this.attack = value;}
+
+	setElement(type, value, index) {this['element'+index] = [type, value];}
 
 	setAffinity(value) {this.affinity = value;}
 
@@ -117,7 +125,7 @@ class armorSet {
 			.map(x => fetch(`${this.api}/skills?q={"id":${x[1][0]}}&p={"ranks":true,"description":true}`)
 				.then(raw => raw.json())
 				.then(data => {
-					// console.log(data[0]['ranks']);
+					console.log(data[0]['ranks']);
 					return [...x, data[0]['ranks'][x[1][2] - 1]['description'], data[0]['ranks'][x[1][2] - 1]['modifiers']];
 				})
 				.catch(err => {
